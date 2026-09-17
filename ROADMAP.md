@@ -9,7 +9,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
       Pydantic schema, model fallback chain, `data/photo_prompts.json`.
 - [x] **2. PDF rendering** — three Jinja2/WeasyPrint layouts (classic, modern, minimal), photo from
       `data/photos/<id>.png` or a generated placeholder, `cv generate` runs profiles + PDFs in one go.
-- [ ] **3. Index and search** — ChromaDB with local fastembed embeddings; structured fields as
+- [x] **3. Index and search** — ChromaDB with local fastembed embeddings; structured fields as
       metadata (seniority, role, country, years, languages, skills); one `search(query, filters)`
       that combines metadata filters with semantic ranking; `cv index` and `cv search` commands.
 - [ ] **4. Agent** — hand-written tool-use loop over OpenRouter; tools: `search_candidates`,

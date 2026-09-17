@@ -37,5 +37,59 @@ def generate(
         console.print(f"  [green]pdf[/green]  {path.relative_to(path.parents[2])}  ({c.template})")
 
 
+@app.command()
+def index() -> None:
+    """Rebuild the vector index from data/candidates."""
+    from .generate.generator import load_all
+    from .index.store import CandidateIndex
+
+    cands = load_all()
+    n = CandidateIndex().rebuild(cands)
+    console.print(f"indexed {n} candidates")
+
+
+@app.command()
+def search(
+    query: str = typer.Argument("", help="Free-text query; empty for filter-only."),
+    seniority: list[str] = typer.Option([], "--seniority", "-s"),
+    role: list[str] = typer.Option([], "--role", "-r"),
+    country: list[str] = typer.Option([], "--country", "-c"),
+    language: list[str] = typer.Option([], "--language", "-l"),
+    skill: list[str] = typer.Option([], "--skill"),
+    min_years: int | None = typer.Option(None, "--min-years"),
+    k: int = typer.Option(5, "-k"),
+) -> None:
+    """Hybrid search: metadata filters plus semantic ranking."""
+    from rich.table import Table
+
+    from .index.store import CandidateIndex, Filters
+
+    filters = Filters(
+        seniority=seniority,
+        role_family=role,
+        country=country,
+        languages=language,
+        skills=skill,
+        min_years=min_years,
+    )
+    hits = CandidateIndex().search(query or None, filters, k=k)
+    table = Table(title=f"query={query!r} filters={filters.to_where()}")
+    for col in ("score", "id", "name", "headline", "level", "role", "country", "yrs", "languages"):
+        table.add_column(col)
+    for h in hits:
+        table.add_row(
+            "" if h.score is None else f"{h.score:.3f}",
+            h.id,
+            h.name,
+            h.headline[:50],
+            h.seniority,
+            h.role_family,
+            h.country,
+            str(h.years_experience),
+            h.languages,
+        )
+    console.print(table if hits else "[yellow]no candidates match[/yellow]")
+
+
 if __name__ == "__main__":
     app()
