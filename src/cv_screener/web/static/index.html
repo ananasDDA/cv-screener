@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV Screener</title>
+<meta name="description" content="Local chat with the CV Screener agent.">
+<link rel="icon" href="data:,">
+<script>
+  /* Set the theme before first paint so the page never flashes the wrong one. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("cv-screener-theme"); } catch (e) { /* private mode */ }
+    if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    if (t === "dark") document.documentElement.classList.add("theme-dark");
+  })();
+</script>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<a class="skip" href="#input">Skip to the message box</a>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">CV Screener</span>
+    <span class="tag">local agent</span>
+  </div>
+  <nav class="actions" aria-label="Collection">
+    <button type="button" class="btn" id="browse">Browse collection</button>
+    <button type="button" class="btn" id="add">Add r&eacute;sum&eacute;</button>
+    <button type="button" class="btn ghost theme-btn" id="theme" aria-label="Switch to dark theme">
+      <span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Dark</span>
+    </button>
+  </nav>
+</header>
+
+<main id="transcript" class="transcript">
+  <section class="hero" id="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <h1>Ask about the candidates</h1>
+    <p class="lede">
+      The agent answers only from what its search tools return, and names the people it actually
+      found. Results, profiles and the collection render as the same widgets the MCP server ships.
+    </p>
+    <div class="samples" role="group" aria-label="Sample questions">
+      <button type="button" class="sample">Who has experience with Python?</button>
+      <button type="button" class="sample">Which candidates speak Spanish?</button>
+      <button type="button" class="sample">Who would be the best fit for a senior ML role?</button>
+      <button type="button" class="sample">Summarize the profile of Katie Brown</button>
+    </div>
+  </section>
+</main>
+
+<form class="composer" id="composer" autocomplete="off">
+  <div class="composer-inner">
+    <label class="sr-only" for="input">Message</label>
+    <textarea id="input" rows="1" placeholder="Ask about the candidates&hellip;"></textarea>
+    <button type="submit" class="btn primary" id="send">Send</button>
+  </div>
+  <div class="composer-foot">
+    <div class="model-picker">
+      <label class="sr-only" for="model">Model</label>
+      <select id="model" class="model-select" aria-describedby="model-note">
+        <option value="">Loading models&hellip;</option>
+      </select>
+      <span class="chip tiny" id="model-badge" hidden></span>
+    </div>
+    <p class="hint">Enter sends &middot; Shift+Enter adds a line &middot; drop a r&eacute;sum&eacute; anywhere</p>
+  </div>
+  <p class="note" id="model-note" hidden>This model is billed to your OpenRouter key.</p>
+</form>
+
+<div class="dropzone" id="dropzone" hidden aria-hidden="true">
+  <div class="dropzone-card">Drop a r&eacute;sum&eacute; &mdash; PDF, .txt or .md</div>
+</div>
+<input type="file" id="file" accept=".pdf,.txt,.md,.markdown" hidden>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

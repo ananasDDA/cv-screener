@@ -151,5 +151,23 @@ def mcp() -> None:
     mcp_main()
 
 
+@app.command()
+def web(
+    host: str = typer.Option("127.0.0.1", help="Interface to bind. Localhost by default."),
+    port: int = typer.Option(8000, help="Port to listen on."),
+) -> None:
+    """Serve the local web chat: the same agent and widgets in a browser."""
+    from .llm import LLM, LLMError
+    from .web import serve
+
+    try:
+        LLM()  # fail fast and readably rather than on the first question
+    except LLMError as exc:
+        console.print(f"[red]{exc}[/red]")
+        raise typer.Exit(1) from None
+    console.print(f"[bold]CV Screener[/bold] web chat on [cyan]http://{host}:{port}[/cyan]")
+    serve(host=host, port=port)
+
+
 if __name__ == "__main__":
     app()
