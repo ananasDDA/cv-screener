@@ -3,15 +3,32 @@
 Honest status of the project: what is unfinished, what is broken, what the evals actually printed,
 and what I would do next.
 
+## Scope and time
+
+The core of the task (dataset, index, agent, evals, tests, docs) was built first and is complete on
+its own. Everything after that — MCP server with widgets, landing page, web chat, research notebook —
+is optional work on top, done after the core and outside the three-hour frame, as the task allows.
+
 ## Not done
 
-- Photos are placeholders (initials on a coloured square). Real headshots are generated in a separate
-  pipeline from `data/photo_prompts.json` and dropped into `data/photos/<id>.png`; rendering picks them
-  up automatically. Not yet done at the time of writing.
-- README setup-from-zero section is still being written (phase 7 of ROADMAP.md).
-- Extras from the roadmap (CI, MCP server, web UI) are not started.
+- The résumé upload → `add_candidate` round trip in the web chat is covered by offline tests but was
+  not exercised against a real model: the free-tier daily quota ran out during development.
+- Research notebook: the free-model leaderboard has 2 of 5 models and the JobResQA part is pending
+  the same quota (the collectors resume from cache; see the notebook for what is measured).
+- No LICENSE file yet, so the landing page claims none.
+- Public deployment of the web chat is intentionally out of scope: the product is local-first.
 
 ## Known issues
+
+- Claude Desktop keeps tools of a local MCP server switched off until the user enables them in the
+  chat's tools menu, and asks again when the server's tool set changes. It also loads local tools
+  lazily by keyword, so a first question that does not mention candidates/résumés (or the server)
+  may be answered without tools. Claude Code keeps the tools in context and does not show this.
+- MCP Apps widgets render in Claude Desktop and claude.ai; Claude Code gets JSON only.
+- The OpenRouter free tier has an account-wide daily request cap; a busy day of evals and research
+  exhausts it and everything returns 429 until 00:00 UTC.
+- Eval case `senior-ml-fit` requires Rosalinda Barral while its own note accepts Katie Brown too; an
+  answer naming only Katie fails. The case should accept either (found by the research notebook).
 
 - Free OpenRouter models are flaky: 429s, empty `choices`, occasional stray citation markers in
   answers. The fallback chain hides most of it; expect eval runtimes of 1–3 minutes and the odd

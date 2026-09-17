@@ -11,14 +11,22 @@ See `ROADMAP.md` for phases and `NOTES.md` for honest status.
   (metadata filters + semantic ranking). No LLM here.
 - `src/cv_screener/agent/` — hand-written tool-use loop over OpenRouter; tools call the index.
 - `src/cv_screener/llm.py` — OpenRouter client with model fallback chain and JSON→Pydantic helper.
-- `src/cv_screener/cli.py` — Typer entrypoints: `generate`, `index`, `search`, `chat`.
+- `src/cv_screener/mcp_server.py` — the index as a local MCP server (stdio) with MCP Apps widgets.
+- `src/cv_screener/widgets/` — self-contained HTML widgets (results table, profile card, coverflow
+  deck) plus the shared tokens, host bridge and profile renderer they are assembled from.
+- `src/cv_screener/library.py` — résumés added at runtime; stored in `~/.cv-screener`, never in git.
+- `src/cv_screener/web/` — local web chat (Starlette + SSE) that hosts the same widgets.
+- `src/cv_screener/cli.py` — Typer entrypoints: `generate`, `index`, `search`, `chat`, `mcp`, `web`.
+- `research/`, `research.ipynb` — measurements (tools vs all-in-prompt, leaderboard, JobResQA);
+  collectors cache every run under `research/results/` and enforce a request budget.
+- `docs/` — static landing page for GitHub Pages, `llms.txt` and an install runbook for agents.
 - `evals/` — JSON cases + runner printing pass/fail and a summary (needs an API key).
 - `tests/` — pytest, must pass without any API key or network.
 - `data/` — candidate JSON, PDFs, photos (committed); Chroma store (ignored).
 
 ## How to run
 - Python 3.12 via `uv`. Always `uv run ...` or the Makefile targets; never a system Python.
-- `make setup`, `make generate`, `make index`, `make chat`, `make test`, `make eval`.
+- `make setup`, `make generate`, `make index`, `make chat`, `make web`, `make test`, `make eval`.
 - macOS: WeasyPrint needs `brew install pango`; the Makefile exports `DYLD_FALLBACK_LIBRARY_PATH`.
 - `make check` (ruff + pytest) must be green before every commit.
 
@@ -31,8 +39,14 @@ See `ROADMAP.md` for phases and `NOTES.md` for honest status.
   The three search functions are the only boundary, so an MCP server or web UI can reuse them.
 - The agent retrieves through tools only; never put the whole dataset into a prompt.
 - Answers cite candidate names/ids returned by tools. Empty results → say no one matches.
+- The same holds for MCP: never return the whole collection to the host model. `list_candidates`
+  gives a summary; widgets fetch bulk data and photos through app-only tools.
+- Tool descriptions are part of the product: Claude Desktop finds local tools by keyword and
+  re-asks the user to enable them when the tool set changes, so change them deliberately.
 - LLM access only through OpenRouter; models come from `.env`, never hardcoded.
-- Photos: rendering looks for `data/photos/<candidate_id>.png` and falls back to a deterministic
+- Two data layouts (`config.py`): `./data` in a checkout; packaged read-only dataset plus
+  `~/.cv-screener` for the index when installed (`uvx --from git+…`). Keep both working.
+- Photos: rendering looks for `data/photos/<candidate_id>.{png,jpg}` and falls back to a deterministic
   placeholder avatar, so the pipeline never blocks on image generation.
 
 ## Python conventions
@@ -61,3 +75,5 @@ See `ROADMAP.md` for phases and `NOTES.md` for honest status.
   for Chroma.
 - Evals hit the real model. Results are pasted into `NOTES.md` exactly as printed, failures included.
 - After changing a prompt or the persona grid, re-run evals and update NOTES.md.
+- The free OpenRouter tier has an account-wide daily cap (resets 00:00 UTC). Anything that loops
+  over the API must count requests, cache results and stop on repeated 429s.
