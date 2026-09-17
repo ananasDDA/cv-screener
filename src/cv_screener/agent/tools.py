@@ -18,8 +18,9 @@ TOOLS: list[dict[str, Any]] = [
             "name": "search_candidates",
             "description": (
                 "Search the CV index. Use `query` for meaning (role, domain, seniority in words) and the "
-                "filters for exact facts. Filters combine with AND. Returns up to k candidates with a "
-                "similarity score in [0,1] when a query is given (scores below ~0.6 are weak matches)."
+                "filters for exact facts. Filters combine with AND. Each result includes headline, "
+                "seniority, years, languages with levels and the skills list, plus a similarity score in "
+                "[0,1] when a query is given (scores below ~0.6 are weak matches)."
             ),
             "parameters": {
                 "type": "object",

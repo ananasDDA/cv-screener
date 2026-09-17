@@ -19,8 +19,9 @@ def answer(text: str, tools: int = 1, ungrounded: list[str] | None = None) -> An
     return Answer(text, trace, "fake", not ungrounded, ungrounded or [])
 
 
-def test_mentions_accepts_last_name():
+def test_mentions_accepts_last_name_case_insensitively():
     assert mentions("Ruiz is a strong fit", "Ana Ruiz")
+    assert mentions("Savannah McBride fits", "Savannah Mcbride")
     assert not mentions("Nobody matches", "Ana Ruiz")
 
 

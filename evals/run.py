@@ -32,8 +32,10 @@ class Result:
 
 
 def mentions(text: str, full_name: str) -> bool:
-    """Full name or the last name is enough; last names are unique in this dataset."""
-    return full_name in text or full_name.split()[-1] in text
+    """Full name or the last name is enough; last names are unique in this dataset.
+    Case-insensitive: models normalise spellings like Mcbride → McBride."""
+    text = text.lower()
+    return full_name.lower() in text or full_name.split()[-1].lower() in text
 
 
 def check(case: dict, answer: Answer, names: dict[str, str]) -> list[str]:

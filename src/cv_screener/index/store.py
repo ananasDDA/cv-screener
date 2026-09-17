@@ -76,6 +76,7 @@ class Hit:
     country: str
     years_experience: int
     languages: str
+    skills: str
     score: float | None  # cosine similarity in [0, 1]; None for filter-only lookups
 
     @classmethod
@@ -89,6 +90,7 @@ class Hit:
             country=meta["country_display"],
             years_experience=meta["years_experience"],
             languages=meta["languages"],
+            skills=meta["skills"],
             score=None if distance is None else round(1.0 - distance, 3),
         )
 
