@@ -7,7 +7,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [x] **0. Scaffold** — uv project, layout, `.env.example`, `CLAUDE.md`, Makefile.
 - [x] **1. Candidate generation** — persona grid (14 specs), Faker identity, LLM narrative into a
       Pydantic schema, model fallback chain, `data/photo_prompts.json`.
-- [ ] **2. PDF rendering** — three Jinja2/WeasyPrint layouts (classic, modern, minimal), photo from
+- [x] **2. PDF rendering** — three Jinja2/WeasyPrint layouts (classic, modern, minimal), photo from
       `data/photos/<id>.png` or a generated placeholder, `cv generate` runs profiles + PDFs in one go.
 - [ ] **3. Index and search** — ChromaDB with local fastembed embeddings; structured fields as
       metadata (seniority, role, country, years, languages, skills); one `search(query, filters)`
