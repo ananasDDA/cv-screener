@@ -173,6 +173,11 @@ class CandidateIndex:
             return None
         return Candidate.model_validate_json(res["metadatas"][0]["json"])
 
+    def names(self) -> dict[str, str]:
+        """id → full name for every indexed candidate (used to check answers are grounded)."""
+        res = self.collection.get(include=["metadatas"])
+        return {m["id"]: m["name"] for m in res["metadatas"]}
+
     def find_by_name(self, name: str, cutoff: float = 0.5) -> list[Hit]:
         """Fuzzy name lookup; the collection is small enough to scan in memory."""
         res = self.collection.get(include=["metadatas"])

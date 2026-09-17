@@ -50,6 +50,8 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 # Prompts and the persona table are long by nature.
 "src/cv_screener/generate/generator.py" = ["E501"]
 "src/cv_screener/generate/personas.py" = ["E501"]
+"src/cv_screener/agent/loop.py" = ["E501"]
+"src/cv_screener/agent/tools.py" = ["E501"]
 "src/cv_screener/cli.py" = ["B008"]  # typer.Option in defaults is the Typer idiom
 
 [tool.pytest.ini_options]

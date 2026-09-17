@@ -18,6 +18,8 @@ PHOTO_PROMPTS_FILE = DATA_DIR / "photo_prompts.json"
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 
 load_dotenv(ROOT / ".env")
+# The HF tokenizers used by fastembed fork worker threads; without this they can abort at exit.
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
 
 @dataclass(frozen=True)
