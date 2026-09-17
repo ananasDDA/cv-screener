@@ -11,7 +11,11 @@ from functools import cache
 from pathlib import Path
 
 HERE = Path(__file__).parent
-URIS = {"results": "ui://cv-screener/results.html", "card": "ui://cv-screener/card.html"}
+URIS = {
+    "results": "ui://cv-screener/results.html",
+    "card": "ui://cv-screener/card.html",
+    "deck": "ui://cv-screener/deck.html",
+}
 
 
 @cache

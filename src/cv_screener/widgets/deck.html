@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Candidate deck</title>
+<style>
+{{TOKENS}}
+{{PROFILE_CSS}}
+  /* Coverflow deck. Geometry and paint loop are ported from the author's portfolio project reel:
+     scroll-snapped track, per-card perspective, scale/rotate/fade by distance from the centre. */
+  .stage { position: relative; border-radius: var(--radius-l); overflow: hidden; border: 1px solid var(--color-border-2);
+    background: radial-gradient(120% 90% at 50% 0%, var(--glow, rgba(0,129,255,.18)), transparent 60%), var(--color-background);
+    transition: background .5s ease; }
+  .bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px 0; font-size: var(--font-size-s); color: var(--color-text-secondary); }
+  .bar .count { margin-right: auto; }
+  .track { display: flex; align-items: center; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+    padding: 34px 0 26px; scrollbar-width: none; }
+  .track::-webkit-scrollbar { display: none; }
+  .pad { flex: 0 0 auto; }
+  .slot { flex: 0 0 var(--slot, 250px); width: var(--slot, 250px); padding: 0 11px; scroll-snap-align: center; }
+  .poster { position: relative; height: 330px; border-radius: var(--radius-l); overflow: hidden; cursor: pointer;
+    background: var(--accent); color: #fff; border: 1px solid rgba(255,255,255,.12);
+    transform-origin: 50% 50%; backface-visibility: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.35); contain: paint; }
+  .track.no3d .poster { transition: transform .35s ease, opacity .35s ease; }
+  .poster .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s ease; }
+  .poster .photo.on { opacity: 1; }
+  .poster .mono-initials { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-size: 72px; font-weight: 600; letter-spacing: -2px; color: rgba(255,255,255,.35); }
+  .poster .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 38%, rgba(0,0,0,.82) 100%); }
+  .poster .mark { position: absolute; top: 12px; left: 14px; right: 14px; display: flex; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+  .poster .mark b { background: rgba(255,255,255,.18); padding: 2px 6px; border-radius: 3px; font-weight: 500; }
+  .poster .cap { position: absolute; left: 14px; right: 14px; bottom: 14px; }
+  .poster .pname { font-size: 19px; font-weight: 600; letter-spacing: -.3px; line-height: 1.1; }
+  .poster .phead { font-size: 12px; opacity: .85; margin-top: 3px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .info { padding: 0 18px 16px; min-height: 96px; }
+  .info .line { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .info .title { font-weight: 600; font-size: var(--font-size-l); letter-spacing: -.3px; margin-right: 6px; }
+  .info .acts { margin-left: auto; white-space: nowrap; }
+  .info .acts .btn { margin-left: 4px; }
+  .info .skills { margin-top: 8px; }
+  .nav { position: absolute; top: 190px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--color-border-3);
+    background: var(--color-background); color: var(--color-text-primary); cursor: pointer; font-size: 16px; line-height: 1; z-index: 300; }
+  .nav.prev { left: 10px; } .nav.next { right: 10px; }
+  #detail { border-top: 1px solid var(--color-border-2); background: var(--color-surface); }
+</style></head>
+<body>
+<div class="stage" id="stage">
+  <div class="bar"><span class="count" id="count">Loading…</span><span class="faint">scroll · ← → · click a card</span></div>
+  <button class="nav prev" id="prev" aria-label="Previous">‹</button>
+  <button class="nav next" id="next" aria-label="Next">›</button>
+  <div class="track" id="track"><div class="pad"></div><div class="pad"></div></div>
+  <div class="info" id="info"></div>
+  <div id="detail"></div>
+</div>
+<script>
+{{BRIDGE}}
+{{CARD}}
+const track = document.getElementById("track"), stage = document.getElementById("stage");
+const flat = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (flat) track.classList.add("no3d");
+let people = [], N = 0, slots = [], cards = [], looped = false;
+let slotW = 0, base = 0, viewW = 0, lit = -1;
+const was = [], geo = [], photos = new Map();
+
+function rgba(hex, a) { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`; }
+
+function build(list) {
+  people = list; N = list.length;
+  const pads = track.querySelectorAll(".pad");
+  track.querySelectorAll(".slot").forEach((s) => s.remove());
+  const copies = N > 2 ? 3 : 1;          // three copies keep a card on either side, as in the portfolio reel
+  looped = copies > 1;
+  for (let c = 0; c < copies; c++) list.forEach((p, i) => {
+    const slot = document.createElement("div"); slot.className = "slot";
+    slot.innerHTML = `<div class="poster" data-i="${i}" style="--accent:${esc(p.accent || "#16324f")}">
+        <div class="mono-initials">${initials(p.name)}</div><img class="photo" alt="">
+        <div class="shade"></div>
+        <div class="mark"><span>${esc(p.role_family)} · ${esc(p.seniority)}</span>${p.source === "user" ? "<b>added</b>" : ""}</div>
+        <div class="cap"><div class="pname">${esc(p.name)}</div><div class="phead">${esc(p.headline)}</div></div></div>`;
+    track.insertBefore(slot, pads[1]);
+  });
+  slots = [...track.querySelectorAll(".slot")]; cards = slots.map((s) => s.firstElementChild);
+  cards.forEach((c, k) => c.addEventListener("click", () => (k % N === lit ? openProfile(people[lit]) : centre(k))));
+  document.getElementById("count").innerHTML = `<b>${N}</b> candidate${N === 1 ? "" : "s"} in the collection`;
+  reset(false);
+}
+
+function measure() {
+  viewW = track.clientWidth;
+  const w = Math.max(190, Math.min(260, Math.round(viewW * 0.42)));
+  track.style.setProperty("--slot", w + "px");
+  slotW = slots[0] ? slots[0].getBoundingClientRect().width : 0;
+  base = slotW * N;
+  const p = Math.max(0, (viewW - slotW) / 2);
+  track.querySelectorAll(".pad").forEach((el) => (el.style.width = p + "px"));
+  geo.length = 0; slots.forEach((s) => geo.push(s.offsetLeft + s.offsetWidth / 2));
+}
+
+function paint() {
+  const vc = track.scrollLeft + viewW / 2;
+  let near = 0, nd = Infinity;
+  for (let i = 0; i < cards.length; i++) {
+    const t = (geo[i] - vc) / slotW, at = Math.abs(t);
+    if (at < nd) { nd = at; near = i; }
+    const ct = Math.max(-1.5, Math.min(1.5, t)), act = Math.abs(ct);
+    const scale = Math.round((1.13 - Math.min(act, 1.4) * 0.19) * 500) / 500;
+    const op = Math.round((1 - Math.min(at, 1.9) * 0.42) * 100) / 100;
+    const rot = flat ? 0 : Math.round(-18 * ct * 4) / 4;
+    const z = 200 - Math.round(at * 20);
+    const w = was[i] || (was[i] = {});
+    if (w.s !== scale || w.r !== rot) { w.s = scale; w.r = rot;
+      cards[i].style.transform = flat ? `scale(${scale})` : `perspective(1150px) scale(${scale}) rotateY(${rot}deg)`; }
+    if (w.o !== op) { w.o = op; cards[i].style.opacity = op; }
+    if (w.z !== z) { w.z = z; cards[i].style.zIndex = z; }
+    if (at < 2.5) loadPhoto(i % N);
+  }
+  const c = N ? near % N : -1;
+  if (c !== lit && c >= 0) { lit = c; showInfo(people[c]); }
+}
+
+function rewind() {
+  if (!looped || !base) return;
+  const x = track.scrollLeft;
+  if (x >= base * 2) track.scrollLeft = x - base; else if (x < base) track.scrollLeft = x + base;
+}
+
+let queued = false, idle = null;
+track.addEventListener("scroll", () => {
+  if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; paint(); }); }
+  clearTimeout(idle); idle = setTimeout(() => { rewind(); paint(); }, 180);
+}, { passive: true });
+
+function focused() {
+  const vc = track.scrollLeft + track.clientWidth / 2; let best = 0, bd = Infinity;
+  slots.forEach((s, i) => { const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - vc); if (d < bd) { bd = d; best = i; } });
+  return best;
+}
+function centre(k, smooth = true) { track.scrollTo({ left: geo[k] - viewW / 2, behavior: smooth && !flat ? "smooth" : "auto" }); }
+function step(d) { centre(Math.max(0, Math.min(slots.length - 1, focused() + d))); }
+function reset(keep) {
+  const k = keep === false ? -1 : focused();
+  measure();
+  if (k >= 0 && geo[k] != null) track.scrollLeft = geo[k] - viewW / 2; else if (looped) track.scrollLeft = base; 
+  paint();
+}
+document.getElementById("prev").addEventListener("click", () => step(-1));
+document.getElementById("next").addEventListener("click", () => step(1));
+window.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
+/* A vertical mouse wheel has nothing to scroll inside the widget, so it pages the deck instead. */
+let wheelLock = 0;
+track.addEventListener("wheel", (e) => {
+  if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;       // trackpads scrolling sideways work natively
+  e.preventDefault();
+  const now = Date.now(); if (now < wheelLock || Math.abs(e.deltaY) < 8) return;
+  wheelLock = now + 260; step(e.deltaY > 0 ? 1 : -1);
+}, { passive: false });
+let lastW = 0;
+new ResizeObserver(() => { if (track.clientWidth !== lastW) { lastW = track.clientWidth; if (slots.length) reset(); } }).observe(track);
+
+function loadPhoto(i) {
+  if (photos.has(i)) return;
+  photos.set(i, null);
+  Host.callTool("get_candidate_photo", { candidate_id: people[i].id }).then((r) => {
+    if (!r || !r.data_uri) return;
+    photos.set(i, r.data_uri);
+    cards.forEach((c, k) => { if (k % N === i) { const img = c.querySelector(".photo"); img.src = r.data_uri; img.classList.add("on"); } });
+  }).catch(() => photos.delete(i));
+}
+
+function showInfo(p) {
+  stage.style.setProperty("--glow", rgba(p.accent || "#0081ff", 0.22));
+  document.getElementById("detail").innerHTML = "";
+  const skills = p.top_skills || [];
+  document.getElementById("info").innerHTML = `
+    <div class="line"><span class="title">${esc(p.name)}</span>
+      <span class="chip">${esc(p.seniority)}</span><span class="chip">${esc(p.role_family)}</span>
+      <span class="chip">${p.years_experience} yrs</span>${p.country ? `<span class="chip">${esc(p.country)}</span>` : ""}
+      <span class="acts"><button class="btn" id="open">Profile</button><button class="btn primary" id="ask">Ask</button></span></div>
+    <div class="muted" style="font-size:var(--font-size-s);margin-top:4px">${esc(p.languages)}</div>
+    <div class="skills">${skills.map((s) => `<span class="chip accent">${esc(s)}</span>`).join("")}</div>`;
+  document.getElementById("open").addEventListener("click", () => openProfile(p));
+  document.getElementById("ask").addEventListener("click", () => Host.say(`Summarize the profile of ${p.name}`));
+}
+
+async function openProfile(p) {
+  const el = document.getElementById("detail");
+  if (el.dataset.id === p.id && el.innerHTML) { el.innerHTML = ""; el.dataset.id = ""; return; }
+  el.dataset.id = p.id; el.innerHTML = `<div class="empty">Loading…</div>`;
+  const profile = await Host.callTool("get_candidate", { candidate_id: p.id });
+  if (el.dataset.id !== p.id) return;
+  renderProfile(el, profile, { photo: async () => photos.get(people.indexOf(p)) || (await Host.callTool("get_candidate_photo", { candidate_id: p.id })).data_uri });
+}
+
+Host.onToolResult((r) => { const data = Host.unwrap(r); build(Array.isArray(data) ? data : []); });
+Host.init("cv-screener-deck");
+</script>
+</body></html>

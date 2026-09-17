@@ -16,9 +16,12 @@ from mcp.server.apps import Apps
 from mcp.server.mcpserver import MCPServer
 from mcp.types import ToolAnnotations
 
-from .config import CANDIDATES_DIR, CHROMA_DIR, PHOTOS_DIR
+from . import library
+from .config import CANDIDATES_DIR, CHROMA_DIR, PHOTOS_DIR, USER_CANDIDATES_DIR
 from .generate.photos import photo_data_uri
+from .generate.themes import theme_for
 from .index.store import CandidateIndex, Filters
+from .library import NewCandidate
 from .widgets import URIS
 from .widgets import load as load_widget
 
@@ -34,29 +37,52 @@ for "who / which candidates" questions and list everyone the search returns. Hit
 headline, years, languages with CEFR levels and skills; call get_candidate only for one person's
 full profile, and find_by_name when a name is given.
 
+LIBRARY: when the user shares a résumé (file or pasted text) and asks to add, save or import it,
+extract the facts and call add_candidate once per person. Never invent data: leave unknown
+optional fields empty. list_candidates shows the whole collection as a browsable deck;
+remove_candidate deletes only user-added entries (ids starting with "u").
+
 GROUNDING: name only candidates returned by the tools. If a search returns nothing, say that no
 candidate in the dataset matches."""
 
 
-def ensure_index(index: CandidateIndex, candidates_dir: Path = CANDIDATES_DIR) -> None:
+def ensure_index(
+    index: CandidateIndex,
+    candidates_dir: Path = CANDIDATES_DIR,
+    user_dir: Path = USER_CANDIDATES_DIR,
+) -> None:
     """Build the index on first run so `uvx cv-screener mcp` works without a setup step."""
     if index.is_current():
         return
-    from .generate.generator import load_all
+    from .generate.generator import load_library
 
-    cands = load_all(candidates_dir)
+    cands = load_library(candidates_dir, user_dir)
     if not cands:
         raise RuntimeError(f"no candidates in {candidates_dir}; run `cv generate` first")
     print(f"cv-screener: building index for {len(cands)} candidates...", file=sys.stderr)
     index.rebuild(cands)
 
 
-def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_DIR) -> MCPServer:
+def build_server(
+    index: CandidateIndex | None = None,
+    photos_dir: Path = PHOTOS_DIR,
+    user_dir: Path = USER_CANDIDATES_DIR,
+) -> MCPServer:
     """Tools are bound to MCP Apps widgets (results table, profile card). Hosts that do not
     render apps just get the JSON; nothing else changes."""
     index = index or CandidateIndex(CHROMA_DIR)
-    ensure_index(index)
+    ensure_index(index, user_dir=user_dir)
     apps = Apps()
+    plain_tools: list[tuple[Any, dict[str, Any]]] = []
+
+    def server_tool(**kwargs: Any):
+        def decorator(fn):
+            plain_tools.append((fn, kwargs))
+            return fn
+
+        return decorator
+
+    apps.add_html_resource(URIS["deck"], load_widget("deck"), name="Candidate deck")
     apps.add_html_resource(URIS["results"], load_widget("results"), name="Candidate results")
     apps.add_html_resource(URIS["card"], load_widget("card"), name="Candidate profile")
 
@@ -116,6 +142,60 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
         return [asdict(h) for h in index.find_by_name(name)]
 
     @apps.tool(
+        resource_uri=URIS["deck"],
+        annotations=read_only,
+        title="Browse the collection",
+        description=(
+            "List every candidate in the résumé database as a browsable deck. Use it when the user "
+            "wants to see, browse or review the whole collection rather than search it."
+        ),
+    )
+    def list_candidates() -> list[dict[str, Any]]:
+        deck = []
+        for h in index.all():
+            c = index.get(h.id)
+            deck.append(
+                {
+                    **asdict(h),
+                    "accent": theme_for(h.id).accent,
+                    "top_skills": c.skills[:10] if c else [],
+                }
+            )
+        return deck
+
+    @apps.tool(
+        resource_uri=URIS["card"],
+        annotations=ToolAnnotations(
+            read_only_hint=False, destructive_hint=False, open_world_hint=False
+        ),
+        title="Add a résumé to the collection",
+        description=(
+            "Add one candidate to the local résumé database from a résumé the user shared. Extract "
+            "facts only; leave unknown optional fields empty. Stored on this machine, never uploaded."
+        ),
+    )
+    def add_candidate(profile: NewCandidate) -> dict[str, Any]:
+        candidate = library.save_new(profile, user_dir)
+        index.add(candidate)
+        return candidate.model_dump(exclude={"photo_prompt", "template", "gender", "age"})
+
+    @server_tool(
+        annotations=ToolAnnotations(
+            read_only_hint=False, destructive_hint=True, open_world_hint=False
+        ),
+        title="Remove a user-added résumé",
+        description="Remove a candidate the user added earlier (id starts with 'u'). The bundled dataset cannot be removed.",
+    )
+    def remove_candidate(candidate_id: str) -> dict[str, Any]:
+        if not library.delete(candidate_id, user_dir):
+            return {
+                "removed": False,
+                "error": "only user-added candidates (ids like u01-...) can be removed",
+            }
+        index.remove(candidate_id)
+        return {"removed": True, "id": candidate_id}
+
+    @apps.tool(
         resource_uri=URIS["card"],
         visibility=[
             "app"
@@ -135,6 +215,9 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
         version="0.1.0",
         extensions=[apps],
     )
+
+    for fn, kwargs in plain_tools:
+        server.tool(**kwargs)(fn)
 
     @server.prompt(
         name="screen_candidates",
