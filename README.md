@@ -1,5 +1,7 @@
 # CV Screener
 
+**[Landing page](https://ananasdda.github.io/cv-screener/)** · **[Install guide for AI agents](https://ananasdda.github.io/cv-screener/install.md)**
+
 [![CI](https://github.com/ananasDDA/cv-screener/actions/workflows/ci.yml/badge.svg)](https://github.com/ananasDDA/cv-screener/actions/workflows/ci.yml)
 
 Synthetic CV dataset, hybrid vector search and a tool-using CLI agent that answers recruiter

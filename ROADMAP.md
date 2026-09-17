@@ -31,7 +31,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [x] MCP server exposing the same three search tools (`cv mcp`, stdio).
 - [x] MCP Apps widgets: results table, profile card, coverflow deck of the collection.
 - [x] Add/remove résumés through MCP into a private local library (`~/.cv-screener`).
-- [ ] Landing page on GitHub Pages with install instructions Claude can follow.
+- [x] Landing page on GitHub Pages with install instructions Claude can follow.
 - [ ] Web chat UI and a public deployment.
 
 ## Call prep
