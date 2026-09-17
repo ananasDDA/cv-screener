@@ -7,3 +7,5 @@ __pycache__/
 data/chroma/
 .DS_Store
 local.mk
+.ipynb_checkpoints/
+evals/last_run.json
