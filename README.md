@@ -65,6 +65,45 @@ any image model and save them as `data/photos/<candidate_id>.png` (jpg/webp also
 `uv run cv generate --pdf-only`. Without a file the PDF gets a placeholder with initials, so the
 pipeline never blocks on image generation.
 
+## Use it from Claude (MCP)
+
+`cv mcp` serves the same index over the Model Context Protocol, locally over stdio. Claude becomes
+the agent; no LLM key is needed and nothing leaves your machine.
+
+```bash
+# Claude Code
+claude mcp add cv-screener -- uv run --directory /path/to/cv-screener cv mcp
+```
+
+Claude Desktop: add this to `claude_desktop_config.json` (Settings → Developer → Edit Config), then
+quit and reopen the app:
+
+```json
+{ "mcpServers": { "cv-screener": {
+    "command": "uv", "args": ["run", "--directory", "/path/to/cv-screener", "cv", "mcp"] } } }
+```
+
+**Enable the tools in the chat.** Claude Desktop keeps tools from a new local server switched off
+until you turn them on in the chat's tools menu, and it asks again whenever a tool's definition
+changes (for example after an update).
+
+| Tool | What it does | Widget |
+|---|---|---|
+| `search_candidates` | hybrid search: meaning + exact filters | results table |
+| `find_by_name` | fuzzy name lookup | results table |
+| `get_candidate` | full profile | profile card with photo |
+| `list_candidates` | browse the whole collection | coverflow deck |
+| `add_candidate` | add a résumé you shared with Claude | profile card |
+| `remove_candidate` | remove a résumé you added | – |
+
+In hosts that support [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) (Claude
+Desktop, claude.ai) results render as interactive widgets inside the chat; elsewhere (Claude Code)
+the same tools return JSON. Try: *"Which candidates speak Spanish?"*, *"Show me the whole
+collection"*, or drop a résumé PDF and say *"add this candidate"*.
+
+Résumés you add are real people's data, so they are stored outside the repository in
+`~/.cv-screener/candidates` (override with `CV_SCREENER_HOME`) and are never committed.
+
 ## Example session
 
 ```
