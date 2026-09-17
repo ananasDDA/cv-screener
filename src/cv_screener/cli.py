@@ -99,9 +99,18 @@ def chat(
     """Chat with the agent. It answers only from what the search tools return."""
     from .agent.loop import Agent, ToolTrace
     from .index.store import CandidateIndex
-    from .llm import LLM
+    from .llm import LLM, LLMError
 
-    agent = Agent(LLM(), CandidateIndex())
+    try:
+        llm = LLM()
+    except LLMError as exc:
+        console.print(f"[red]{exc}[/red]")
+        raise typer.Exit(1) from None
+    index = CandidateIndex()
+    if index.count() == 0:
+        console.print("[red]index is empty; run `uv run cv index` first[/red]")
+        raise typer.Exit(1)
+    agent = Agent(llm, index)
 
     def show_tool(t: ToolTrace) -> None:
         if trace:
