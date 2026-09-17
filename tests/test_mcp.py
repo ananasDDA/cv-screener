@@ -84,3 +84,15 @@ async def test_widget_html_is_self_contained(server):
 async def test_photo_tool_returns_data_uri(server):
     result = await server.call_tool("get_candidate_photo", {"candidate_id": "p01-ana-ml"})
     assert _payload(result)["data_uri"].startswith("data:image/png;base64,")
+
+
+async def test_tools_are_read_only_and_prompt_exists(server):
+    tools = {t.name: t for t in await server.list_tools()}
+    assert tools["search_candidates"].annotations.read_only_hint is True
+    prompts = {p.name for p in await server.list_prompts()}
+    assert "screen_candidates" in prompts
+    msgs = await server.get_prompt(
+        "screen_candidates", {"role": "senior ML engineer", "must_have": "Spanish"}
+    )
+    text = msgs.messages[0].content.text
+    assert "senior ML engineer" in text and "Spanish" in text
