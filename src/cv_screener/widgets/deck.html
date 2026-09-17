@@ -43,7 +43,7 @@
 </style></head>
 <body>
 <div class="stage" id="stage">
-  <div class="bar"><span class="count" id="count">Loading…</span><span class="faint">scroll · ← → · click a card</span></div>
+  <div class="bar"><span class="count" id="count">Loading…</span><span class="faint">swipe sideways · ← → · click a card</span></div>
   <button class="nav prev" id="prev" aria-label="Previous">‹</button>
   <button class="nav next" id="next" aria-label="Next">›</button>
   <div class="track" id="track"><div class="pad"></div><div class="pad"></div></div>
@@ -144,14 +144,7 @@ function reset(keep) {
 document.getElementById("prev").addEventListener("click", () => step(-1));
 document.getElementById("next").addEventListener("click", () => step(1));
 window.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
-/* A vertical mouse wheel has nothing to scroll inside the widget, so it pages the deck instead. */
-let wheelLock = 0;
-track.addEventListener("wheel", (e) => {
-  if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;       // trackpads scrolling sideways work natively
-  e.preventDefault();
-  const now = Date.now(); if (now < wheelLock || Math.abs(e.deltaY) < 8) return;
-  wheelLock = now + 260; step(e.deltaY > 0 ? 1 : -1);
-}, { passive: false });
+/* Only horizontal scrolling moves the deck; a vertical wheel is left to the chat around it. */
 let lastW = 0;
 new ResizeObserver(() => { if (track.clientWidth !== lastW) { lastW = track.clientWidth; if (slots.length) reset(); } }).observe(track);
 
