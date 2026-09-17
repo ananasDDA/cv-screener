@@ -1,0 +1,755 @@
+[
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3720,
+  "completion_tokens": 787,
+  "total_tokens": 4507,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 10.11,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- Katie Brown – Principal NLP Researcher (15 years) – English (Native), German (B2)  \n- Julius Guit – Lead DevOps / SRE (14 years) – Dutch (Native), English (C2)  \n- Reiner Lorch – Senior Backend Engineer | Python, Django, FastAPI, Kubernetes, AWS (10 years) – German (Native), English (C1)  \n- Rosalinda Barral – Senior Machine Learning Engineer (8 years) – Spanish (Native), English (C1), French (B1)  \n- Marisela Herrera – Application Security Engineer (5 years) – Spanish (Native), English (C1)  \n- Yuvraj Parsa – Data Engineer | 5 years experience in Spark, Scala, and AWS data platforms (5 years) – English (C2), Hindi (Native), Kannada (Native)  \n- Savannah McBride – Data Scientist with expertise in predictive modeling, causal inference, and analytics engineering (4 years) – English (Native), French (C1), Mandarin (B1)  \n- Davit Petrosyan – Junior Python Developer | Backend Focus (1 year) – Armenian (Native), Russian (C1), English (B1)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3362,
+  "completion_tokens": 266,
+  "total_tokens": 3628,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 4.25,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- Juan Cruz Martinez – Senior iOS Engineer (Spanish native)  \n- Rosalinda Barral – Senior Machine Learning Engineer (Spanish native)  \n- Marisela Herrera – Application Security Engineer (Spanish native)  \n- Luna Magalhães – QA Automation Engineer (Spanish B2)  \n- Maria Clara da Cunha – Java Backend Engineer (Spanish B1)  \n- Michael Saleh – Senior Product Manager (Spanish A2)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2773,
+  "completion_tokens": 534,
+  "total_tokens": 3307,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 10.09,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Rosalinda Barral** – Senior Machine Learning Engineer (8 years experience, Spain). Seniority: senior. Skills: Python, PyTorch, scikit‑learn, TensorFlow, XGBoost, MLflow, Airflow, GCP/Vertex AI, BigQuery, SQL, Docker, Kubernetes, FastAPI, Pandas, NumPy, Feast, Tableau. Languages: Spanish (Native), English (C1), French (B1). Match score 0.712.  \n- **Katie Brown** – Principal NLP Researcher (15 years experience, United Kingdom). Seniority: principal. Skills: Python, PyTorch, JAX, Transformers, Hugging Face, Fairseq, Deepspeed, Megatron‑LM, CUDA, NCCL, MPI, Kubernetes, AWS SageMaker, GCP Vertex AI, RLHF, PPO, DPO, LoRA, QLoRA, PEFT, Model distillation, INT8 quantization, TensorRT, ONNX, spaCy, NLTK. Languages: English (Native), German (B2). Match score 0.646.  \n\nRosalinda Barral has the higher similarity score and directly matches the senior ML engineer profile, making her the best fit for a senior ML role.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "summarize-katie",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 3,
+  "tool_calls": 2,
+  "prompt_tokens": 5191,
+  "completion_tokens": 955,
+  "total_tokens": 6146,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 14.63,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "**Katie Brown – Principal NLP Researcher**  \n- **Seniority:** Principal (ML)  \n- **Experience:** 15 years  \n- **Languages:** English (Native), German (B2)  \n- **Core Skills:** Python, PyTorch, JAX, Transformers, Hugging Face, Fairseq, Deepspeed, Megatron‑LM, CUDA, NCCL, MPI, Kubernetes, Slurm, AWS SageMaker, GCP Vertex AI, RLHF, PPO, DPO, LoRA, QLoRA, PEFT, model distillation, INT8 quantization, TensorRT, ONNX, spaCy, NLTK  \n\n**Professional Highlights**  \n- **Meta AI (Principal NLP Researcher, Sep 2024‑present):** Led a team delivering a 70B‑parameter multilingual LLM with 12% lower latency via kernel fusion & INT8 quantization; designed a mixed‑precision JAX/Pallas pipeline cutting training FLOPs by 18%; authored an RLHF‑with‑AI‑feedback study boosting win‑rate vs. GPT‑4 by 7%; secured $3.2M funding and procured 256 H100 GPUs.  \n- **PolyAI (Senior Research Scientist, Apr 2020‑Aug 2024):** Built a speech‑to‑intent pipeline reducing latency from 820 ms to 460 ms; pioneered LoRA‑based fine‑tuning with 0.3 % trainable parameters, slashing GPU memory use by 64 %; mentored junior researchers; published three ACL‑workshop papers (110+ citations).  \n- **Google Research (Research Scientist, Jun 2015‑Mar 2020):** Contributed to T5‑XL distributed training on TPU v3 pods (training time ↓ from 14 → 9 days); designed a data‑filtering pipeline removing 22% noisy web‑text (~1.4PB saved); led integration of sparsely‑gated Mixture‑of‑Experts layers (1.4× throughput gain); authored 5 conference papers (NeurIPS, ICML, EMNLP) with >850 citations.  \n- **University of Edinburgh (Postdoctoral Fellow, Sep 2012‑May 2015):** Developed a neural transition‑based dependency parser (94.2% UAS on Penn Treebank); released open‑source multilingual word‑embedding alignment toolkit (>12k downloads); supervised MSc projects; awarded £150k EPSRC grant for syntax‑aware language modeling (TACL article).  \n\n**Education**  \n- PhD in Computational Linguistics, University of Edinburgh (2008‑2012)  \n\n**Certifications / Recognitions**  \n- Co‑author, “Scaling Laws for RLHF in Large Language Models,” ACL 2023  \n- Inventor, US Patent 11,845,678: “Efficient LoRA Adaptation for Transformers,” 2022  \n- First author, “JAX‑Pallas Mixed Precision Training for LLMs,” NeurIPS 2022  \n\nKatie Brown is a principal‑level NLP researcher with deep expertise in large‑scale language model development, distributed training, efficient fine‑tuning, and RLHF alignment, backed by a strong record of impactful research, patents, and leadership across academia and industry.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name",
+    "get_candidate"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "portuguese-language",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2712,
+  "completion_tokens": 207,
+  "total_tokens": 2919,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 20.03,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Maria Clara da Cunha** – Portuguese (Native), English (B2), Spanish (B1)  \n- **Luna Magalhães** – Portuguese (Native), Spanish (B2), English (C1)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "years-filter",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2709,
+  "completion_tokens": 201,
+  "total_tokens": 2910,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 5.16,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Katie Brown** – Principal NLP Researcher, 15 years of experience  \n- **Julius Guit** – Lead DevOps / SRE, 14 years of experience",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-hebrew",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2371,
+  "completion_tokens": 159,
+  "total_tokens": 2530,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 11.26,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "No candidate in the dataset speaks Hebrew.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-cobol",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2375,
+  "completion_tokens": 162,
+  "total_tokens": 2537,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 5.98,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "No candidates in the dataset have COBOL experience.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-unknown-person",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2366,
+  "completion_tokens": 120,
+  "total_tokens": 2486,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 4.93,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "I couldn’t find any candidate named **John Smith** in the dataset.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3720,
+  "completion_tokens": 264,
+  "total_tokens": 3984,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 7.37,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- Katie Brown  \n- Julius Guit  \n- Reiner Lorch  \n- Rosalinda Barral  \n- Marisela Herrera  \n- Yuvraj Parsa  \n- Savannah McBride  \n- Davit Petrosyan",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3362,
+  "completion_tokens": 561,
+  "total_tokens": 3923,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 8.33,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- Juan Cruz Martinez – Senior iOS Engineer, 9 years, Spanish (Native), English (B2)  \n- Rosalinda Barral – Senior Machine Learning Engineer, 8 years, Spanish (Native), English (C1), French (B1)  \n- Marisela Herrera – Application Security Engineer, 5 years, Spanish (Native), English (C1)  \n- Luna Magalhães – QA Automation Engineer, 4 years, Spanish (B2), Portuguese (Native), English (C1)  \n- Maria Clara da Cunha – Java Backend Engineer, 6 years, Spanish (B1), Portuguese (Native), English (B2)  \n- Michael Saleh – Senior Product Manager, 11 years, Spanish (A2), Swedish (Native), English (C2)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2745,
+  "completion_tokens": 726,
+  "total_tokens": 3471,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 8.75,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Katie Brown** – Principal NLP Researcher (seniority: principal), 15 years experience, English (Native), German (B2); skills: Python, PyTorch, JAX, Transformers, Hugging Face, etc. – ML role family.  \n- **Rosalinda Barral** – Senior Machine Learning Engineer (seniority: senior), 8 years experience, Spanish (Native), English (C1), French (B1); skills: Python, PyTorch, scikit‑learn, TensorFlow, XGBoost, MLflow, etc. – ML role family.  \n\n**Best fit:** Katie Brown, given her principal‑level seniority, 15 years of ML/NLP experience, and extensive deep‑learning stack.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "summarize-katie",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 3,
+  "tool_calls": 2,
+  "prompt_tokens": 5191,
+  "completion_tokens": 811,
+  "total_tokens": 6002,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 24.16,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "**Katie Brown – Principal NLP Researcher**  \n- **Seniority / Role:** Principal, ML (NLP)  \n- **Experience:** 15 years  \n- **Languages:** English (Native), German (B2)  \n- **Core Skills:** Python, PyTorch, JAX, Transformers, Hugging Face, Fairseq, Deepspeed, Megatron‑LM, CUDA, NCCL, MPI, Kubernetes, Slurm, AWS SageMaker, GCP Vertex AI, RLHF, PPO, DPO, LoRA, QLoRA, PEFT, model distillation, INT8 quantization, TensorRT, ONNX, spaCy, NLTK  \n- **Key Experience:**  \n  - **Meta AI (Principal NLP Researcher, 2024‑present):** Led a team delivering a 70B‑parameter multilingual LLM with 12% lower latency via kernel fusion & INT8 quantization; designed mixed‑precision JAX pipeline cutting FLOPs 18%; authored RLHF‑with‑AI‑feedback study boosting win‑rate 7% vs. GPT‑4; secured $3.2M funding and procured 256 H100 GPUs.  \n  - **PolyAI (Senior Research Scientist, 2020‑2024):** Built speech‑to‑intent pipeline halving latency; pioneered LoRA fine‑tuning with 0.3% trainable params, cutting GPU memory 64%; mentored juniors; published 3 ACL‑workshop papers (110 citations).  \n  - **Google Research (Research Scientist, 2015‑2020):** Contributed to T5‑XL distributed training (TPU v3, 11B params, training time ↓36%); designed data‑filtering pipeline saving ~1.4PB; led MoE integration raising throughput 1.4×; authored 5 conference papers (>850 citations).  \n  - **University of Edinburgh (Postdoctoral Fellow, 2012‑2015):** Developed neural dependency parser (94.2% UAS); released multilingual word‑embedding alignment toolkit (>12k downloads); supervised MSc projects; awarded £150k EPSRC grant.  \n- **Education:** PhD in Computational Linguistics, University of Edinburgh (2008‑2012)  \n- **Certifications / Highlights:** Co‑author of “Scaling Laws for RLHF in Large Language Models” (ACL 2023); inventor of US Patent 11,845,678 on efficient LoRA adaptation; first author of “JAX‑Pallas Mixed Precision Training for LLMs” (NeurIPS 2022).",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name",
+    "get_candidate"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "portuguese-language",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2712,
+  "completion_tokens": 162,
+  "total_tokens": 2874,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 3.95,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Maria Clara da Cunha** – Portuguese (Native)  \n- **Luna Magalhães** – Portuguese (Native)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "years-filter",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2709,
+  "completion_tokens": 354,
+  "total_tokens": 3063,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 16.72,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "- **Katie Brown** – Principal NLP Researcher (seniority: principal) with 15 years of experience; languages: English (Native), German (B2); skills include Python, PyTorch, JAX, Transformers, Kubernetes, AWS SageMaker, GCP Vertex AI, etc.  \n- **Julius Guit** – Lead DevOps / SRE (seniority: lead) with 14 years of experience; languages: Dutch (Native), English (C2); skills include Kubernetes, Terraform, Go, AWS, GCP, Prometheus, Grafana, ArgoCD, Linux, Bash, Docker, Helm, Jenkins, Ansible, Istio, OpenTelemetry, CI/CD, Python.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-hebrew",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2371,
+  "completion_tokens": 147,
+  "total_tokens": 2518,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 6.32,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "No candidates in the dataset speak Hebrew.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-cobol",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2375,
+  "completion_tokens": 161,
+  "total_tokens": 2536,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 12.39,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "No one in the dataset has COBOL experience.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-unknown-person",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2366,
+  "completion_tokens": 128,
+  "total_tokens": 2494,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 12.12,
+  "model": "nvidia/nemotron-3-super-120b-a12b:free",
+  "answer": "I couldn’t find any candidate named John Smith in the dataset.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-super-120b-a12b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3720,
+  "completion_tokens": 516,
+  "total_tokens": 4236,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 8.03,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "Here are all candidates in the dataset who list **Python** among their skills:\n\n- **Katie Brown** – Principal NLP Researcher (15 yrs, UK) – Python, PyTorch, JAX, Transformers, Hugging Face, Kubernetes, AWS/GCP ML platforms  \n- **Julius Guit** – Lead DevOps / SRE (14 yrs, Netherlands) – Python, Kubernetes, Terraform, Go, AWS, GCP, CI/CD tooling  \n- **Reiner Lorch** – Senior Backend Engineer (10 yrs, Germany) – Python 3.11, Django, FastAPI, PostgreSQL, Kafka, Kubernetes (EKS/GKE), AWS, Terraform  \n- **Rosalinda Barral** – Senior Machine Learning Engineer (8 yrs, Spain) – Python, PyTorch, scikit-learn, TensorFlow, XGBoost, MLflow, Airflow, GCP Vertex AI, FastAPI  \n- **Marisela Herrera** – Application Security Engineer (5 yrs, Mexico) – Python, Bash, Burp Suite, OWASP ZAP, Semgrep, AWS security services, Docker, Kubernetes  \n- **Yuvraj Parsa** – Data Engineer (5 yrs, India) – Python, Spark, Scala, Airflow, AWS (Glue, Redshift, MWAA), Snowflake, dbt, Kafka  \n- **Savannah McBride** – Data Scientist (4 yrs, Canada) – Python, pandas, scikit-learn, XGBoost, SQL, R, dbt, Airflow, AWS Redshift, causal inference  \n- **Davit Petrosyan** – Junior Python Developer (1 yr, Armenia) – Python, FastAPI, SQLAlchemy, PostgreSQL, Redis, Docker, pytest, GitHub Actions, CI/CD  \n\nAll eight have Python explicitly listed in their skill sets.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3362,
+  "completion_tokens": 238,
+  "total_tokens": 3600,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 4.5,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "The following candidates speak Spanish (with their proficiency levels):\n\n- **Juan Cruz Martinez** – Senior iOS Engineer (Argentina) – Spanish (Native)\n- **Rosalinda Barral** – Senior Machine Learning Engineer (Spain) – Spanish (Native)\n- **Marisela Herrera** – Application Security Engineer (Mexico) – Spanish (Native)\n- **Luna Magalhães** – QA Automation Engineer (Portugal) – Spanish (B2)\n- **Maria Clara da Cunha** – Java Backend Engineer (Brazil) – Spanish (B1)\n- **Michael Saleh** – Senior Product Manager (Sweden) – Spanish (A2)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2770,
+  "completion_tokens": 441,
+  "total_tokens": 3211,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 16.02,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "**Best fits for a senior ML role:**\n\n- **Rosalinda Barral** – Senior Machine Learning Engineer (8 y exp, Spain)  \n  *Core stack:* Python, PyTorch, TensorFlow, scikit‑learn, XGBoost, MLflow, Airflow, GCP Vertex AI, BigQuery, Docker/Kubernetes, FastAPI, Feast.  \n  *Languages:* Spanish (Native), English (C1), French (B1).\n\n- **Katie Brown** – Principal NLP Researcher (15 y exp, UK)  \n  *Core stack:* Python, PyTorch, JAX, Transformers/Hugging Face, DeepSpeed, Megatron‑LM, RLHF (PPO/DPO), LoRA/QLoRA/PEFT, model distillation, quantization (INT8, TensorRT, ONNX), Kubernetes/Slurm, AWS SageMaker, GCP Vertex AI.  \n  *Languages:* English (Native), German (B2).\n\nBoth are senior‑level (senior/principal) ML specialists with production‑grade MLOps and cloud experience. Rosalinda leans more toward end‑to‑end ML engineering and feature stores; Katie is deeper in large‑scale NLP research and model optimization.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "summarize-katie",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 3,
+  "tool_calls": 2,
+  "prompt_tokens": 5191,
+  "completion_tokens": 787,
+  "total_tokens": 5978,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 26.47,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "**Katie Brown – Principal NLP Researcher**  \n*London, United Kingdom • 15 years experience • English (Native), German (B2)*  \n\n- **Current role:** Principal NLP Researcher at **Meta AI** (since Sep 2024) – leads an 8‑person team building multilingual LLMs; delivered a 70B‑parameter model with 12 % lower latency via kernel fusion & INT8 quantization, serving 2 M daily users.  \n- **Previous senior roles:**  \n  - **PolyAI** (2020‑2024) – Senior Research Scientist; built a real‑time speech‑to‑intent pipeline (820 ms → 460 ms), pioneered LoRA fine‑tuning (0.3 % trainable params, 64 % memory reduction), mentored 4 junior researchers, 3 ACL‑workshop papers (110 citations).  \n  - **Google Research** (2015‑2020) – Research Scientist; contributed to T5‑XL (TPU v3 pods, 14 → 9 days training), designed data‑filtering pipeline saving ~1.4 PB, integrated Mixture‑of‑Experts layers (1.4× throughput), 5 top‑tier papers (850+ citations).  \n  - **University of Edinburgh** (2012‑2015) – Postdoc; SOTA dependency parser (94.2 % UAS), open‑source multilingual embedding toolkit (12k+ downloads), £150k EPSRC grant.  \n- **Core expertise:** Transformer architecture design, distributed GPU/TPU training (DeepSpeed, Megatron‑LM, JAX/Pallas, Slurm, Kubernetes), RLHF/alignment (PPO, DPO, AI‑feedback), efficient fine‑tuning (LoRA, QLoRA, PEFT), model compression (distillation, INT8 quantization, TensorRT, ONNX), NLP tooling (spaCy, NLTK, Hugging Face, Fairseq).  \n- **Cloud/MLOps:** AWS SageMaker, GCP Vertex AI, Kubernetes, Slurm, CUDA/NCCL/MPI.  \n- **Education:** PhD in Computational Linguistics, University of Edinburgh (2008‑2012).  \n- **Selected recognitions:** Co‑author “Scaling Laws for RLHF in LLMs” (ACL 2023), inventor on US Patent 11,845,678 (Efficient LoRA Adaptation), first author “JAX‑Pallas Mixed Precision Training for LLMs” (NeurIPS 2022).",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name",
+    "get_candidate"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "portuguese-language",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2712,
+  "completion_tokens": 177,
+  "total_tokens": 2889,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 38.4,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "**Candidates who speak Portuguese:**\n\n- **Maria Clara da Cunha** – Java Backend Engineer (middle, 6 years, Brazil) – Portuguese (Native), English (B2), Spanish (B1)\n- **Luna Magalhães** – QA Automation Engineer (middle, 4 years, Portugal) – Portuguese (Native), Spanish (B2), English (C1)",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "years-filter",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2709,
+  "completion_tokens": 293,
+  "total_tokens": 3002,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 55.94,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "**Candidates with ≥12 years of experience**\n\n- **Katie Brown** – Principal NLP Researcher (ML) – 15 years – UK – English (Native), German (B2) – Python, PyTorch, JAX, Transformers, Hugging Face, Kubernetes, AWS SageMaker, GCP Vertex AI, RLHF, LoRA/QLoRA, TensorRT, ONNX, spaCy, NLTK  \n- **Julius Guit** – Lead DevOps / SRE – 14 years – Netherlands – Dutch (Native), English (C2) – Kubernetes, Terraform, Go, AWS, GCP, Prometheus, Grafana, ArgoCD, Linux, Docker, Helm, Jenkins, Ansible, Istio, OpenTelemetry, CI/CD, Python",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-hebrew",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2371,
+  "completion_tokens": 112,
+  "total_tokens": 2483,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 23.35,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "No candidates in the dataset list Hebrew as a spoken language.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-cobol",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2375,
+  "completion_tokens": 125,
+  "total_tokens": 2500,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 5.68,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "No one in the dataset has COBOL listed among their skills.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-unknown-person",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2366,
+  "completion_tokens": 109,
+  "total_tokens": 2475,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 6.16,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "No candidate named **John Smith** was found in the dataset.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "find_by_name"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3720,
+  "completion_tokens": 499,
+  "total_tokens": 4219,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 9.79,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "Here are all candidates in the dataset who list **Python** among their skills:\n\n- **Katie Brown** – Principal NLP Researcher (15 yrs, UK) – Python, PyTorch, JAX, Transformers, Hugging Face, Kubernetes, AWS/GCP ML platforms  \n- **Julius Guit** – Lead DevOps / SRE (14 yrs, Netherlands) – Python, Kubernetes, Terraform, Go, AWS, GCP, CI/CD  \n- **Reiner Lorch** – Senior Backend Engineer (10 yrs, Germany) – Python 3.11, Django, FastAPI, PostgreSQL, Kafka, Kubernetes (EKS/GKE), AWS  \n- **Rosalinda Barral** – Senior Machine Learning Engineer (8 yrs, Spain) – Python, PyTorch, scikit-learn, TensorFlow, MLflow, Airflow, GCP Vertex AI, FastAPI  \n- **Marisela Herrera** – Application Security Engineer (5 yrs, Mexico) – Python, Bash, Burp Suite, OWASP ZAP, AWS security services, Docker, Kubernetes  \n- **Yuvraj Parsa** – Data Engineer (5 yrs, India) – Python, Spark, Scala, Airflow, AWS (Glue, Redshift, MWAA), Snowflake, dbt  \n- **Savannah McBride** – Data Scientist (4 yrs, Canada) – Python, pandas, scikit-learn, XGBoost, SQL, R, dbt, Airflow, AWS Redshift  \n- **Davit Petrosyan** – Junior Python Developer (1 yr, Armenia) – Python, FastAPI, SQLAlchemy, PostgreSQL, Redis, Docker, pytest, CI/CD  \n\nAll eight profiles explicitly include Python in their skills list.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3362,
+  "completion_tokens": 363,
+  "total_tokens": 3725,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 24.92,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "Here are all candidates in the dataset who speak Spanish:\n\n- **Juan Cruz Martinez** – Senior iOS Engineer (Argentina) – Spanish (Native), English (B2) – 9 years exp\n- **Rosalinda Barral** – Senior Machine Learning Engineer (Spain) – Spanish (Native), English (C1), French (B1) – 8 years exp\n- **Marisela Herrera** – Application Security Engineer (Mexico) – Spanish (Native), English (C1) – 5 years exp\n- **Luna Magalhães** – QA Automation Engineer (Portugal) – Spanish (B2), English (C1), Portuguese (Native) – 4 years exp\n- **Maria Clara da Cunha** – Java Backend Engineer (Brazil) – Spanish (B1), English (B2), Portuguese (Native) – 6 years exp\n- **Michael Saleh** – Senior Product Manager (Sweden) – Spanish (A2), English (C2), Swedish (Native) – 11 years exp\n\nThree are native speakers (Juan, Rosalinda, Marisela), two have intermediate proficiency (Luna B2, Maria Clara B1), and one has basic knowledge (Michael A2).",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 2,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2776,
+  "completion_tokens": 402,
+  "total_tokens": 3178,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 14.14,
+  "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+  "answer": "**Best fits for a senior ML role:**\n\n- **Rosalinda Barral** – Senior Machine Learning Engineer (8 y exp, Spain)  \n  *Skills:* Python, PyTorch, TensorFlow, XGBoost, MLflow, Airflow, GCP Vertex AI, BigQuery, Docker, Kubernetes, FastAPI, Feast, Tableau  \n  *Languages:* Spanish (Native), English (C1), French (B1)\n\n- **Katie Brown** – Principal NLP Researcher (15 y exp, UK)  \n  *Skills:* Python, PyTorch, JAX, Transformers, Hugging Face, DeepSpeed, Megatron-LM, RLHF, LoRA/QLoRA, model distillation, TensorRT, ONNX, Kubernetes, AWS SageMaker, GCP Vertex AI  \n  *Languages:* English (Native), German (B2)\n\nBoth are senior/principal ML specialists with strong production and research tooling. Rosalinda leans more toward end-to-end ML engineering and MLOps; Katie is deeper in large-scale NLP research and model optimization.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ }
+]

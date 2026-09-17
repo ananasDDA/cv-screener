@@ -1,0 +1,6 @@
+# Downloaded third-party datasets and the temporary Chroma store built from them.
+# JobResQA is CC BY-SA 2.0 and belongs to Avature; we fetch it, we do not redistribute it.
+data/
+__pycache__/
+
+# results/*.json is deliberately NOT ignored: the notebook renders from that cache.
