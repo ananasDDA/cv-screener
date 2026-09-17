@@ -1,0 +1,95 @@
+{
+  "headline": "Junior Python Developer | Backend Focus",
+  "summary": "Junior backend engineer with one year of hands‑on experience building Python‑based microservices using FastAPI, SQLAlchemy, and PostgreSQL. Proven ability to improve API latency, increase test coverage, and streamline deployments through Docker and CI/CD automation. Currently employed at EPAM Systems Armenia, previously completed a bootcamp‑style internship at Synopsys Armenia.",
+  "skills": [
+    "Python",
+    "FastAPI",
+    "SQLAlchemy",
+    "PostgreSQL",
+    "Redis",
+    "Docker",
+    "Docker‑Compose",
+    "pytest",
+    "pytest‑cov",
+    "Git",
+    "GitHub Actions",
+    "Alembic",
+    "Pydantic",
+    "Linux",
+    "Bash",
+    "OpenAPI",
+    "REST",
+    "CI/CD"
+  ],
+  "experience": [
+    {
+      "company": "EPAM Systems Armenia",
+      "title": "Junior Python Developer",
+      "location": "Yerevan, Armenia",
+      "start": "2025-10",
+      "end": null,
+      "highlights": [
+        "Built a FastAPI microservice handling ~2,000 requests per minute for a fintech client; added Redis caching for frequent look‑ups, lowering average response time from 280 ms to 165 ms (≈41% reduction).",
+        "Designed SQLAlchemy ORM models for PostgreSQL that reduced ORM‑generated query complexity, cutting DB CPU usage by 22% during peak load.",
+        "Implemented an automated testing suite with pytest and pytest‑cov, raising overall service test coverage from 68% to 92% and preventing regressions across three release cycles.",
+        "Set up a CI/CD pipeline using GitHub Actions, Docker, and Helm, reducing release deployment time from 2 days to 4 hours and enabling zero‑downtime blue‑green releases.",
+        "Contributed to an internal Python library (version‑controlled via Git) used by three other teams; the library’s adoption cut boilerplate code by ~30% across services."
+      ]
+    },
+    {
+      "company": "Synopsys Armenia",
+      "title": "Backend Intern",
+      "location": "Yerevan, Armenia",
+      "start": "2025-07",
+      "end": "2025-09",
+      "highlights": [
+        "Developed a FastAPI‑based internal tool for automating regression test report generation, reducing manual effort by 20 hours per week.",
+        "Optimized SQLAlchemy queries and added PostgreSQL indexes that cut average report generation latency from 4.2 s to 1.1 s (≈74% improvement).",
+        "Wrote 60+ pytest unit tests achieving 85% code coverage for the new module, integrated into CI pipeline using GitHub Actions.",
+        "Containerized the service with Docker and Docker‑Compose, enabling one‑click deployment to the staging environment and decreasing environment setup time from 30 min to 5 min."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Yerevan State University",
+      "degree": "BSc",
+      "field": "Computer Science",
+      "start_year": 2022,
+      "end_year": 2025
+    }
+  ],
+  "certifications": [
+    "PCAP – Certified Associate in Python Programming",
+    "Docker Certified Associate"
+  ],
+  "id": "p09-davit-petrosyan",
+  "full_name": "Davit Petrosyan",
+  "gender": "male",
+  "age": 22,
+  "city": "Yerevan",
+  "country": "Armenia",
+  "email": "davit.petrosyan@hotmail.com",
+  "phone": "+374 97 511 029",
+  "linkedin": "linkedin.com/in/davit-petrosyan",
+  "github": "github.com/davit16",
+  "languages": [
+    {
+      "name": "Armenian",
+      "level": "Native"
+    },
+    {
+      "name": "Russian",
+      "level": "C1"
+    },
+    {
+      "name": "English",
+      "level": "B1"
+    }
+  ],
+  "role_family": "backend",
+  "seniority": "junior",
+  "years_experience": 1,
+  "template": "minimal",
+  "photo_prompt": "Professional corporate headshot photograph of a 22-year-old male software professional from Armenia. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

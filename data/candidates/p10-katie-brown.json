@@ -1,0 +1,126 @@
+{
+  "headline": "Principal NLP Researcher",
+  "summary": "Senior researcher with extensive experience leading large‑scale language model projects across academia, big‑tech research labs, and AI startups. Expertise spans transformer architecture design, distributed training on GPU/TPU clusters, RLHF alignment, and efficient fine‑tuning techniques. Proven track record of delivering latency‑optimized models that power products serving millions of users and generating multi‑million‑dollar revenue streams.",
+  "skills": [
+    "Python",
+    "PyTorch",
+    "JAX",
+    "Transformers",
+    "Hugging Face",
+    "Fairseq",
+    "Deepspeed",
+    "Megatron-LM",
+    "CUDA",
+    "NCCL",
+    "MPI",
+    "Kubernetes",
+    "Slurm",
+    "AWS SageMaker",
+    "GCP Vertex AI",
+    "RLHF",
+    "PPO",
+    "DPO",
+    "LoRA",
+    "QLoRA",
+    "PEFT",
+    "Model distillation",
+    "INT8 quantization",
+    "TensorRT",
+    "ONNX",
+    "spaCy",
+    "NLTK"
+  ],
+  "experience": [
+    {
+      "company": "Meta AI",
+      "title": "Principal NLP Researcher",
+      "location": "London, United Kingdom",
+      "start": "2024-09",
+      "end": null,
+      "highlights": [
+        "Led a team of 8 researchers to deliver a 70B‑parameter multilingual LLM that achieved 12% lower latency on A100 GPUs via kernel fusion and INT8 quantization, deployed in an internal assistant serving 2M daily active users.",
+        "Designed a mixed‑precision training pipeline using JAX and Pallas that cut training FLOPs by 18% while keeping perplexity within 0.2 of baseline on the Pile dataset.",
+        "Authored an internal RLHF‑with‑AI‑feedback study that increased win‑rate against a GPT‑4 baseline by 7% on human preference tests, shaping the 2025 product roadmap.",
+        "Secured $3.2M of internal funding for infrastructure, negotiated procurement of 256 H100 GPUs and optimized Slurm scheduling to reach 92% cluster utilization."
+      ]
+    },
+    {
+      "company": "PolyAI",
+      "title": "Senior Research Scientist",
+      "location": "London, United Kingdom",
+      "start": "2020-04",
+      "end": "2024-08",
+      "highlights": [
+        "Built an end‑to‑end speech‑to‑intent pipeline using a Conformer encoder and a 1B‑parameter LLM, reducing latency from 820 ms to 460 ms on V100 GPUs and enabling real‑time handling of 150 concurrent calls per instance.",
+        "Pioneered a LoRA‑based fine‑tuning method with only 0.3 % trainable parameters, matching full‑fine‑tuning accuracy while cutting GPU memory usage by 64 %.",
+        "Mentored four junior researchers and interns, two of whom were promoted to research scientist roles within 12 months.",
+        "Published three ACL‑workshop papers on efficient inference, collectively cited 110 times by end of 2023."
+      ]
+    },
+    {
+      "company": "Google Research",
+      "title": "Research Scientist",
+      "location": "London, United Kingdom",
+      "start": "2015-06",
+      "end": "2020-03",
+      "highlights": [
+        "Contributed to the development of the T5‑XL model, implementing distributed training on TPU v3 pods that reduced training time from 14 days to 9 days for a 11B‑parameter checkpoint.",
+        "Designed a data‑filtering pipeline that removed 22% of noisy web‑text while preserving downstream task performance, saving ~1.4PB of storage.",
+        "Led a cross‑team effort to integrate sparsely‑gated Mixture‑of‑Experts layers into the Transformer, achieving a 1.4× throughput increase at equal accuracy.",
+        "Authored 5 conference papers (NeurIPS, ICML, EMNLP) with combined citations exceeding 850."
+      ]
+    },
+    {
+      "company": "University of Edinburgh",
+      "title": "Postdoctoral Research Fellow",
+      "location": "Edinburgh, United Kingdom",
+      "start": "2012-09",
+      "end": "2015-05",
+      "highlights": [
+        "Developed a neural transition‑based dependency parser that attained 94.2% UAS on the Penn Treebank, setting a new state‑of‑the‑art for parsers without external embeddings.",
+        "Released an open‑source toolkit for multilingual word‑embedding alignment, downloaded over 12,000 times in its first year.",
+        "Supervised three MSc projects; all students graduated with distinction and two continued to PhD programs.",
+        "Awarded a £150k EPSRC grant to investigate syntax‑aware language modeling, resulting in a journal article in TACL."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Edinburgh",
+      "degree": "PhD",
+      "field": "Computational Linguistics",
+      "start_year": 2008,
+      "end_year": 2012
+    }
+  ],
+  "certifications": [
+    "Co‑author, 'Scaling Laws for RLHF in Large Language Models', ACL 2023",
+    "Inventor, US Patent 11,845,678: 'Efficient LoRA Adaptation for Transformers', 2022",
+    "First author, 'JAX‑Pallas Mixed Precision Training for LLMs', NeurIPS 2022"
+  ],
+  "id": "p10-katie-brown",
+  "full_name": "Katie Brown",
+  "gender": "female",
+  "age": 41,
+  "city": "London",
+  "country": "United Kingdom",
+  "email": "katie.brown@gmail.com",
+  "phone": "+44 7872 833 410",
+  "linkedin": "linkedin.com/in/katie-brown",
+  "github": "github.com/katie28",
+  "languages": [
+    {
+      "name": "English",
+      "level": "Native"
+    },
+    {
+      "name": "German",
+      "level": "B2"
+    }
+  ],
+  "role_family": "ml",
+  "seniority": "principal",
+  "years_experience": 15,
+  "template": "classic",
+  "photo_prompt": "Professional corporate headshot photograph of a 41-year-old female software professional from United Kingdom, grey-streaked hair. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

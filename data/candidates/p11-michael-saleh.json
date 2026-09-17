@@ -1,0 +1,98 @@
+{
+  "headline": "Senior Product Manager",
+  "summary": "Senior Product Manager with over 11 years of experience driving product strategy and execution in consumer music streaming and B2B communications platforms. Proven track record of launching data‑informed features that increase user engagement, revenue, and operational efficiency. Adept at aligning cross‑functional teams around OKRs, leveraging SQL, Amplitude, and experimentation to deliver measurable outcomes. Based in Stockholm, currently leading product initiatives at Sinch.",
+  "skills": [
+    "Product discovery",
+    "SQL",
+    "Amplitude",
+    "Jira",
+    "Figma",
+    "A/B testing",
+    "OKRs",
+    "Roadmapping",
+    "User research",
+    "Prototyping",
+    "Data analysis",
+    "Stakeholder management",
+    "Go‑to‑market strategy",
+    "Pricing experimentation",
+    "Customer journey mapping",
+    "Metrics definition",
+    "Cross‑functional leadership",
+    "Agile/Scrum",
+    "API product management",
+    "Market analysis"
+  ],
+  "experience": [
+    {
+      "company": "Sinch AB",
+      "title": "Senior Product Manager",
+      "location": "Stockholm, Sweden",
+      "start": "2021-07",
+      "end": null,
+      "highlights": [
+        "Led cross‑functional team of 8 engineers, 2 designers, 4 data analysts to launch Sinch Conversation API, increasing enterprise customer adoption by 35% YoY and generating SEK 120M ARR within first 12 months.",
+        "Implemented a structured product discovery framework using Opportunity Solution Trees, reducing time‑to‑insight from 4 weeks to 1 week and increasing validated experiment velocity from 2 to 5 per quarter.",
+        "Developed and maintained SQL‑based usage analytics dashboard in Amplitude, enabling real‑time monitoring of API latency; drove latency reduction from 250ms to 120ms (52% improvement) for top‑tier customers.",
+        "Defined OKRs aligned with corporate revenue targets; achieved 118% of key result for net revenue retention (NRR) in FY2025, contributing to SEK 450M uplift in overall SaaS revenue.",
+        "Ran A/B testing program on developer portal documentation, improving developer activation rate by 22% and decreasing support tickets by 18%."
+      ]
+    },
+    {
+      "company": "Spotify AB",
+      "title": "Product Manager (Discovery & Personalization)",
+      "location": "Stockholm, Sweden",
+      "start": "2015-07",
+      "end": "2021-06",
+      "highlights": [
+        "Owned the end‑to‑end roadmap for the \"Discover Weekly\" algorithmic playlist, coordinating ML engineers and UX designers; grew weekly active users from 15M to 42M (+180%) and increased premium conversion from playlist listeners by 3.4pp.",
+        "Built SQL‑based experimentation framework in Amplitude to measure impact of UI changes; ran 27 A/B tests that collectively lifted average session length by 1.8 minutes (+12%).",
+        "Introduced quarterly OKR process for the Discovery tribe, aligning 5 squads around shared metrics; achieved 95% of key results in 2020, contributing to SEK 800M increase in ad‑supported revenue.",
+        "Streamlined backlog grooming in Jira, reducing average story lead time from 10 days to 4 days and increasing team velocity by 28%.",
+        "Partnered with design to create Figma prototypes for a new \"Blend\" feature; conducted usability testing with 500 users, leading to a launch that achieved 4.2/5 satisfaction score and drove 7% uplift in social sharing."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "KTH Royal Institute of Technology",
+      "degree": "MSc",
+      "field": "Industrial Engineering",
+      "start_year": 2009,
+      "end_year": 2013
+    }
+  ],
+  "certifications": [
+    "Certified Scrum Product Owner (CSPO) – Scrum Alliance, 2020",
+    "Google Analytics Individual Qualification (GAIQ) – 2019"
+  ],
+  "id": "p11-michael-saleh",
+  "full_name": "Michael Saleh",
+  "gender": "male",
+  "age": 36,
+  "city": "Stockholm",
+  "country": "Sweden",
+  "email": "michael.saleh@gmail.com",
+  "phone": "+46 70 816 66 22",
+  "linkedin": "linkedin.com/in/michael-saleh",
+  "github": "github.com/michael57",
+  "languages": [
+    {
+      "name": "Swedish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C2"
+    },
+    {
+      "name": "Spanish",
+      "level": "A2"
+    }
+  ],
+  "role_family": "product",
+  "seniority": "senior",
+  "years_experience": 11,
+  "template": "modern",
+  "photo_prompt": "Professional corporate headshot photograph of a 36-year-old male software professional from Sweden. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

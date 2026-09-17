@@ -1,0 +1,94 @@
+{
+  "headline": "Data Engineer | 5 years experience in Spark, Scala, and AWS data platforms",
+  "summary": "Data engineer with five years of end-to-end experience building scalable data pipelines on AWS using Apache Spark, Scala, Python, Airflow, and Snowflake. Proven track record of reducing latency, cutting costs, and enabling data-driven decision making for fintech and enterprise clients. Adept at mentoring teams and implementing data quality frameworks.",
+  "skills": [
+    "Apache Spark",
+    "Scala",
+    "Python",
+    "Apache Airflow",
+    "AWS (EC2, S3, Glue, Redshift, MWAA)",
+    "Snowflake",
+    "dbt",
+    "Apache Kafka",
+    "Docker",
+    "Kubernetes",
+    "Git",
+    "SQL",
+    "Tableau",
+    "Great Expectations",
+    "Linux"
+  ],
+  "experience": [
+    {
+      "company": "PhonePe",
+      "title": "Senior Data Engineer",
+      "location": "Bengaluru, India",
+      "start": "2022-08",
+      "end": null,
+      "highlights": [
+        "Designed and executed a Spark Structured Streaming pipeline ingesting 2.5 TB/day of clickstream data from Kafka into Snowflake, reducing end-to-end latency from 45 minutes to under 5 minutes.",
+        "Migrated 30+ legacy ETL jobs from on-prem Airflow to AWS Managed Workflows for Apache Airflow (MWAA), cutting operational overhead by 40% and saving approximately ₹1.2 million annually.",
+        "Built dbt models that transformed raw transactional data into a unified customer 360 view, enabling PhonePe’s marketing team to increase campaign ROI by 18% year‑over‑year.",
+        "Implemented schema evolution checks using Great Expectations, preventing 98% of data quality incidents in production.",
+        "Mentored a team of four junior engineers, conducting bi‑weekly code reviews and reducing average PR turnaround time from three days to twelve hours."
+      ]
+    },
+    {
+      "company": "Tata Consultancy Services (TCS)",
+      "title": "Data Engineer",
+      "location": "Bengaluru, India",
+      "start": "2020-08",
+      "end": "2022-07",
+      "highlights": [
+        "Developed Scala‑based Spark batch jobs processing 1.2 TB of daily transaction logs for a banking client, improving job runtime from 90 minutes to 30 minutes via partition pruning and broadcast joins.",
+        "Created Python Airflow DAGs orchestrating data extraction from Oracle, transformation in Spark, and loading into AWS Redshift, achieving 99.5% SLA compliance over 12 months.",
+        "Integrated Kafka Connect connectors to stream CDC updates from MySQL to S3, enabling near‑real‑time analytics dashboards used by 150+ business users.",
+        "Optimized Snowflake warehouse sizing using query profiling, reducing monthly compute spend by 22% (≈₹850K).",
+        "Authored internal documentation and conducted workshops on Scala best practices for a squad of six engineers, increasing code reuse by 35%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "National Institute of Technology Tiruchirappalli",
+      "degree": "BTech",
+      "field": "Computer Science",
+      "start_year": 2016,
+      "end_year": 2020
+    }
+  ],
+  "certifications": [
+    "AWS Certified Data Analytics – Specialty (2023)",
+    "Google Cloud Professional Data Engineer (2024)",
+    "Snowflake SnowPro Core Certification (2022)"
+  ],
+  "id": "p04-yuvraj-parsa",
+  "full_name": "Yuvraj Parsa",
+  "gender": "male",
+  "age": 28,
+  "city": "Bengaluru",
+  "country": "India",
+  "email": "yuvraj.parsa@gmail.com",
+  "phone": "+91 98778 76051",
+  "linkedin": "linkedin.com/in/yuvraj-parsa",
+  "github": "github.com/yuvraj62",
+  "languages": [
+    {
+      "name": "English",
+      "level": "C2"
+    },
+    {
+      "name": "Hindi",
+      "level": "Native"
+    },
+    {
+      "name": "Kannada",
+      "level": "Native"
+    }
+  ],
+  "role_family": "data",
+  "seniority": "middle",
+  "years_experience": 5,
+  "template": "classic",
+  "photo_prompt": "Professional corporate headshot photograph of a 28-year-old male software professional from India. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

@@ -1,0 +1,96 @@
+{
+  "headline": "QA Automation Engineer (mid-level)",
+  "summary": "QA Automation Engineer with 4 years of experience designing and maintaining Java‑based test automation frameworks for web and API services. Proven ability to reduce regression cycles, improve defect detection rates, and integrate automated checks into CI/CD pipelines. Skilled in collaborating with cross‑functional squads to deliver high‑quality SaaS and enterprise software releases.",
+  "skills": [
+    "Java",
+    "Selenium WebDriver",
+    "Playwright",
+    "TestNG",
+    "REST Assured",
+    "Postman",
+    "Jenkins",
+    "SQL (PostgreSQL/Oracle)",
+    "Maven",
+    "Docker",
+    "Git",
+    "JUnit",
+    "Allure Report",
+    "Cucumber",
+    "Jenkins Pipeline",
+    "JIRA",
+    "TestRail",
+    "Linux Bash"
+  ],
+  "experience": [
+    {
+      "company": "Talkdesk",
+      "title": "QA Automation Engineer",
+      "location": "Lisbon, Portugal",
+      "start": "2024-06",
+      "end": null,
+      "highlights": [
+        "Designed and maintained a Java‑based Selenium test suite covering 150+ web UI flows, reducing regression cycle time from 4 days to 8 hours and catching 23 critical defects per release.",
+        "Migrated 80 legacy TestNG tests to Playwright with TypeScript bindings, increasing test execution speed by 35% and enabling parallel runs on 8 Docker agents in Jenkins.",
+        "Built REST Assured API validation framework for Talkdesk’s Call Routing microservice, achieving 99.2% contract compliance and decreasing post‑release incidents by 40%.",
+        "Integrated SQL‑based data verification steps into CI pipelines, validating 2M+ rows per night and preventing data‑drift incidents that previously affected 5% of tenant configurations.",
+        "Collaborated with a squad of 6 developers and 2 product owners to define acceptance criteria, contributing to a 12% uplift in quarterly NPS for the Agent Workspace product."
+      ]
+    },
+    {
+      "company": "Accenture Portugal",
+      "title": "QA Automation Engineer (Associate)",
+      "location": "Lisbon, Portugal",
+      "start": "2022-06",
+      "end": "2024-05",
+      "highlights": [
+        "Delivered automated regression packs for a banking client’s core Java web application using Selenium and TestNG, executing 300+ test cases nightly and cutting manual effort by 70% (saving ~1,200 hrs/year).",
+        "Implemented Postman collections and Newman runs in Jenkins to verify 45 REST endpoints, detecting contract violations early and reducing production hotfixes by 25%.",
+        "Developed SQL scripts to verify data integrity across Oracle and PostgreSQL schemas, processing 10M+ rows per week and identifying discrepancies that avoided potential revenue leakage estimated at €180k annually.",
+        "Introduced Dockerized Jenkins agents and parallel test execution, reducing build feedback loop from 45 minutes to 12 minutes for the client’s CI pipeline.",
+        "Mentored two junior QA engineers on Java testing best practices, resulting in a 15% increase in team test coverage over six months."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidade de Lisboa - Faculdade de Ciências",
+      "degree": "BSc",
+      "field": "Software Engineering",
+      "start_year": 2016,
+      "end_year": 2020
+    }
+  ],
+  "certifications": [
+    "ISTQB Certified Tester Foundation Level (CTFL)",
+    "ISTQB Test Automation Engineer"
+  ],
+  "id": "p06-luna-magalhaes",
+  "full_name": "Luna Magalhães",
+  "gender": "female",
+  "age": 29,
+  "city": "Lisbon",
+  "country": "Portugal",
+  "email": "luna.magalhaes@sapo.pt",
+  "phone": "+351 919 458 271",
+  "linkedin": "linkedin.com/in/luna-magalhaes",
+  "github": null,
+  "languages": [
+    {
+      "name": "Portuguese",
+      "level": "Native"
+    },
+    {
+      "name": "Spanish",
+      "level": "B2"
+    },
+    {
+      "name": "English",
+      "level": "C1"
+    }
+  ],
+  "role_family": "qa",
+  "seniority": "middle",
+  "years_experience": 4,
+  "template": "minimal",
+  "photo_prompt": "Professional corporate headshot photograph of a 29-year-old female software professional from Portugal, curly hair. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

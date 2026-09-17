@@ -1,0 +1,103 @@
+{
+  "headline": "Senior iOS Engineer",
+  "summary": "Seasoned iOS engineer with 9 years of experience building high‑performance financial and productivity apps for LatAm fintechs and remote US clients. Expert in Swift, SwiftUI, Combine, and modern iOS architectures, with a proven track record of reducing latency, increasing user engagement, and streamlining release pipelines through automation and rigorous testing.",
+  "skills": [
+    "Swift",
+    "SwiftUI",
+    "UIKit",
+    "Combine",
+    "Core Data",
+    "XCTest",
+    "Fastlane",
+    "REST",
+    "GraphQL",
+    "Apollo iOS",
+    "RxSwift",
+    "Swinject",
+    "GitHub Actions",
+    "SonarQube",
+    "LaunchDarkly"
+  ],
+  "experience": [
+    {
+      "company": "Naranja X",
+      "title": "Senior iOS Engineer",
+      "location": "Buenos Aires, Argentina",
+      "start": "2022-03",
+      "end": null,
+      "highlights": [
+        "Led migration of legacy UIKit codebase to SwiftUI for the home dashboard, reducing UI rendering latency by 35% and decreasing crash rate from 2.1% to 0.7% across 1.2M monthly active users.",
+        "Implemented Combine‑based reactive networking layer that consolidated REST and GraphQL APIs, cutting average network request time from 820ms to 460ms and enabling feature‑flag rollout for three new credit products.",
+        "Automated release pipeline with Fastlane and GitHub Actions, increasing bi‑weekly release frequency from 1 to 4 and reducing manual QA effort by ~200 hours per quarter.",
+        "Mentored a team of four junior iOS engineers, establishing code‑review standards that raised average pull‑request approval score from 78% to 94% in SonarQube.",
+        "Introduced feature toggles via LaunchDarkly to A/B test a new loan simulator, boosting conversion rate by 12% and generating an additional ARS 4.5M in quarterly revenue."
+      ]
+    },
+    {
+      "company": "GitLab",
+      "title": "iOS Engineer (Contract)",
+      "location": "Remote (Buenos Aires, Argentina)",
+      "start": "2020-01",
+      "end": "2022-02",
+      "highlights": [
+        "Developed a SwiftUI‑based offline‑first notes app for GitLab’s internal knowledge base using Core Data and CloudKit sync, achieving 99.9% data integrity and supporting 15k+ daily active employees.",
+        "Integrated GraphQL subscriptions via Apollo iOS, reducing real‑time update latency from 1.2s to 180ms and enabling live collaboration features used by eight distributed teams.",
+        "Wrote comprehensive XCTest unit and UI tests covering 78% of critical paths, cutting post‑release bugs by 40% in staging environments.",
+        "Optimized app bundle size by 22% through asset‑catalog trimming and lazy module loading, improving download times on low‑bandwidth connections.",
+        "Collaborated with product and UX teams in biweekly sprints, delivering six feature releases that adhered to WCAG 2.1 AA accessibility standards."
+      ]
+    },
+    {
+      "company": "Ualá",
+      "title": "iOS Engineer",
+      "location": "Buenos Aires, Argentina",
+      "start": "2017-03",
+      "end": "2019-12",
+      "highlights": [
+        "Built the initial version of Ualá’s expense‑tracking module using UIKit and RxSwift, attracting 250k users within the first six months and increasing daily active users by 18%.",
+        "Implemented Core Data migration strategy that safely transformed user data schema across three app versions, preserving 100% of historical transaction records for 500k+ users.",
+        "Reduced app launch time from 4.8s to 2.2s by launching asynchronous initialization of analytics and networking stacks, improving user retention by 7% in cohort analysis.",
+        "Created a Fastlane automation pipeline that automated beta distribution to TestFlight, cutting release turnaround from 3 days to 4 hours.",
+        "Participated in cross‑functional squads of six engineers, conducting peer code reviews that maintained an average code coverage of 72% across new features."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad de Buenos Aires",
+      "degree": "Licenciatura",
+      "field": "Sistemas",
+      "start_year": 2011,
+      "end_year": 2016
+    }
+  ],
+  "certifications": [
+    "AWS Certified Developer Associate",
+    "Scrum Alliance Certified ScrumMaster (CSM)"
+  ],
+  "id": "p07-juan-cruz-martinez",
+  "full_name": "Juan Cruz Martinez",
+  "gender": "male",
+  "age": 33,
+  "city": "Buenos Aires",
+  "country": "Argentina",
+  "email": "juan.cruz.martinez@gmail.com",
+  "phone": "+54 9 11 3950 3842",
+  "linkedin": "linkedin.com/in/juan-cruz-martinez",
+  "github": "github.com/juan77",
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2"
+    }
+  ],
+  "role_family": "mobile",
+  "seniority": "senior",
+  "years_experience": 9,
+  "template": "classic",
+  "photo_prompt": "Professional corporate headshot photograph of a 33-year-old male software professional from Argentina. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

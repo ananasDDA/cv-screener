@@ -1,0 +1,97 @@
+{
+  "headline": "Application Security Engineer",
+  "summary": "Application Security Engineer with five years of experience securing financial and neobank platforms. Proven ability to integrate SAST/DAST tools, automate cloud security controls, and lead threat modelling initiatives that reduce critical vulnerabilities and prevent potential fraud losses. Adept at collaborating with development and operations teams to embed security into CI/CD pipelines and maintain compliance with PCI DSS and AWS Well-Architected standards.",
+  "skills": [
+    "Python",
+    "Bash",
+    "Burp Suite Professional",
+    "OWASP ZAP",
+    "Semgrep",
+    "Bandit",
+    "AWS IAM",
+    "AWS GuardDuty",
+    "AWS Macie",
+    "AWS Security Hub",
+    "AWS WAF",
+    "Lambda@Edge",
+    "Threat modelling (STRIDE, OWASP ASVS)",
+    "SAST",
+    "DAST",
+    "Jenkins",
+    "GitHub Actions",
+    "Docker",
+    "Kubernetes",
+    "Jira",
+    "Confluence",
+    "Linux",
+    "Nmap",
+    "Nessus"
+  ],
+  "experience": [
+    {
+      "company": "Hey Banco",
+      "title": "Application Security Engineer",
+      "location": "Mexico City, Mexico",
+      "start": "2024-06",
+      "end": null,
+      "highlights": [
+        "Led SAST integration using Semgrep and Bandit across 12 microservices, reducing critical findings by 68% within four months.",
+        "Conducted threat modelling for a new payment API using OWASP ASVS, uncovering 15 design flaws that were remediated before launch, preventing potential fraud losses estimated at $250k annually.",
+        "Automated AWS IAM policy reviews with Python and Bash scripts, cutting manual audit time from 8 hours to 45 minutes per cycle and ensuring PCI DSS v4.0 compliance.",
+        "Managed Burp Suite Professional scans on staging environments, identifying and helping fix 32 high‑severity issues, improving the app security rating from B to A+ in quarterly external assessments.",
+        "Collaborated with a team of six engineers to implement runtime protection via AWS WAF and Lambda@Edge, decreasing successful OWASP Top 10 exploitation attempts by 90% over six months."
+      ]
+    },
+    {
+      "company": "KPMG Mexico",
+      "title": "Cybersecurity Consultant",
+      "location": "Mexico City, Mexico",
+      "start": "2021-06",
+      "end": "2024-05",
+      "highlights": [
+        "Performed external penetration tests for 15 financial clients using Burp Suite, Nmap, and custom Python scripts, delivering reports that led to an average remediation time reduction of 30%.",
+        "Developed DAST pipelines in Jenkins with OWASP ZAP and integrated results into Jira, increasing scan coverage from 70% to 95% and reducing false positives by 22%.",
+        "Advising clients on AWS security best practices, configuring GuardDuty, Macie, and Security Hub, which helped a retail client achieve an AWS Well‑Architected Security Pillar score of 95%.",
+        "Conducted threat modelling workshops using STRIDE methodology for fintech applications, identifying 48 potential attack vectors and prioritizing mitigations that saved clients an estimated $1.2M in potential breach costs.",
+        "Authored an internal Python‑based tool to automate Semgrep rule updates across 30+ repositories, cutting rule maintenance effort by 40% and ensuring consistent detection of OWASP Top 10 vulnerabilities."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Nacional Autónoma de México (UNAM)",
+      "degree": "BSc",
+      "field": "Computer Science",
+      "start_year": 2012,
+      "end_year": 2016
+    }
+  ],
+  "certifications": [
+    "OSCP (Offensive Security Certified Professional)"
+  ],
+  "id": "p14-marisela-herrera",
+  "full_name": "Marisela Herrera",
+  "gender": "female",
+  "age": 32,
+  "city": "Mexico City",
+  "country": "Mexico",
+  "email": "marisela.herrera@hotmail.com",
+  "phone": "+52 55 2990 6063",
+  "linkedin": "linkedin.com/in/marisela-herrera",
+  "github": "github.com/marisela35",
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C1"
+    }
+  ],
+  "role_family": "security",
+  "seniority": "middle",
+  "years_experience": 5,
+  "template": "modern",
+  "photo_prompt": "Professional corporate headshot photograph of a 32-year-old female software professional from Mexico. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

@@ -32,3 +32,4 @@ packages = ["src/cv_screener"]
 
 [tool.ruff]
 line-length = 100
+

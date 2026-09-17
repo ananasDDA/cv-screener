@@ -1,0 +1,107 @@
+{
+  "headline": "Lead DevOps / SRE",
+  "summary": "Seasoned DevOps leader with 14 years of experience designing and operating large-scale, multi-cloud platforms for telecom, payments, and cloud-native scale-ups. Expertise in Kubernetes, Terraform, Go, and observability stacks, driving reliability, cost efficiency, and rapid delivery. Proven track record of reducing MTTR, increasing deployment frequency, and scaling systems to support millions of users and billions of transactions.",
+  "skills": [
+    "Kubernetes",
+    "Terraform",
+    "Go",
+    "AWS",
+    "GCP",
+    "Prometheus",
+    "Grafana",
+    "ArgoCD",
+    "Linux",
+    "Bash",
+    "Docker",
+    "Helm",
+    "Jenkins",
+    "Ansible",
+    "Istio",
+    "OpenTelemetry",
+    "CI/CD",
+    "Python"
+  ],
+  "experience": [
+    {
+      "company": "MessageBird",
+      "title": "Lead DevOps / SRE",
+      "location": "Amsterdam, Netherlands",
+      "start": "2021-09",
+      "end": null,
+      "highlights": [
+        "Reduced mean time to recovery (MTTR) by 40% through standardized runbooks and automated remediation in Prometheus Alertmanager.",
+        "Increased deployment frequency to over 200 releases per month by implementing GitOps with ArgoCD and trunk‑based development.",
+        "Cut annual infrastructure spend by $1.2M via rightsizing Kubernetes clusters and leveraging AWS Graviton2 instances.",
+        "Scaled the platform to 500+ Kubernetes nodes handling 10M daily messages with 99.99% API availability.",
+        "Introduced service‑mesh observability (Istio + OpenTelemetry) decreasing latency‑related incidents by 25%."
+      ]
+    },
+    {
+      "company": "Adyen",
+      "title": "Senior DevOps Engineer",
+      "location": "Amsterdam, Netherlands",
+      "start": "2017-09",
+      "end": "2021-08",
+      "highlights": [
+        "Designed and maintained a multi‑cloud CI/CD pipeline (Jenkins → ArgoCD) reducing release lead time from 2 weeks to 2 days for 40+ micro‑services.",
+        "Automated provisioning of AWS and GCP environments using Terraform, supporting peak transaction volumes of $5B annually.",
+        "Enhanced observability with Prometheus/Grafana dashboards, cutting alert fatigue by 30% and improving SLA compliance to 99.95%.",
+        "Led migration of legacy VM‑based services to Kubernetes, increasing service uptime from 99.9% to 99.99%.",
+        "Mentored a team of 5 engineers, establishing SRE practices that reduced post‑release defects by 35%."
+      ]
+    },
+    {
+      "company": "KPN",
+      "title": "Systems Engineer / DevOps",
+      "location": "Amsterdam, Netherlands",
+      "start": "2012-09",
+      "end": "2017-08",
+      "highlights": [
+        "Managed a heterogeneous Linux fleet of 2,000 servers using Ansible, achieving 98% patch compliance within 24h.",
+        "Replaced Nagios with Prometheus‑based monitoring, decreasing incident detection time from 45 minutes to 12 minutes.",
+        "Implemented infrastructure as code with Terraform for virtual network functions, accelerating 5G core rollout to 2M users.",
+        "Optimized Bash provisioning scripts, cutting average server build time from 4 hours to 20 minutes.",
+        "Supported migration of legacy OSS/BSS workloads to OpenStack, improving resource utilization by 22%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hogeschool van Amsterdam",
+      "degree": "Bachelor",
+      "field": "Informatics",
+      "start_year": 2005,
+      "end_year": 2009
+    }
+  ],
+  "certifications": [
+    "Certified Kubernetes Administrator (CKA)",
+    "HashiCorp Terraform Associate",
+    "AWS Certified DevOps Engineer – Professional"
+  ],
+  "id": "p05-julius-guit",
+  "full_name": "Julius Guit",
+  "gender": "male",
+  "age": 39,
+  "city": "Amsterdam",
+  "country": "Netherlands",
+  "email": "julius.guit@hotmail.com",
+  "phone": "+31 6 9883 3502",
+  "linkedin": "linkedin.com/in/julius-guit",
+  "github": "github.com/julius81",
+  "languages": [
+    {
+      "name": "Dutch",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C2"
+    }
+  ],
+  "role_family": "devops",
+  "seniority": "lead",
+  "years_experience": 14,
+  "template": "modern",
+  "photo_prompt": "Professional corporate headshot photograph of a 39-year-old male software professional from Netherlands, shaved head. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

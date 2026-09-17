@@ -1,0 +1,91 @@
+{
+  "headline": "Frontend Developer (junior) with 2 years of experience building React‑based products",
+  "summary": "Junior Frontend Developer specializing in React, TypeScript, and Next.js, currently contributing to a health‑tech product at Docplanner in Warsaw. Previously completed a frontend internship at Allegro, where I delivered reusable UI components and improved test coverage. Skilled at translating Figma designs into performant, accessible code and collaborating closely with product and UX teams.",
+  "skills": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Jest",
+    "React Testing Library",
+    "Cypress",
+    "Git",
+    "GitHub Actions",
+    "Figma",
+    "Storybook",
+    "ESLint",
+    "Prettier",
+    "Webpack",
+    "Vite",
+    "npm",
+    "Yarn",
+    "Redux Toolkit",
+    "REST API",
+    "GraphQL"
+  ],
+  "experience": [
+    {
+      "company": "Docplanner",
+      "title": "Junior Frontend Developer",
+      "location": "Warsaw, Poland",
+      "start": "2025-01",
+      "end": null,
+      "highlights": [
+        "Developed a new patient appointment booking flow using React 18 and TypeScript, raising conversion from 3.4% to 3.8% (+12%) in the first month of A/B testing.",
+        "Reduced initial JavaScript bundle size by 28% through dynamic imports and tree‑shifting, lowering payload from 1.2 MB to 860 KB and improving TTI on mid‑tier devices.",
+        "Authored 150+ unit and integration tests with Jest and React Testing Library, achieving 92% code coverage and cutting regression bugs reported in QA by 40%.",
+        "Implemented Tailwind CSS‑based design system components from Figma specs, decreasing average UI development time per feature from 3 days to 1.5 days.",
+        "Mentored two interns on React best practices and Git workflow; their pull requests were merged without senior review after three weeks."
+      ]
+    },
+    {
+      "company": "Allegro",
+      "title": "Frontend Intern",
+      "location": "Warsaw, Poland",
+      "start": "2023-06",
+      "end": "2023-09",
+      "highlights": [
+        "Created a reusable product card component in React with TypeScript adopted by five internal micro‑frontends, eliminating roughly 1,200 lines of duplicate code.",
+        "Built end‑to‑end checkout tests with Cypress, catching 15 critical bugs pre‑release and reducing post‑release hotfixes by 30%.",
+        "Assisted in migrating legacy styles to Tailwind CSS across 12 UI pages, raising internal style‑consistency score from 78% to 94%.",
+        "Joined a Scrum team of six engineers, contributing an average of four story points per sprint and participating in sprint planning and retrospectives.",
+        "Produced interactive Figma prototypes from stakeholder feedback, shortening design‑to‑development handoff time by roughly 20%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Warsaw",
+      "degree": "BSc",
+      "field": "Computer Science",
+      "start_year": 2022,
+      "end_year": 2025
+    }
+  ],
+  "certifications": [],
+  "id": "p03-angelika-drewa",
+  "full_name": "Angelika Drewa",
+  "gender": "female",
+  "age": 23,
+  "city": "Warsaw",
+  "country": "Poland",
+  "email": "angelika.drewa@o2.pl",
+  "phone": "+48 322 472 991",
+  "linkedin": "linkedin.com/in/angelika-drewa",
+  "github": "github.com/angelika92",
+  "languages": [
+    {
+      "name": "Polish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2"
+    }
+  ],
+  "role_family": "frontend",
+  "seniority": "junior",
+  "years_experience": 2,
+  "template": "minimal",
+  "photo_prompt": "Professional corporate headshot photograph of a 23-year-old female software professional from Poland, blonde hair. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

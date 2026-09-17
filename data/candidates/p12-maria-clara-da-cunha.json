@@ -1,0 +1,98 @@
+{
+  "headline": "Java Backend Engineer with 6+ years of experience building scalable microservices on Java, Spring Boot, Kotlin and Azure",
+  "summary": "Experienced backend engineer specializing in high‑throughput, low‑latency services for financial and delivery platforms. Proven track record of improving system performance, reducing incident rates, and accelerating delivery cycles through containerization, event‑driven architectures and robust CI/CD pipelines. Adept at mentoring junior engineers and collaborating across product, data and ops teams to meet aggressive business goals.",
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "Kotlin",
+    "Hibernate",
+    "PostgreSQL",
+    "RabbitMQ",
+    "Docker",
+    "Azure",
+    "RESTful API design",
+    "Microservices",
+    "CI/CD",
+    "Apache Kafka",
+    "JUnit 5",
+    "Mockito",
+    "Maven",
+    "Gradle",
+    "Linux",
+    "Terraform",
+    "Prometheus",
+    "Grafana"
+  ],
+  "experience": [
+    {
+      "company": "iFood",
+      "title": "Java Backend Engineer",
+      "location": "São Paulo, Brazil",
+      "start": "2023-06",
+      "end": null,
+      "highlights": [
+        "Designed and implemented a new order‑matching microservice in Java Spring Boot that reduced average order processing latency from 420 ms to 180 ms, handling peak load of 120 k RPM.",
+        "Migrated legacy payment processing module to Kotlin coroutines, cutting CPU usage by 25 % and enabling horizontal scaling to 30 pods on Azure Kubernetes Service.",
+        "Introduced contract‑testing with Pact and automated schema validation, decreasing production‑incident rate related to API breaking changes by 60 % over six months.",
+        "Built a RabbitMQ‑based event‑driven pipeline for real‑time restaurant‑status updates, increasing throughput to 2 M events/day while maintaining <5 ms end‑to‑end latency.",
+        "Led CI/CD improvements using GitHub Actions and Azure Pipelines, reducing average deployment time from 45 min to 12 min and enabling 4‑times‑daily releases."
+      ]
+    },
+    {
+      "company": "Itaú Unibanco",
+      "title": "Java Backend Engineer",
+      "location": "São Paulo, Brazil",
+      "start": "2020-06",
+      "end": "2023-05",
+      "highlights": [
+        "Developed a Spring Boot‑based account‑statement micro‑service that serves over 5 M daily requests, improving response time from 320 ms to 140 ms and supporting 2× traffic growth during Black Friday campaigns.",
+        "Optimized Hibernate queries and introduced second‑level caching with Ehcache, reducing average DB load by 35 % and cutting average transaction time for loan‑approval flow from 2.8 s to 1.9 s.",
+        "Implemented distributed tracing with OpenTelemetry and Jaeger across 12 services, cutting mean‑time‑to‑detect for latency spikes from 45 min to 8 min.",
+        "Containerized legacy monolith components using Docker and deployed them to Azure Container Instances, achieving 99.9 % availability and enabling blue‑green releases with zero downtime.",
+        "Automated regression test suite with JUnit 5 and Mockito, increasing test coverage from 68 % to 92 % and reducing production defects related to backend changes by 40 %."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidade de São Paulo (USP)",
+      "degree": "BSc",
+      "field": "Computer Engineering",
+      "start_year": 2014,
+      "end_year": 2018
+    }
+  ],
+  "certifications": [
+    "Oracle Certified Professional Java SE 11 Developer",
+    "Microsoft Certified: Azure Developer Associate"
+  ],
+  "id": "p12-maria-clara-da-cunha",
+  "full_name": "Maria Clara da Cunha",
+  "gender": "female",
+  "age": 30,
+  "city": "São Paulo",
+  "country": "Brazil",
+  "email": "maria.clara.da.cunha@gmail.com",
+  "phone": "+55 11 96276 7842",
+  "linkedin": "linkedin.com/in/maria-clara-da-cunha",
+  "github": "github.com/maria17",
+  "languages": [
+    {
+      "name": "Portuguese",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2"
+    },
+    {
+      "name": "Spanish",
+      "level": "B1"
+    }
+  ],
+  "role_family": "backend",
+  "seniority": "middle",
+  "years_experience": 6,
+  "template": "classic",
+  "photo_prompt": "Professional corporate headshot photograph of a 30-year-old female software professional from Brazil. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

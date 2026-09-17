@@ -1,0 +1,104 @@
+{
+  "headline": "Senior Go Engineer",
+  "summary": "Senior backend engineer with 9 years of experience building high‑performance Go services on AWS and Kubernetes. Expertise in gRPC, PostgreSQL, Redis, and infrastructure automation with Terraform. Proven track record of reducing latency, cutting costs, and scaling systems to serve millions of users in e‑commerce and crypto‑exchange environments.",
+  "skills": [
+    "Go",
+    "gRPC",
+    "Protocol Buffers",
+    "PostgreSQL",
+    "Redis",
+    "Kubernetes",
+    "AWS",
+    "Terraform",
+    "Docker",
+    "Prometheus",
+    "Grafana",
+    "Envoy",
+    "Kafka",
+    "Elasticsearch",
+    "GitHub Actions"
+  ],
+  "experience": [
+    {
+      "company": "bitFlyer",
+      "title": "Senior Go Engineer",
+      "location": "Tokyo, Japan",
+      "start": "2021-03",
+      "end": null,
+      "highlights": [
+        "Designed and implemented a high‑frequency trading matching engine in Go, processing 120k orders per second with sub‑millisecond latency, reducing average trade execution time from 2.3 ms to 0.8 ms.",
+        "Migrated legacy monolithic wallet service to a set of gRPC‑based microservices on EKS, cutting AWS EC2 costs by 35% ($420k/year) and improving service uptime from 99.4% to 99.9%.",
+        "Introduced Terraform‑managed IaC for all blockchain node clusters, decreasing provisioning time from 4 hours to 12 minutes and enabling zero‑downtime upgrades across 150+ nodes.",
+        "Built a Redis‑backed rate‑limiting gateway handling 2 M requests/minute, preventing abuse and saving an estimated ¥18M in potential fraud losses annually.",
+        "Mentored a team of 6 junior engineers, establishing Go best practices and raising code review coverage from 68% to 95%."
+      ]
+    },
+    {
+      "company": "Rakuten",
+      "title": "Go Engineer",
+      "location": "Tokyo, Japan",
+      "start": "2017-06",
+      "end": "2021-02",
+      "highlights": [
+        "Developed a gRPC‑based product catalog service serving 15M daily active users, achieving 99.99% availability and reducing API response latency by 40% (from 180 ms to 108 ms).",
+        "Optimized PostgreSQL query patterns and added read replicas, increasing peak read throughput from 4.2k to 9.5k QPS during flash‑sale events.",
+        "Implemented automated canary releases using Argo CD and Istio, cutting release‑related incidents by 70% and enabling 4‑weekly feature rollouts.",
+        "Led migration of batch jobs from EC2 to Kubernetes Jobs, reducing compute spend by ¥12M annually and shortening job completion time from 45 min to 18 min.",
+        "Coordinated with a cross‑functional team of 12 (backend, frontend, QA) to launch a new recommendation engine that lifted conversion rate by 2.3% and generated an additional ¥1.1B in quarterly revenue."
+      ]
+    },
+    {
+      "company": "Fujitsu Limited",
+      "title": "Software Engineer",
+      "location": "Tokyo, Japan",
+      "start": "2013-09",
+      "end": "2017-05",
+      "highlights": [
+        "Developed RESTful APIs in Go for an internal HR management system used by 8,000 employees, cutting average request latency from 250 ms to 130 ms.",
+        "Containerized legacy Java services with Docker and deployed them on a self‑managed OpenShift cluster, improving deployment frequency from monthly to weekly.",
+        "Automated infrastructure provisioning with Ansible, reducing server setup time from 2 hours to 10 minutes per node.",
+        "Implemented PostgreSQL backup and point‑in‑time recovery strategy, achieving RPO < 5 minutes and RTO < 15 minutes for critical databases.",
+        "Participated in an Agile Scrum team of 8 engineers, delivering bi‑weekly sprints with a average velocity of 32 story points."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Tokyo",
+      "degree": "BEng",
+      "field": "Computer Engineering",
+      "start_year": 2009,
+      "end_year": 2013
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Professional",
+    "HashiCorp Terraform Associate",
+    "Certified Kubernetes Administrator (CKA)"
+  ],
+  "id": "p13-taichi-takahashi",
+  "full_name": "Taichi Takahashi",
+  "gender": "male",
+  "age": 35,
+  "city": "Tokyo",
+  "country": "Japan",
+  "email": "taichi.takahashi@yahoo.com",
+  "phone": "+81 90 3905 4689",
+  "linkedin": "linkedin.com/in/taichi-takahashi",
+  "github": "github.com/taichi27",
+  "languages": [
+    {
+      "name": "Japanese",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "B2"
+    }
+  ],
+  "role_family": "backend",
+  "seniority": "senior",
+  "years_experience": 9,
+  "template": "minimal",
+  "photo_prompt": "Professional corporate headshot photograph of a 35-year-old male software professional from Japan. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

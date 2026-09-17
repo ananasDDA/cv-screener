@@ -1,0 +1,119 @@
+{
+  "headline": "Senior Machine Learning Engineer",
+  "summary": "Machine Learning engineer with eight years of end-to-end experience designing and deploying predictive systems in banking, travel, and consulting environments. Expertise in developing production‑grade ML pipelines on GCP using PyTorch, TensorFlow, MLflow, and Airflow, delivering measurable impact on revenue, latency, and operational cost. Proven ability to lead cross‑functional teams, mentor junior engineers, and translate business requirements into scalable AI solutions.",
+  "skills": [
+    "Python",
+    "PyTorch",
+    "scikit-learn",
+    "TensorFlow",
+    "XGBoost",
+    "MLflow",
+    "Apache Airflow",
+    "Google Cloud Platform",
+    "Vertex AI",
+    "BigQuery",
+    "SQL",
+    "Docker",
+    "Kubernetes",
+    "Git",
+    "GitHub Actions",
+    "FastAPI",
+    "Pandas",
+    "NumPy",
+    "Feast",
+    "Tableau"
+  ],
+  "experience": [
+    {
+      "company": "Capgemini Invent",
+      "title": "Senior Machine Learning Engineer",
+      "location": "Madrid, Spain",
+      "start": "2023-09",
+      "end": null,
+      "highlights": [
+        "Led migration of client ML workloads to Vertex AI, cutting average model training time from 4 hours to 25 minutes via distributed training and reducing GPU costs by 35%.",
+        "Designed a centralized MLflow tracking server that now manages 50+ model versions, decreasing model promotion lead time from 3 days to 4 hours.",
+        "Optimized inference pipelines with TensorRT and GPUs, achieving a 40% latency reduction for real‑time recommendation APIs serving 2 M requests/day.",
+        "Implemented a feature store using Feast on GCP, enabling consistent feature serving across training and online environments for 6 data science teams.",
+        "Mentored a squad of 4 ML engineers and 2 data analysts, improving team velocity by 22% as measured by sprint story points delivered."
+      ]
+    },
+    {
+      "company": "eDreams ODIGEO",
+      "title": "Machine Learning Engineer",
+      "location": "Madrid, Spain",
+      "start": "2020-09",
+      "end": "2023-08",
+      "highlights": [
+        "Built a hotel demand forecasting model using Prophet and XGBoost that improved forecast MAPE from 12% to 7%, driving a 3.5% revenue uplift (~€4.5M annually).",
+        "Created Airflow DAGs orchestrating nightly ETL of 2 TB of clickstream data into BigQuery, cutting data latency from 6 h to 45 min.",
+        "Deployed real‑time pricing models on Vertex AI endpoints, handling peak loads of 8 k QPS with 99.9% uptime.",
+        "Introduced MLflow experiment tracking, reducing model iteration cycles from 2 weeks to 3 days and increasing the number of tested variants per sprint by 3x.",
+        "Collaborated with a team of 5 data engineers and 3 product managers to launch a personalized email campaign engine, increasing conversion rate by 1.8 points."
+      ]
+    },
+    {
+      "company": "Banco Santander",
+      "title": "Machine Learning Engineer",
+      "location": "Madrid, Spain",
+      "start": "2017-09",
+      "end": "2020-08",
+      "highlights": [
+        "Developed a PyTorch‑based fraud detection model that reduced false positives by 18% and saved an estimated €2.3 M per year in avoided losses.",
+        "Containerized model serving with Docker and Kubernetes on GKE, achieving a peak throughput of 15 k transactions per second with <30 ms latency.",
+        "Built SQL‑based feature extraction pipelines in BigQuery, processing 500 M daily transaction records and feeding real‑time scoring services.",
+        "Integrated MLflow for model versioning, cutting model rollback time from hours to minutes during production incidents.",
+        "Worked within a squad of 3 ML engineers, 2 data analysts, and 4 risk specialists to deploy the model across three European markets."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad Complutense de Madrid",
+      "degree": "BSc",
+      "field": "Mathematics",
+      "start_year": 2013,
+      "end_year": 2017
+    },
+    {
+      "institution": "Universidad Politécnica de Madrid",
+      "degree": "MSc",
+      "field": "Data Science",
+      "start_year": 2017,
+      "end_year": 2019
+    }
+  ],
+  "certifications": [
+    "Google Cloud Professional Machine Learning Engineer",
+    "Google Cloud Professional Data Engineer"
+  ],
+  "id": "p02-rosalinda-barral",
+  "full_name": "Rosalinda Barral",
+  "gender": "female",
+  "age": 31,
+  "city": "Madrid",
+  "country": "Spain",
+  "email": "rosalinda.barral@gmail.com",
+  "phone": "+34 618 626 596",
+  "linkedin": "linkedin.com/in/rosalinda-barral",
+  "github": "github.com/rosalinda75",
+  "languages": [
+    {
+      "name": "Spanish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C1"
+    },
+    {
+      "name": "French",
+      "level": "B1"
+    }
+  ],
+  "role_family": "ml",
+  "seniority": "senior",
+  "years_experience": 8,
+  "template": "classic",
+  "photo_prompt": "Professional corporate headshot photograph of a 31-year-old female software professional from Spain, long dark hair. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

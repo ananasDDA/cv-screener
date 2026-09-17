@@ -1,0 +1,116 @@
+{
+  "headline": "Senior Backend Engineer | Python, Django, FastAPI, Kubernetes, AWS",
+  "summary": "Backend engineer with ten years of experience building high‑throughput services for Berlin‑based scale‑ups and a major e‑commerce platform. Proven track record of reducing API latency by 40 %, cutting infrastructure cost by 25 %, and scaling event‑driven systems to 2 M req/s. Strong advocate of test‑driven development, observability, and platform‑level automation.",
+  "skills": [
+    "Python 3.11",
+    "Django 4.2",
+    "FastAPI",
+    "PostgreSQL 15",
+    "Apache Kafka 3.6",
+    "Docker",
+    "Kubernetes (EKS, GKE)",
+    "AWS (EC2, RDS, S3, Lambda, CloudWatch)",
+    "Redis 7",
+    "Elasticsearch 8",
+    "GraphQL (Strawberry)",
+    "Terraform",
+    "Prometheus & Grafana",
+    "GitLab CI/CD",
+    "Microservices architecture",
+    "Event‑driven design",
+    "Domain‑driven design",
+    "OpenTelemetry"
+  ],
+  "experience": [
+    {
+      "company": "Personio",
+      "title": "Senior Backend Engineer",
+      "location": "Berlin, Germany",
+      "start": "2024-03",
+      "end": null,
+      "highlights": [
+        "Redesigned the core HR‑API using FastAPI and PostgreSQL, cutting 95th‑percentile latency from 320 ms to 180 ms (‑44 %).",
+        "Migrated 12 micro‑services to EKS with Terraform‑managed clusters, reducing monthly cloud spend by €45 k (‑27 %).",
+        "Introduced contract‑testing with Pact across 8 teams, decreasing integration‑failure rate in staging from 12 % to 3 %.",
+        "Led a 5‑person squad that delivered a real‑time notification pipeline on Kafka handling 1.2 M events/day with 99.99 % uptime."
+      ]
+    },
+    {
+      "company": "Delivery Hero",
+      "title": "Lead Backend Engineer",
+      "location": "Berlin, Germany",
+      "start": "2021-06",
+      "end": "2024-02",
+      "highlights": [
+        "Architected the order‑orchestration service (Django + Kafka) processing 2.5 M orders/day, achieving 99.95 % SLA.",
+        "Implemented automated canary deployments with Argo Rollouts, cutting rollback time from 15 min to 2 min.",
+        "Optimized PostgreSQL query plans and added read‑replicas, lowering average DB CPU from 78 % to 42 %.",
+        "Mentored 4 junior engineers and established a internal “Backend Guild” that produced 3 reusable libraries adopted company‑wide."
+      ]
+    },
+    {
+      "company": "Zalando",
+      "title": "Backend Engineer",
+      "location": "Berlin, Germany",
+      "start": "2018-09",
+      "end": "2021-05",
+      "highlights": [
+        "Built the product‑catalog search API (FastAPI + Elasticsearch) serving 500 k req/s with sub‑50 ms latency.",
+        "Refactored legacy Django monolith into 7 bounded‑context services, reducing deployment frequency from weekly to daily.",
+        "Designed a CDC pipeline with Debezium → Kafka → Snowflake, enabling near‑real‑time analytics for 120 M SKUs.",
+        "Contributed to the internal Kubernetes platform (Zalando‑Kube), adding custom admission controllers that enforced resource quotas for 200+ teams."
+      ]
+    },
+    {
+      "company": "N26",
+      "title": "Junior Backend Engineer",
+      "location": "Berlin, Germany",
+      "start": "2016-07",
+      "end": "2018-08",
+      "highlights": [
+        "Developed the transaction‑enrichment service (Python/Django) processing 3 M transactions/day, adding merchant categorisation with 92 % accuracy.",
+        "Automated CI/CD pipelines on GitLab, cutting build‑to‑deploy time from 45 min to 12 min.",
+        "Implemented circuit‑breaker patterns with Hystrix for external payment‑gateway calls, reducing cascade failures by 68 %.",
+        "Participated in on‑call rotation for a 12‑person team, maintaining 99.9 % availability for core banking APIs."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Technische Universität Berlin",
+      "degree": "MSc",
+      "field": "Computer Science",
+      "start_year": 2014,
+      "end_year": 2016
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Associate (2023)",
+    "Certified Kubernetes Administrator (CKA) (2022)"
+  ],
+  "id": "p01-reiner-lorch",
+  "full_name": "Reiner Lorch",
+  "gender": "male",
+  "age": 34,
+  "city": "Berlin",
+  "country": "Germany",
+  "email": "reiner.lorch@web.de",
+  "phone": "+49 30 16517278",
+  "linkedin": "linkedin.com/in/reiner-lorch",
+  "github": "github.com/reiner18",
+  "languages": [
+    {
+      "name": "German",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "C1"
+    }
+  ],
+  "role_family": "backend",
+  "seniority": "senior",
+  "years_experience": 10,
+  "template": "modern",
+  "photo_prompt": "Professional corporate headshot photograph of a 34-year-old male software professional from Germany, short beard, glasses. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}

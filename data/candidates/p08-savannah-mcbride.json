@@ -1,0 +1,100 @@
+{
+  "headline": "Data Scientist with expertise in predictive modeling, causal inference, and analytics engineering",
+  "summary": "Data Scientist with 4 years of experience building predictive models and analytics pipelines for retail and health‑technology organizations. Expertise in Python, SQL, and causal inference methods to drive product decisions and revenue growth. Proven track record of delivering measurable impact through A/B testing, automated ETL, and interactive dashboards.",
+  "skills": [
+    "Python",
+    "pandas",
+    "scikit-learn",
+    "XGBoost",
+    "SQL",
+    "R",
+    "Tableau",
+    "dbt",
+    "Apache Airflow",
+    "AWS Redshift",
+    "Git",
+    "Docker",
+    "A/B testing",
+    "causal inference",
+    "Apache Spark"
+  ],
+  "experience": [
+    {
+      "company": "Dialogue",
+      "title": "Data Scientist",
+      "location": "Toronto, ON",
+      "start": "2024-09",
+      "end": null,
+      "highlights": [
+        "Built a logistic‑regression churn prediction model integrated into the product dashboard, enabling targeted outreach that lowered monthly churn from 6.2% to 5.7% and preserved roughly CAD 1.2 million in annual recurring revenue.",
+        "Applied difference‑in‑differences causal inference to evaluate a new video‑consultation feature, showing a 15% increase in weekly active users and informing a product‑wide rollout adopted by 80% of clinicians.",
+        "Created a suite of Tableau dashboards tracking provider utilization, appointment no‑show rates, and revenue per visit, adopted by 30+ clinic managers and cutting manual reporting effort by an estimated 10 hours per week.",
+        "Implemented dbt models to transform raw FHIR‑based encounter data into a feature store, decreasing data refresh time from 4 hours to 20 minutes and enabling real‑time model scoring.",
+        "Designed and executed an A/B test on two subscription‑pricing tiers, achieving a 6% uplift in conversion rate and contributing to CAD 450 k incremental quarterly revenue."
+      ]
+    },
+    {
+      "company": "Loblaw Companies Limited",
+      "title": "Data Scientist",
+      "location": "Toronto, ON",
+      "start": "2022-09",
+      "end": "2024-08",
+      "highlights": [
+        "Developed a gradient boosting model predicting customer response to personalized promotions, increasing coupon redemption rate by 12% and generating an additional CAD 3.4 million in annual revenue across 500 stores.",
+        "Designed and deployed an Airflow‑orchestrated ETL pipeline that consolidated POS and loyalty data, cutting report generation latency from 6 hours to 15 minutes and supporting daily refreshes for 200+ store managers.",
+        "Conducted a series of A/B tests on shelf‑layout modifications in 120 stores, measuring a 4.5% lift in average basket size and informing a rollout that contributed to CAD 1.1 million quarterly sales uplift.",
+        "Refactored legacy SQL queries using partitioning and materialized views, reducing ETL runtime by 40% and saving approximately 150 compute‑hours per month on the Redshift cluster.",
+        "Mentored two junior analysts on model validation and code review practices, improving team throughput and reducing critical bug incidence by 30%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Toronto",
+      "degree": "BSc",
+      "field": "Mathematics",
+      "start_year": 2017,
+      "end_year": 2021
+    },
+    {
+      "institution": "University of Toronto",
+      "degree": "MSc",
+      "field": "Statistics",
+      "start_year": 2021,
+      "end_year": 2022
+    }
+  ],
+  "certifications": [
+    "AWS Certified Data Analytics – Specialty",
+    "Tableau Desktop Specialist"
+  ],
+  "id": "p08-savannah-mcbride",
+  "full_name": "Savannah Mcbride",
+  "gender": "female",
+  "age": 27,
+  "city": "Toronto",
+  "country": "Canada",
+  "email": "savannah.mcbride@hotmail.com",
+  "phone": "+1 416 242 3803",
+  "linkedin": "linkedin.com/in/savannah-mcbride",
+  "github": "github.com/savannah73",
+  "languages": [
+    {
+      "name": "English",
+      "level": "Native"
+    },
+    {
+      "name": "French",
+      "level": "C1"
+    },
+    {
+      "name": "Mandarin",
+      "level": "B1"
+    }
+  ],
+  "role_family": "data-science",
+  "seniority": "middle",
+  "years_experience": 4,
+  "template": "modern",
+  "photo_prompt": "Professional corporate headshot photograph of a 27-year-old female software professional from Canada. Plain light grey studio background, soft natural lighting, business-casual clothing, looking at the camera with a slight smile, sharp focus, photorealistic, 85mm lens."
+}
