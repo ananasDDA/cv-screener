@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>{{ c.full_name }} – CV</title>
+{% include "_theme.html" %}
+<style>
+  @page { size: A4; margin: 0 0 10mm 0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #1f2933; font-size: 10pt; line-height: 1.4; }
+  header { background: var(--accent); color: #fff; padding: 12mm 14mm 10mm; display: flex; justify-content: space-between; align-items: center; }
+  header h1 { margin: 0; font-size: 24pt; font-weight: 600; letter-spacing: .3px; }
+  header .headline { margin: 1.5mm 0 3mm; font-size: 11.5pt; opacity: .85; }
+  header .contact { font-size: 9pt; opacity: .9; }
+  header .contact span { margin-right: 4mm; }
+  .photo { width: 34mm; height: 34mm; border: 2.5px solid rgba(255,255,255,.7); }
+  section { padding: 0 14mm; }
+  h2 { font-size: 9.5pt; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin: 7mm 0 2.5mm; padding-left: 3mm; border-left: 3px solid var(--accent); }
+  .cols { display: flex; gap: 8mm; }
+  .cols > div { flex: 1; }
+  .job { margin-bottom: 4mm; }
+  .job-head { display: flex; justify-content: space-between; }
+  .job-title { font-weight: 600; }
+  .job-company { color: #4a5a6a; }
+  .job-meta { color: #6b7a89; font-size: 9pt; white-space: nowrap; }
+  .job ul { margin: 1.2mm 0 0; padding-left: 4mm; }
+  .job li { margin-bottom: .7mm; }
+  .lang li, .edu li { margin-bottom: 1.2mm; }
+  ul.plain { list-style: none; padding: 0; margin: 0; }
+</style></head>
+<body>
+<header>
+  <div>
+    <h1>{{ c.full_name }}</h1>
+    <div class="headline">{{ c.headline }}</div>
+    <div class="contact"><span>{{ c.city }}, {{ c.country }}</span><span>{{ c.email }}</span><span>{{ c.phone }}</span><br>
+      <span>{{ c.linkedin }}</span>{% if c.github %}<span>{{ c.github }}</span>{% endif %}</div>
+  </div>
+  <img class="photo {{ t.photo_shape }}" src="{{ photo }}" alt="">
+</header>
+<section>
+  <h2>Summary</h2>
+  <p>{{ c.summary }}</p>
+  <h2>Experience</h2>
+  {% for e in c.experience %}
+  <div class="job">
+    <div class="job-head"><div><span class="job-title">{{ e.title }}</span> <span class="job-company">· {{ e.company }}, {{ e.location }}</span></div>
+      <div class="job-meta">{{ e.start|date }} – {{ e.end|date }}</div></div>
+    <ul>{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+  </div>
+  {% endfor %}
+  <div class="cols">
+    <div>
+      <h2>Skills</h2>
+      {% include "_skills.html" %}
+    </div>
+    <div>
+      <h2>Education</h2>
+      <ul class="plain edu">{% for e in c.education %}<li><b>{{ e.degree }} {{ e.field }}</b><br>{{ e.institution }}, {{ e.start_year }}–{{ e.end_year }}</li>{% endfor %}</ul>
+      <h2>Languages</h2>
+      <ul class="plain lang">{% for l in c.languages %}<li>{{ l.name }} <span class="job-meta">({{ l.level }})</span></li>{% endfor %}</ul>
+      {% if c.certifications %}
+      <h2>Certifications</h2>
+      <ul class="plain">{% for x in c.certifications %}<li>{{ x }}</li>{% endfor %}</ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
+</body></html>

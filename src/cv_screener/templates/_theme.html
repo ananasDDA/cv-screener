@@ -1,0 +1,16 @@
+{# Theme-driven CSS shared by every layout. Expects `t` (Theme) in the context. #}
+<style>
+  :root { --accent: {{ t.accent }}; --tint: {{ t.tint }}; --heading: {{ t.heading_font }}; --body: {{ t.body_font }}; }
+  body { font-family: var(--body); }
+  h1, h2 { font-family: var(--heading); }
+  .photo { object-fit: cover; display: block; }
+  .photo.square { border-radius: 0; }
+  .photo.rounded { border-radius: 3mm; }
+  .photo.circle { border-radius: 50%; }
+  .photo.portrait, .photo.portrait-bw { aspect-ratio: 4 / 5; height: auto !important; }
+  .photo.portrait-bw { filter: grayscale(100%); }
+  .skills-tags span { display: inline-block; background: var(--tint); color: var(--accent); border-radius: 3px; padding: .6mm 2mm; margin: 0 1.2mm 1.4mm 0; font-size: 8.8pt; }
+  .skills-list { list-style: none; padding: 0; margin: 0; }
+  .skills-list li { margin-bottom: 1mm; }
+  .skills-inline { margin: 0; line-height: 1.5; }
+</style>

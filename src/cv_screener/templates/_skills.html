@@ -1,0 +1,3 @@
+{% if t.skill_style == "tags" %}<div class="skills-tags">{% for s in c.skills %}<span>{{ s }}</span>{% endfor %}</div>
+{% elif t.skill_style == "list" %}<ul class="skills-list">{% for s in c.skills %}<li>{{ s }}</li>{% endfor %}</ul>
+{% else %}<p class="skills-inline">{{ c.skills|join(' · ') }}</p>{% endif %}

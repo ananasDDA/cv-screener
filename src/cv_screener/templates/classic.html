@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>{{ c.full_name }} – CV</title>
+{% include "_theme.html" %}
+<style>
+  /* Sidebar tint lives on the page box so it continues on every page. */
+  @page { size: A4; margin: 12mm 0; background: linear-gradient(to right, var(--tint) 0, var(--tint) 64mm, #ffffff 64mm); }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #222; font-size: 10.2pt; line-height: 1.38; }
+  .page { display: flex; }
+  .side { width: 64mm; padding: 2mm 7mm 6mm 9mm; }
+  .main { flex: 1; padding: 2mm 12mm 6mm 10mm; }
+  .photo { width: 36mm; height: 36mm; border: 1px solid #cfcac0; margin-bottom: 5mm; }
+  h1 { font-size: 21pt; margin: 0 0 1mm; letter-spacing: .2px; font-weight: normal; }
+  .headline { font-size: 11pt; color: var(--accent); margin: 0 0 6mm; font-style: italic; }
+  h2 { font-size: 9.5pt; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); border-bottom: 1px solid #cfcac0; padding-bottom: 1mm; margin: 5.5mm 0 2.5mm; font-weight: bold; }
+  .side h2 { margin-top: 4.5mm; }
+  .side p, .side li { font-size: 9pt; margin: 0 0 1.2mm; }
+  .side ul { padding-left: 0; list-style: none; margin: 0; }
+  .contact li { overflow-wrap: anywhere; }
+  .job { margin-bottom: 4mm; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .job-title { font-weight: bold; }
+  .job-meta { font-size: 9.2pt; color: #555; }
+  .job ul { margin: 1.2mm 0 0; padding-left: 4mm; }
+  .job li { margin-bottom: .8mm; }
+  .edu { margin-bottom: 2mm; }
+  .edu .inst { font-weight: bold; }
+  .summary { text-align: justify; }
+</style></head>
+<body><div class="page">
+  <aside class="side">
+    <img class="photo {{ t.photo_shape }}" src="{{ photo }}" alt="">
+    <h2>Contact</h2>
+    <ul class="contact">
+      <li>{{ c.city }}, {{ c.country }}</li>
+      <li>{{ c.email }}</li>
+      <li>{{ c.phone }}</li>
+      <li>{{ c.linkedin }}</li>
+      {% if c.github %}<li>{{ c.github }}</li>{% endif %}
+    </ul>
+    <h2>Skills</h2>
+    {% include "_skills.html" %}
+    <h2>Languages</h2>
+    <ul>{% for l in c.languages %}<li><b>{{ l.name }}</b> – {{ l.level }}</li>{% endfor %}</ul>
+    {% if c.certifications %}
+    <h2>Certifications</h2>
+    <ul>{% for x in c.certifications %}<li>{{ x }}</li>{% endfor %}</ul>
+    {% endif %}
+  </aside>
+  <main class="main">
+    <h1>{{ c.full_name }}</h1>
+    <p class="headline">{{ c.headline }}</p>
+    <h2>Profile</h2>
+    <p class="summary">{{ c.summary }}</p>
+    <h2>Experience</h2>
+    {% for e in c.experience %}
+    <div class="job">
+      <div class="job-head"><span class="job-title">{{ e.title }}, {{ e.company }}</span>
+        <span class="job-meta">{{ e.start|date }} – {{ e.end|date }}</span></div>
+      <div class="job-meta">{{ e.location }}</div>
+      <ul>{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+    </div>
+    {% endfor %}
+    <h2>Education</h2>
+    {% for e in c.education %}
+    <div class="edu"><span class="inst">{{ e.institution }}</span><br>
+      {{ e.degree }}, {{ e.field }} <span class="job-meta">· {{ e.start_year }}–{{ e.end_year }}</span></div>
+    {% endfor %}
+  </main>
+</div></body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>{{ c.full_name }} – CV</title>
+{% include "_theme.html" %}
+<style>
+  @page { size: A4; margin: 16mm 18mm; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: #111; font-size: 9.8pt; line-height: 1.42; }
+  .top { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--accent); padding-bottom: 3mm; margin-bottom: 4mm; }
+  h1 { margin: 0; font-size: 20pt; font-weight: 700; }
+  .headline { font-size: 10.5pt; color: #444; margin: 1mm 0 2mm; }
+  .contact { font-size: 8.8pt; color: #333; }
+  .contact div { margin-bottom: .4mm; }
+  .photo { width: 28mm; height: 28mm; }
+  h2 { font-size: 9pt; text-transform: uppercase; letter-spacing: 1.2px; margin: 4.5mm 0 1.8mm; padding-bottom: .8mm; border-bottom: 1px solid #bbb; color: var(--accent); }
+  .job { margin-bottom: 3.2mm; }
+  .row { display: flex; justify-content: space-between; }
+  .row b { font-weight: 700; }
+  .muted { color: #555; font-size: 9pt; }
+  .job ul { margin: 1mm 0 0; padding-left: 3.6mm; }
+  .job li { margin-bottom: .5mm; }
+  .inline { margin: 0; }
+  .grid { display: flex; gap: 10mm; }
+  .grid > div { flex: 1; }
+  .grid ul { margin: 0; padding-left: 3.6mm; }
+</style></head>
+<body>
+<div class="top">
+  <div>
+    <h1>{{ c.full_name }}</h1>
+    <div class="headline">{{ c.headline }}</div>
+    <div class="contact">
+      <div>{{ c.city }}, {{ c.country }} · {{ c.phone }}</div>
+      <div>{{ c.email }} · {{ c.linkedin }}{% if c.github %} · {{ c.github }}{% endif %}</div>
+    </div>
+  </div>
+  <img class="photo {{ t.photo_shape }}" src="{{ photo }}" alt="">
+</div>
+<p class="inline">{{ c.summary }}</p>
+<h2>Experience</h2>
+{% for e in c.experience %}
+<div class="job">
+  <div class="row"><span><b>{{ e.title }}</b>, {{ e.company }}</span><span class="muted">{{ e.start|date }} – {{ e.end|date }}</span></div>
+  <div class="muted">{{ e.location }}</div>
+  <ul>{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+</div>
+{% endfor %}
+<h2>Skills</h2>
+{# A vertical list wastes the single column here; fall back to the inline form. #}
+{% if t.skill_style == "tags" %}{% include "_skills.html" %}{% else %}<p class="skills-inline">{{ c.skills|join(' · ') }}</p>{% endif %}
+<div class="grid">
+  <div>
+    <h2>Education</h2>
+    {% for e in c.education %}<div class="job"><b>{{ e.institution }}</b><br>{{ e.degree }} in {{ e.field }} <span class="muted">· {{ e.start_year }}–{{ e.end_year }}</span></div>{% endfor %}
+  </div>
+  <div>
+    <h2>Languages</h2>
+    <ul>{% for l in c.languages %}<li>{{ l.name }} – {{ l.level }}</li>{% endfor %}</ul>
+    {% if c.certifications %}<h2>Certifications</h2>
+    <ul>{% for x in c.certifications %}<li>{{ x }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+</div>
+</body></html>
