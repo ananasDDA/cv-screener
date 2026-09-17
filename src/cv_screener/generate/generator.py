@@ -23,7 +23,7 @@ def build_prompt(p: Persona) -> str:
     return f"""Today is {today}. Write the CV content for this person:
 
 - Title: {p.title} ({p.seniority}), {p.years_experience} years of total experience, currently employed or recently left.
-- Role family: {p.role_family}. Core stack: {', '.join(p.stack)} (use these, plus a few natural extras).
+- Role family: {p.role_family}. Core stack: {", ".join(p.stack)} (use these, plus a few natural extras).
 - Location: {p.city}, {p.country}. Age {p.age}: education and career start must be consistent with that.
 - Education: {p.education_hint}.
 - Career shape: {p.company_hint}. Use real companies that exist in that market.
@@ -46,7 +46,7 @@ def generate_one(llm: LLM, p: Persona) -> Candidate:
         phone=p.phone,
         linkedin=p.linkedin,
         github=p.github,
-        languages=[Language(name=n, level=l) for n, l in p.languages],
+        languages=[Language(name=n, level=lvl) for n, lvl in p.languages],
         role_family=p.role_family,
         seniority=p.seniority,
         years_experience=p.years_experience,
@@ -72,8 +72,12 @@ def write_photo_prompts(cands: list[Candidate], path: Path = PHOTO_PROMPTS_FILE)
 def generate_all(workers: int = 3, only_missing: bool = True, log=print) -> list[Candidate]:
     llm = LLM()
     CANDIDATES_DIR.mkdir(parents=True, exist_ok=True)
-    todo = [p for p in personas() if not (only_missing and (CANDIDATES_DIR / f"{p.id}.json").exists())]
-    log(f"generating {len(todo)} candidates with {llm.cfg.model} (+{len(llm.cfg.fallback_models)} fallbacks)")
+    todo = [
+        p for p in personas() if not (only_missing and (CANDIDATES_DIR / f"{p.id}.json").exists())
+    ]
+    log(
+        f"generating {len(todo)} candidates with {llm.cfg.model} (+{len(llm.cfg.fallback_models)} fallbacks)"
+    )
     with ThreadPoolExecutor(workers) as pool:
         futures = {pool.submit(generate_one, llm, p): p for p in todo}
         for fut in as_completed(futures):

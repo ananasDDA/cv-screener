@@ -35,7 +35,9 @@ class Language(BaseModel):
 class GeneratedProfile(BaseModel):
     """The part of a CV the LLM writes. Identity and languages come from the persona spec."""
 
-    headline: str = Field(description="One-line professional title as it would appear under the name")
+    headline: str = Field(
+        description="One-line professional title as it would appear under the name"
+    )
     summary: str = Field(description="3-4 sentence professional summary in first or third person")
     skills: list[str] = Field(description="12-20 concrete technologies, tools and methods")
     experience: list[Experience] = Field(description="2-5 positions, most recent first")
@@ -64,14 +66,16 @@ class Candidate(GeneratedProfile):
     def search_text(self) -> str:
         """Plain-text rendering used for embeddings."""
         exp = "\n".join(
-            f"{e.title} at {e.company} ({e.start} – {e.end or 'present'}): " + " ".join(e.highlights)
+            f"{e.title} at {e.company} ({e.start} – {e.end or 'present'}): "
+            + " ".join(e.highlights)
             for e in self.experience
         )
         edu = "; ".join(f"{e.degree} in {e.field}, {e.institution}" for e in self.education)
-        langs = ", ".join(f"{l.name} ({l.level})" for l in self.languages)
+        langs = ", ".join(f"{lang.name} ({lang.level})" for lang in self.languages)
         return (
             f"{self.full_name}. {self.headline}. {self.seniority} {self.role_family}, "
             f"{self.years_experience} years of experience. {self.city}, {self.country}.\n"
             f"{self.summary}\nSkills: {', '.join(self.skills)}\nLanguages: {langs}\n"
-            f"Experience:\n{exp}\nEducation: {edu}\nCertifications: {', '.join(self.certifications)}"
+            f"Experience:\n{exp}\nEducation: {edu}\n"
+            f"Certifications: {', '.join(self.certifications)}"
         )

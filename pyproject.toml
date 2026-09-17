@@ -32,4 +32,16 @@ packages = ["src/cv_screener"]
 
 [tool.ruff]
 line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# Prompts and the persona table are long by nature.
+"src/cv_screener/generate/generator.py" = ["E501"]
+"src/cv_screener/generate/personas.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 

@@ -27,7 +27,9 @@ class LLM:
     def __init__(self, cfg: Settings | None = None, client: OpenAI | None = None):
         self.cfg = cfg or settings()
         if not self.cfg.api_key and client is None:
-            raise LLMError("OPENROUTER_API_KEY is not set. Copy .env.example to .env and fill it in.")
+            raise LLMError(
+                "OPENROUTER_API_KEY is not set. Copy .env.example to .env and fill it in."
+            )
         self.client = client or OpenAI(base_url=self.cfg.base_url, api_key=self.cfg.api_key)
         self.last_model: str | None = None
 
@@ -45,7 +47,10 @@ class LLM:
             for attempt in range(attempts_per_model):
                 try:
                     kwargs: dict[str, Any] = dict(
-                        model=model, messages=messages, temperature=temperature, max_tokens=max_tokens
+                        model=model,
+                        messages=messages,
+                        temperature=temperature,
+                        max_tokens=max_tokens,
                     )
                     if tools:
                         kwargs["tools"] = tools
@@ -62,8 +67,12 @@ class LLM:
     def structured(self, system: str, user: str, schema: type[T], retries: int = 3) -> T:
         """Ask for JSON matching `schema`; validate; feed validation errors back on failure."""
         messages = [
-            {"role": "system", "content": system + "\n\nRespond with a single JSON object only. "
-             "No prose, no markdown fences.\nJSON schema:\n" + json.dumps(schema.model_json_schema())},
+            {
+                "role": "system",
+                "content": system + "\n\nRespond with a single JSON object only. "
+                "No prose, no markdown fences.\nJSON schema:\n"
+                + json.dumps(schema.model_json_schema()),
+            },
             {"role": "user", "content": user},
         ]
         last_err = ""
@@ -76,7 +85,13 @@ class LLM:
                 last_err = str(exc)[:800]
                 messages += [
                     {"role": "assistant", "content": text},
-                    {"role": "user", "content": f"Invalid JSON for the schema: {last_err}\nReturn the corrected JSON object only."},
+                    {
+                        "role": "user",
+                        "content": (
+                            f"Invalid JSON for the schema: {last_err}\n"
+                            "Return the corrected JSON object only."
+                        ),
+                    },
                 ]
         raise LLMError(f"could not get valid {schema.__name__}: {last_err}")
 

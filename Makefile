@@ -4,7 +4,7 @@ export DYLD_FALLBACK_LIBRARY_PATH := /opt/homebrew/lib:$(DYLD_FALLBACK_LIBRARY_P
 # Optional local overrides (git-ignored), e.g. UV_PROJECT_ENVIRONMENT.
 -include local.mk
 
-.PHONY: setup generate index chat test eval
+.PHONY: setup generate index chat test eval check
 
 setup:
 	uv sync
@@ -23,3 +23,6 @@ test:
 
 eval:
 	uv run python evals/run.py
+
+check:
+	uv run ruff check . && uv run ruff format --check . && uv run pytest -q
