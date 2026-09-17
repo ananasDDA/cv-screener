@@ -40,6 +40,11 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/cv_screener"]
 
+# Ship the synthetic dataset inside the wheel so an install straight from git works with no setup.
+[tool.hatch.build.targets.wheel.force-include]
+"data/candidates" = "cv_screener/_data/candidates"
+"data/photos" = "cv_screener/_data/photos"
+
 [tool.ruff]
 line-length = 100
 extend-exclude = ["*.ipynb"]  # demo notebook, not library code

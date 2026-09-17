@@ -9,17 +9,30 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA_DIR = ROOT / "data"
-CANDIDATES_DIR = DATA_DIR / "candidates"
-PDF_DIR = DATA_DIR / "pdf"
-PHOTOS_DIR = DATA_DIR / "photos"
-CHROMA_DIR = DATA_DIR / "chroma"
-PHOTO_PROMPTS_FILE = DATA_DIR / "photo_prompts.json"
-TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
+PACKAGE_DIR = Path(__file__).resolve().parent
+TEMPLATES_DIR = PACKAGE_DIR / "templates"
 
 # Résumés added through MCP are real people's data: they live outside the repo, never in git.
 USER_HOME = Path(os.getenv("CV_SCREENER_HOME", "~/.cv-screener")).expanduser()
 USER_CANDIDATES_DIR = USER_HOME / "candidates"
+
+# Two layouts. In a git checkout everything lives under ./data. When installed as a package
+# (`uvx --from git+https://github.com/ananasDDA/cv-screener cv mcp`) the dataset ships inside the
+# wheel, read-only, and everything writable goes to the user's home directory.
+IS_CHECKOUT = (ROOT / "data" / "candidates").is_dir() and (ROOT / "pyproject.toml").is_file()
+if IS_CHECKOUT:
+    DATA_DIR = ROOT / "data"
+    CANDIDATES_DIR = DATA_DIR / "candidates"
+    PHOTOS_DIR = DATA_DIR / "photos"
+    WRITABLE_DIR = DATA_DIR
+else:
+    DATA_DIR = PACKAGE_DIR / "_data"
+    CANDIDATES_DIR = DATA_DIR / "candidates"
+    PHOTOS_DIR = DATA_DIR / "photos"
+    WRITABLE_DIR = USER_HOME
+PDF_DIR = WRITABLE_DIR / "pdf"
+CHROMA_DIR = WRITABLE_DIR / "chroma"
+PHOTO_PROMPTS_FILE = WRITABLE_DIR / "photo_prompts.json"
 
 load_dotenv(ROOT / ".env")
 # The HF tokenizers used by fastembed fork worker threads; without this they can abort at exit.
