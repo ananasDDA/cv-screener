@@ -22,12 +22,13 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [ ] **7. Docs** — README (setup from zero, commands, architecture), NOTES.md (unfinished, broken,
       eval results, next steps), CLAUDE.md refresh.
 - [ ] **8. Photos** — drop generated photos into `data/photos/`, re-render PDFs, review realism.
+- [ ] **9. Demo notebook** — thin `demo.ipynb` that imports the package: open a PDF, run a filtered
+      and a semantic search, show an agent trace, run the evals. This is the screen-share script.
 
 ## Extras (only after the core is complete)
 
 - [ ] GitHub Actions: ruff + pytest on every push (no key needed).
 - [ ] MCP server exposing the same three search tools.
-- [ ] Demo notebook: thin, imports the package, shows PDFs, search and an agent trace.
 - [ ] Web chat UI and a public deployment.
 
 ## Call prep
