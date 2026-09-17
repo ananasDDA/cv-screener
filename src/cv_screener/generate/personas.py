@@ -278,6 +278,7 @@ PERSONAS: list[Persona] = [
         "MSc Statistics from a Canadian university",
         "a retail chain analytics team and a health-tech startup",
         "modern",
+        name_override="Savannah McBride",
     ),
     Persona(
         "p09",
