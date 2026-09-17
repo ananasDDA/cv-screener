@@ -12,7 +12,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [x] **3. Index and search** — ChromaDB with local fastembed embeddings; structured fields as
       metadata (seniority, role, country, years, languages, skills); one `search(query, filters)`
       that combines metadata filters with semantic ranking; `cv index` and `cv search` commands.
-- [ ] **4. Agent** — hand-written tool-use loop over OpenRouter; tools: `search_candidates`,
+- [x] **4. Agent** — hand-written tool-use loop over OpenRouter; tools: `search_candidates`,
       `get_candidate`, `find_by_name`; grounding rules in the system prompt; `cv chat` CLI with a
       visible tool-call trace.
 - [ ] **5. Evals** — `evals/cases.json` (8 cases incl. "no match" and "summarize <name>"),

@@ -91,5 +91,48 @@ def search(
     console.print(table if hits else "[yellow]no candidates match[/yellow]")
 
 
+@app.command()
+def chat(
+    question: str | None = typer.Option(None, "--once", "-q", help="Ask one question and exit."),
+    trace: bool = typer.Option(True, "--trace/--no-trace", help="Show tool calls as they happen."),
+) -> None:
+    """Chat with the agent. It answers only from what the search tools return."""
+    from .agent.loop import Agent, ToolTrace
+    from .index.store import CandidateIndex
+    from .llm import LLM
+
+    agent = Agent(LLM(), CandidateIndex())
+
+    def show_tool(t: ToolTrace) -> None:
+        if trace:
+            args = ", ".join(f"{k}={v!r}" for k, v in t.args.items())
+            console.print(f"  [dim]→ {t.name}({args}) → {t.count} result(s)[/dim]")
+
+    def answer(q: str, history: list) -> None:
+        a = agent.ask(q, history, on_tool=show_tool)
+        console.print(f"\n{a.text}\n")
+        if not a.grounded:
+            console.print(
+                f"[red]⚠ names not returned by any tool: {', '.join(a.ungrounded_names)}[/red]"
+            )
+        if trace:
+            console.print(f"[dim]model: {a.model}[/dim]")
+        history += [{"role": "user", "content": q}, {"role": "assistant", "content": a.text}]
+
+    history: list = []
+    if question:
+        answer(question, history)
+        return
+    console.print("[bold]CV Screener[/bold] — ask about the candidates. Ctrl-D or 'exit' to quit.")
+    while True:
+        try:
+            q = console.input("[bold cyan]you>[/bold cyan] ").strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if not q or q.lower() in {"exit", "quit"}:
+            break
+        answer(q, history)
+
+
 if __name__ == "__main__":
     app()
