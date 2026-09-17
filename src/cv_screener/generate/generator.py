@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from pathlib import Path
 
-from ..config import CANDIDATES_DIR, PHOTO_PROMPTS_FILE
+from ..config import CANDIDATES_DIR, PHOTO_PROMPTS_FILE, USER_CANDIDATES_DIR
 from ..llm import LLM
 from .personas import Persona, personas
 from .schema import Candidate, GeneratedProfile, Language
@@ -63,6 +63,13 @@ def save(c: Candidate, out_dir: Path = CANDIDATES_DIR) -> Path:
 
 def load_all(dir_: Path = CANDIDATES_DIR) -> list[Candidate]:
     return [Candidate.model_validate_json(p.read_text()) for p in sorted(dir_.glob("*.json"))]
+
+
+def load_library(
+    dataset_dir: Path = CANDIDATES_DIR, user_dir: Path = USER_CANDIDATES_DIR
+) -> list[Candidate]:
+    """The synthetic dataset plus whatever the user has added locally."""
+    return load_all(dataset_dir) + (load_all(user_dir) if user_dir.exists() else [])
 
 
 def write_photo_prompts(cands: list[Candidate], path: Path = PHOTO_PROMPTS_FILE) -> None:

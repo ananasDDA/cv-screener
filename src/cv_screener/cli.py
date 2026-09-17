@@ -40,10 +40,10 @@ def generate(
 @app.command()
 def index() -> None:
     """Rebuild the vector index from data/candidates."""
-    from .generate.generator import load_all
+    from .generate.generator import load_library
     from .index.store import CandidateIndex
 
-    cands = load_all()
+    cands = load_library()
     n = CandidateIndex().rebuild(cands)
     console.print(f"indexed {n} candidates")
 

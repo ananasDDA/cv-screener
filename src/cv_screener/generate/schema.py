@@ -48,20 +48,21 @@ class GeneratedProfile(BaseModel):
 class Candidate(GeneratedProfile):
     id: str
     full_name: str
-    gender: Literal["male", "female"]
-    age: int
+    gender: Literal["male", "female"] | None = None
+    age: int | None = None
     city: str
     country: str
-    email: str
-    phone: str
-    linkedin: str
+    email: str = ""
+    phone: str = ""
+    linkedin: str = ""
     github: str | None = None
     languages: list[Language]
     role_family: str
     seniority: Seniority
     years_experience: int
-    template: str
-    photo_prompt: str
+    template: str = "classic"
+    photo_prompt: str = ""
+    source: Literal["dataset", "user"] = "dataset"
 
     def search_text(self) -> str:
         """Plain-text rendering used for embeddings."""

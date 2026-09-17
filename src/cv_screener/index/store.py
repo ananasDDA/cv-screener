@@ -20,7 +20,7 @@ from ..generate.schema import Candidate
 from .embeddings import Embedder, FastEmbedder
 
 COLLECTION = "candidates"
-SCHEMA_VERSION = 2  # bump when metadata_for() changes so existing stores get rebuilt
+SCHEMA_VERSION = 3  # bump when metadata_for() changes so existing stores get rebuilt
 LEVEL_RANK = {"A1": 1, "A2": 2, "B1": 3, "B2": 4, "C1": 5, "C2": 6, "Native": 7}
 
 
@@ -90,6 +90,7 @@ class Hit:
     years_experience: int
     languages: str
     skills: str
+    source: str
     score: float | None  # cosine similarity in [0, 1]; None for filter-only lookups
 
     @classmethod
@@ -104,6 +105,7 @@ class Hit:
             years_experience=meta["years_experience"],
             languages=meta["languages"],
             skills=meta["skills"],
+            source=meta.get("source", "dataset"),
             score=None if distance is None else round(1.0 - distance, 3),
         )
 
@@ -121,6 +123,7 @@ def metadata_for(c: Candidate) -> dict[str, Any]:
         "years_experience": c.years_experience,
         "languages": ", ".join(f"{lang.name} ({lang.level})" for lang in c.languages),
         "skills": ", ".join(c.skills),
+        "source": c.source,
         "json": c.model_dump_json(),
     }
     meta.update({flag("lang", lang.name): True for lang in c.languages})
@@ -160,6 +163,26 @@ class CandidateIndex:
             metadatas=[metadata_for(c) for c in candidates],
         )
         return len(candidates)
+
+    def add(self, candidate: Candidate) -> None:
+        """Insert or replace one candidate without rebuilding the rest."""
+        doc = candidate.search_text()
+        self.collection.upsert(
+            ids=[candidate.id],
+            documents=[doc],
+            embeddings=self.embedder.embed([doc]),
+            metadatas=[metadata_for(candidate)],
+        )
+
+    def remove(self, candidate_id: str) -> bool:
+        if not self.collection.get(ids=[candidate_id])["ids"]:
+            return False
+        self.collection.delete(ids=[candidate_id])
+        return True
+
+    def all(self) -> list[Hit]:
+        res = self.collection.get(include=["metadatas"])
+        return sorted((Hit.from_meta(m, None) for m in res["metadatas"]), key=lambda h: h.id)
 
     @staticmethod
     def _collection_meta() -> dict[str, Any]:

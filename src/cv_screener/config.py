@@ -17,6 +17,10 @@ CHROMA_DIR = DATA_DIR / "chroma"
 PHOTO_PROMPTS_FILE = DATA_DIR / "photo_prompts.json"
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 
+# Résumés added through MCP are real people's data: they live outside the repo, never in git.
+USER_HOME = Path(os.getenv("CV_SCREENER_HOME", "~/.cv-screener")).expanduser()
+USER_CANDIDATES_DIR = USER_HOME / "candidates"
+
 load_dotenv(ROOT / ".env")
 # The HF tokenizers used by fastembed fork worker threads; without this they can abort at exit.
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
