@@ -69,3 +69,22 @@ def test_find_by_name_is_fuzzy(index: CandidateIndex):
 def test_rebuild_replaces_previous_contents(index: CandidateIndex, sample_candidates):
     assert index.rebuild(sample_candidates[:1]) == 1
     assert index.count() == 1
+
+
+def test_junk_query_is_ignored_and_language_filter_ranks_by_level(index: CandidateIndex):
+    from cv_screener.index.store import meaningful
+
+    assert meaningful("*") is None and meaningful(" all ") is None and meaningful("") is None
+    assert meaningful("ML engineer") == "ML engineer"
+    hits = index.search("*", Filters(languages=["Spanish"]))
+    assert [h.id for h in hits] == ["p01-ana-ml", "p02-bob-qa"]  # Native before B2
+    assert all(h.score is None for h in hits)
+
+
+def test_outdated_store_is_detected(index: CandidateIndex, sample_candidates):
+    assert index.is_current()
+    index.client.delete_collection("candidates")
+    index.collection = index.client.create_collection(
+        "candidates", metadata={"hnsw:space": "cosine"}
+    )
+    assert not index.is_current()

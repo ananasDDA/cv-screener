@@ -20,6 +20,19 @@ from ..generate.schema import Candidate
 from .embeddings import Embedder, FastEmbedder
 
 COLLECTION = "candidates"
+SCHEMA_VERSION = 2  # bump when metadata_for() changes so existing stores get rebuilt
+LEVEL_RANK = {"A1": 1, "A2": 2, "B1": 3, "B2": 4, "C1": 5, "C2": 6, "Native": 7}
+
+
+def meaningful(query: str | None) -> str | None:
+    """Models sometimes pass '*' or 'all' as a query when they only want the filters.
+    Ranking against that is noise, so treat it as no query."""
+    if not query:
+        return None
+    q = query.strip()
+    if len(re.findall(r"[^\W\d_]", q)) < 2 or q.lower() in {"all", "any", "everyone", "candidates"}:
+        return None
+    return q
 
 
 def flag(prefix: str, value: str) -> str:
@@ -111,6 +124,9 @@ def metadata_for(c: Candidate) -> dict[str, Any]:
         "json": c.model_dump_json(),
     }
     meta.update({flag("lang", lang.name): True for lang in c.languages})
+    meta.update(
+        {flag("lang", lang.name) + "_level": LEVEL_RANK[lang.level] for lang in c.languages}
+    )
     meta.update({flag("skill", v): True for s in c.skills for v in skill_variants(s)})
     return meta
 
@@ -120,7 +136,7 @@ class CandidateIndex:
         self.client = chromadb.PersistentClient(path=str(path))
         self._embedder = embedder
         self.collection = self.client.get_or_create_collection(
-            COLLECTION, metadata={"hnsw:space": "cosine"}, embedding_function=None
+            COLLECTION, metadata=self._collection_meta(), embedding_function=None
         )
 
     @property
@@ -134,7 +150,7 @@ class CandidateIndex:
     def rebuild(self, candidates: list[Candidate]) -> int:
         self.client.delete_collection(COLLECTION)
         self.collection = self.client.create_collection(
-            COLLECTION, metadata={"hnsw:space": "cosine"}, embedding_function=None
+            COLLECTION, metadata=self._collection_meta(), embedding_function=None
         )
         docs = [c.search_text() for c in candidates]
         self.collection.add(
@@ -145,18 +161,34 @@ class CandidateIndex:
         )
         return len(candidates)
 
+    @staticmethod
+    def _collection_meta() -> dict[str, Any]:
+        return {"hnsw:space": "cosine", "schema": SCHEMA_VERSION}
+
     def count(self) -> int:
         return self.collection.count()
+
+    def is_current(self) -> bool:
+        """False for an empty store or one built by an older metadata schema."""
+        return self.count() > 0 and (self.collection.metadata or {}).get("schema") == SCHEMA_VERSION
 
     # ---- read --------------------------------------------------------------------------
 
     def search(self, query: str | None, filters: Filters | None = None, k: int = 5) -> list[Hit]:
         """Hybrid search. With a query: filter then rank by similarity. Without: filter only."""
-        where = (filters or Filters()).to_where()
+        filters = filters or Filters()
+        where = filters.to_where()
+        query = meaningful(query)
         if not query:
             res = self.collection.get(where=where, include=["metadatas"])
-            hits = [Hit.from_meta(m, None) for m in res["metadatas"]]
-            return sorted(hits, key=lambda h: (-h.years_experience, h.name))[:k]
+            level_keys = [flag("lang", name) + "_level" for name in filters.languages]
+
+            def order(meta: dict[str, Any]) -> tuple:
+                # asked-for languages: strongest speakers first; then seniority by years
+                level = min((meta.get(key, 0) for key in level_keys), default=0)
+                return (-level, -meta["years_experience"], meta["name"])
+
+            return [Hit.from_meta(m, None) for m in sorted(res["metadatas"], key=order)][:k]
         n = min(k, max(self.count(), 1))
         res = self.collection.query(
             query_embeddings=self.embedder.embed([query]),

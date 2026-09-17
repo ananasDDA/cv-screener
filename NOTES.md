@@ -19,8 +19,8 @@ and what I would do next.
 - The agent used to call `get_candidate` for several results after a search and then drop the ones it
   had not fetched (see eval run 3). Search hits now include skills and the prompt forbids the fan-out;
   watch for regressions with a different model.
-- Language flags (`lang_spanish`) do not carry the CEFR level, so "speaks Spanish" returns A2 speakers
-  too; the level is in the tool result text and the agent shows it, but cannot filter on it.
+- Language filters return every speaker including A2; results are ranked by CEFR level (numeric
+  `lang_<x>_level` metadata), but there is no "B2 and above" filter yet.
 - Semantic-only queries always return k nearest neighbours; there is no distance cutoff in the index.
   The "nobody matches" decision is made by the agent from the scores and profiles, and is covered by
   the no-match eval cases.
@@ -92,7 +92,7 @@ Per-answer details of the last run are in `evals/last_run.json`.
 ## What I would do next
 
 1. Drop in the generated photos and re-render.
-2. CEFR level as a numeric metadata field (`lang_spanish_level`) so the agent can filter "Spanish B2+".
+2. A `min_language_level` filter on top of the numeric level metadata ("Spanish B2+").
 3. Run the evals 5–10 times per model and report pass rates, not a single run.
 4. GitHub Actions running `make check` on every push (no key needed).
 5. Expose the three index functions as an MCP server; the boundary is already there.

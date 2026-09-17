@@ -33,13 +33,22 @@ const state = { hits: [], args: {} };
 
 function describe(args) {
   const parts = [];
-  if (args.query) parts.push(`query <span class="q">"${esc(args.query)}"</span>`);
+  if (args.query && /[a-z]{2}/i.test(args.query)) parts.push(`query <span class="q">"${esc(args.query)}"</span>`);
   for (const k of ["seniority", "role_family", "country", "languages", "skills"]) {
     if (args[k] && args[k].length) parts.push(`${k.replace("_", " ")} <span class="q">${esc(args[k].join(", "))}</span>`);
   }
   if (args.min_years) parts.push(`≥ <span class="q">${args.min_years}</span> yrs`);
   if (args.name) parts.push(`name <span class="q">"${esc(args.name)}"</span>`);
   return parts.join(" · ");
+}
+
+/* When the search filtered by language, show that language's level right under the name. */
+function langChips(h) {
+  const wanted = (state.args.languages || []).map((l) => l.toLowerCase());
+  if (!wanted.length) return "";
+  const chips = String(h.languages || "").split(",").map((x) => x.trim()).filter((x) => wanted.some((w) => x.toLowerCase().startsWith(w)))
+    .map((x) => { const m = x.match(/^(.*?)\s*\((.*)\)$/); return m ? `<span class="chip accent">${esc(m[1])} <b>${esc(m[2])}</b></span>` : ""; });
+  return chips.length ? `<div style="margin-top:4px">${chips.join("")}</div>` : "";
 }
 
 function render() {
@@ -55,7 +64,7 @@ function render() {
     <tbody>${hits.map((h, i) => `
       <tr class="row" data-i="${i}">
         <td><div class="who"><span class="avatar">${initials(h.name)}</span>
-          <div><div class="name">${esc(h.name)}</div><div class="headline">${esc(h.headline)}</div></div></div></td>
+          <div><div class="name">${esc(h.name)}</div><div class="headline">${esc(h.headline)}</div>${langChips(h)}</div></div></td>
         <td class="hide-narrow"><span class="chip">${esc(h.seniority)}</span><span class="chip">${esc(h.role_family)}</span></td>
         <td class="hide-narrow muted">${esc(h.country)}</td>
         <td>${h.years_experience}</td>

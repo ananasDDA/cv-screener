@@ -40,7 +40,7 @@ candidate in the dataset matches."""
 
 def ensure_index(index: CandidateIndex, candidates_dir: Path = CANDIDATES_DIR) -> None:
     """Build the index on first run so `uvx cv-screener mcp` works without a setup step."""
-    if index.count() > 0:
+    if index.is_current():
         return
     from .generate.generator import load_all
 
@@ -69,7 +69,8 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
         description=(
             "Search the candidate résumé database (cv-screener). Use it for any question like "
             "'who speaks X', 'who has experience with Y', 'best fit for role Z'. `query` ranks by "
-            "meaning; filters are exact, combined with AND. Hits include headline, seniority, years, "
+            "meaning; filters are exact, combined with AND. Omit `query` (do not pass '*') when the "
+            "question is only about exact facts; language filters then rank by proficiency. Hits include headline, seniority, years, "
             "languages with levels, skills and a score."
         ),
     )
