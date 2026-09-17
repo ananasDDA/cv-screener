@@ -16,12 +16,12 @@ from cv_screener.mcp_server import build_server, ensure_index
 def server(tmp_path: Path, sample_candidates):
     idx = CandidateIndex(path=tmp_path / "chroma", embedder=HashEmbedder())
     idx.rebuild(sample_candidates)
-    return build_server(idx)
+    return build_server(idx, photos_dir=tmp_path)
 
 
-async def test_lists_the_three_tools(server):
+async def test_lists_the_tools(server):
     names = {t.name for t in await server.list_tools()}
-    assert names == {"search_candidates", "get_candidate", "find_by_name"}
+    assert names == {"search_candidates", "get_candidate", "find_by_name", "get_candidate_photo"}
 
 
 async def test_search_with_filter_returns_hits(server):
@@ -60,3 +60,27 @@ def _payload(result):
     if data is None:
         return json.loads("".join(getattr(b, "text", "") for b in result.content))
     return data["result"] if set(data) == {"result"} else data
+
+
+async def test_tools_are_bound_to_widgets_and_photo_tool_is_app_only(server):
+    tools = {t.name: t for t in await server.list_tools()}
+    assert tools["search_candidates"].meta["ui"]["resourceUri"] == "ui://cv-screener/results.html"
+    assert tools["get_candidate"].meta["ui"]["resourceUri"] == "ui://cv-screener/card.html"
+    assert tools["get_candidate_photo"].meta["ui"]["visibility"] == ["app"]
+    resources = {str(r.uri): r for r in await server.list_resources()}
+    assert set(resources) == {"ui://cv-screener/results.html", "ui://cv-screener/card.html"}
+    assert all(r.mime_type == "text/html;profile=mcp-app" for r in resources.values())
+
+
+async def test_widget_html_is_self_contained(server):
+    from cv_screener.widgets import load
+
+    for name in ("results", "card"):
+        html = load(name)
+        assert "{{" not in html and "<script src" not in html and "<link" not in html
+        assert "ui/initialize" in html and "ui/notifications/tool-result" in html
+
+
+async def test_photo_tool_returns_data_uri(server):
+    result = await server.call_tool("get_candidate_photo", {"candidate_id": "p01-ana-ml"})
+    assert _payload(result)["data_uri"].startswith("data:image/png;base64,")

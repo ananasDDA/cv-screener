@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Candidates</title>
+<style>
+{{TOKENS}}
+{{PROFILE_CSS}}
+  .toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--color-border-2); font-size: var(--font-size-s); color: var(--color-text-secondary); }
+  .toolbar .q { font-family: var(--font-mono); color: var(--color-text-primary); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-tertiary); padding: 8px 12px; border-bottom: 1px solid var(--color-border-2); font-weight: 500; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--color-border-2); vertical-align: middle; }
+  tr.row:hover td { background: var(--color-surface); }
+  .who { display: flex; align-items: center; gap: 10px; }
+  .who .name { font-weight: 600; }
+  .who .headline { font-size: var(--font-size-s); color: var(--color-text-secondary); }
+  .bar { height: 6px; width: 72px; background: var(--color-surface); border-radius: 3px; overflow: hidden; display: inline-block; vertical-align: middle; margin-right: 6px; }
+  .bar i { display: block; height: 100%; background: var(--color-accent); }
+  .actions { white-space: nowrap; text-align: right; }
+  .actions .btn { margin-left: 4px; }
+  tr.detail td { padding: 0; background: var(--color-surface); }
+  .skills-cell { max-width: 260px; }
+  .skills-cell .chip { margin-bottom: 2px; }
+  @media (max-width: 720px) { .hide-narrow { display: none; } }
+</style></head>
+<body>
+<div class="card">
+  <div class="toolbar"><span id="summary">Loading…</span></div>
+  <div id="body"></div>
+</div>
+<script>
+{{BRIDGE}}
+{{CARD}}
+const state = { hits: [], args: {} };
+
+function describe(args) {
+  const parts = [];
+  if (args.query) parts.push(`query <span class="q">"${esc(args.query)}"</span>`);
+  for (const k of ["seniority", "role_family", "country", "languages", "skills"]) {
+    if (args[k] && args[k].length) parts.push(`${k.replace("_", " ")} <span class="q">${esc(args[k].join(", "))}</span>`);
+  }
+  if (args.min_years) parts.push(`≥ <span class="q">${args.min_years}</span> yrs`);
+  if (args.name) parts.push(`name <span class="q">"${esc(args.name)}"</span>`);
+  return parts.join(" · ");
+}
+
+function render() {
+  const hits = state.hits;
+  document.getElementById("summary").innerHTML =
+    `<b>${hits.length}</b> candidate${hits.length === 1 ? "" : "s"}${Object.keys(state.args).length ? " · " + describe(state.args) : ""}`;
+  const body = document.getElementById("body");
+  if (!hits.length) { body.innerHTML = `<div class="empty">No candidate in the dataset matches.</div>`; return; }
+  const scored = hits.some((h) => h.score !== null && h.score !== undefined);
+  body.innerHTML = `<table>
+    <thead><tr><th>Candidate</th><th class="hide-narrow">Level · Role</th><th class="hide-narrow">Location</th><th>Yrs</th>
+      <th class="hide-narrow">Languages</th>${scored ? "<th>Match</th>" : ""}<th></th></tr></thead>
+    <tbody>${hits.map((h, i) => `
+      <tr class="row" data-i="${i}">
+        <td><div class="who"><span class="avatar">${initials(h.name)}</span>
+          <div><div class="name">${esc(h.name)}</div><div class="headline">${esc(h.headline)}</div></div></div></td>
+        <td class="hide-narrow"><span class="chip">${esc(h.seniority)}</span><span class="chip">${esc(h.role_family)}</span></td>
+        <td class="hide-narrow muted">${esc(h.country)}</td>
+        <td>${h.years_experience}</td>
+        <td class="hide-narrow muted" style="font-size:var(--font-size-s)">${esc(h.languages)}</td>
+        ${scored ? `<td><span class="bar"><i style="width:${Math.round((h.score || 0) * 100)}%"></i></span><span class="mono">${h.score == null ? "" : h.score.toFixed(2)}</span></td>` : ""}
+        <td class="actions"><button class="btn" data-open="${esc(h.id)}">Profile</button><button class="btn primary" data-ask="${esc(h.name)}">Ask</button></td>
+      </tr>`).join("")}
+    </tbody></table>`;
+  body.querySelectorAll("[data-open]").forEach((b) => b.addEventListener("click", () => toggleProfile(b)));
+  body.querySelectorAll("[data-ask]").forEach((b) => b.addEventListener("click", () => Host.say(`Summarize the profile of ${b.dataset.ask}`)));
+}
+
+async function toggleProfile(btn) {
+  const row = btn.closest("tr");
+  const next = row.nextElementSibling;
+  if (next && next.classList.contains("detail")) { next.remove(); btn.textContent = "Profile"; return; }
+  btn.textContent = "…";
+  try {
+    const profile = await Host.callTool("get_candidate", { candidate_id: btn.dataset.open });
+    const tr = document.createElement("tr"); tr.className = "detail";
+    const td = document.createElement("td"); td.colSpan = row.children.length; tr.appendChild(td);
+    row.after(tr);
+    renderProfile(td, profile, { photo: (id) => Host.callTool("get_candidate_photo", { candidate_id: id }).then((r) => r && r.data_uri) });
+    btn.textContent = "Hide";
+  } catch (e) { btn.textContent = "Profile"; }
+}
+
+Host.onToolInput((p) => { state.args = p.arguments || {}; });
+Host.onToolResult((r) => { const data = Host.unwrap(r); state.hits = Array.isArray(data) ? data : []; render(); });
+Host.init("cv-screener-results");
+</script>
+</body></html>

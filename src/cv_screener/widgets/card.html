@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Candidate</title>
+<style>
+{{TOKENS}}
+{{PROFILE_CSS}}
+  .head .btn { align-self: flex-start; }
+</style></head>
+<body>
+<div class="card"><div id="root"><div class="empty">Loading…</div></div></div>
+<script>
+{{BRIDGE}}
+{{CARD}}
+Host.onToolResult((r) => {
+  const p = Host.unwrap(r);
+  const root = document.getElementById("root");
+  if (!p || p.error) { root.innerHTML = `<div class="empty">${esc((p && p.error) || "No such candidate.")}</div>`; return; }
+  renderProfile(root, p, {
+    actions: `<button class="btn" id="ask">Ask about</button>`,
+    photo: (id) => Host.callTool("get_candidate_photo", { candidate_id: id }).then((x) => x && x.data_uri),
+  });
+  document.getElementById("ask").addEventListener("click", () => Host.say(`What makes ${p.full_name} a good or bad fit, based on the profile?`));
+});
+Host.init("cv-screener-card");
+</script>
+</body></html>
