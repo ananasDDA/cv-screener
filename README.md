@@ -68,20 +68,40 @@ pipeline never blocks on image generation.
 ## Use it from Claude (MCP)
 
 `cv mcp` serves the same index over the Model Context Protocol, locally over stdio. Claude becomes
-the agent; no LLM key is needed and nothing leaves your machine.
+the agent: no LLM key is needed and nothing leaves your machine. In hosts that support
+[MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) (Claude Desktop, claude.ai) the
+tools answer with **interactive widgets rendered inside the chat**, not just text:
+
+![Browsing the collection as a coverflow deck inside Claude](assets/deck.gif)
+
+| Search results, ranked by language level | Profile card |
+|---|---|
+| ![Results table widget](assets/results.png) | ![Profile card widget](assets/card.png) |
+
+The deck pulls its data and photos through app-only tools, so the collection never enters the
+model's context; the table expands a row by calling `get_candidate` from inside the widget, and
+"Ask" posts a follow-up question into the chat. Elsewhere (Claude Code) the same tools return JSON.
+
+### Install
+
+No clone needed; [uv](https://docs.astral.sh/uv/) installs straight from this repository. The first
+start takes about half a minute (dependencies, index build, one-time ~130 MB embedding model).
 
 ```bash
 # Claude Code
-claude mcp add cv-screener -- uv run --directory /path/to/cv-screener cv mcp
+claude mcp add cv-screener -- uvx --from git+https://github.com/ananasDDA/cv-screener cv mcp
 ```
 
-Claude Desktop: add this to `claude_desktop_config.json` (Settings → Developer → Edit Config), then
-quit and reopen the app:
+Claude Desktop: merge this into `claude_desktop_config.json` (Settings → Developer → Edit Config),
+then quit and reopen the app. If it cannot find `uvx`, use the absolute path from `which uvx`.
 
 ```json
 { "mcpServers": { "cv-screener": {
-    "command": "uv", "args": ["run", "--directory", "/path/to/cv-screener", "cv", "mcp"] } } }
+    "command": "uvx",
+    "args": ["--from", "git+https://github.com/ananasDDA/cv-screener", "cv", "mcp"] } } }
 ```
+
+From a checkout, `uv run --directory /path/to/cv-screener cv mcp` works the same way.
 
 **Enable the tools in the chat.** Claude Desktop keeps tools from a new local server switched off
 until you turn them on in the chat's tools menu, and it asks again whenever a tool's definition
@@ -96,9 +116,7 @@ changes (for example after an update).
 | `add_candidate` | add a résumé you shared with Claude | profile card |
 | `remove_candidate` | remove a résumé you added | – |
 
-In hosts that support [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) (Claude
-Desktop, claude.ai) results render as interactive widgets inside the chat; elsewhere (Claude Code)
-the same tools return JSON. Try: *"Which candidates speak Spanish?"*, *"Show me the whole
+Try: *"Which candidates speak Spanish?"*, *"Show me the whole
 collection"*, or drop a résumé PDF and say *"add this candidate"*.
 
 Résumés you add are real people's data, so they are stored outside the repository in
