@@ -15,6 +15,7 @@ dependencies = [
     "pillow>=10",
     "rich>=13",
     "typer>=0.12",
+    "mcp>=1.10",
 ]
 
 [project.scripts]
@@ -28,6 +29,7 @@ dev = [
     "nbconvert>=7.17.1",
     "pypdfium2>=5.13.0",
     "pytest>=8",
+    "pytest-asyncio>=1.4.0",
     "ruff>=0.6",
 ]
 
@@ -56,4 +58,5 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+asyncio_mode = "auto"
 

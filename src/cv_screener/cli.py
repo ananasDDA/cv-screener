@@ -143,5 +143,13 @@ def chat(
         answer(q, history)
 
 
+@app.command()
+def mcp() -> None:
+    """Serve the index as an MCP server over stdio (for Claude Desktop, Claude Code, ...)."""
+    from .mcp_server import main as mcp_main
+
+    mcp_main()
+
+
 if __name__ == "__main__":
     app()
