@@ -15,7 +15,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [x] **4. Agent** — hand-written tool-use loop over OpenRouter; tools: `search_candidates`,
       `get_candidate`, `find_by_name`; grounding rules in the system prompt; `cv chat` CLI with a
       visible tool-call trace.
-- [ ] **5. Evals** — `evals/cases.json` (8 cases incl. "no match" and "summarize <name>"),
+- [x] **5. Evals** — `evals/cases.json` (8 cases incl. "no match" and "summarize <name>"),
       `evals/run.py` prints per-case pass/fail and a summary; results copied verbatim into NOTES.md.
 - [ ] **6. Tests** — pytest without an API key: schema validation, persona uniqueness, index build +
       filtered search, agent loop against a fake LLM client.
