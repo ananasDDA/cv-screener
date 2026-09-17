@@ -1,0 +1,48 @@
+# CV Screener
+
+> A local-first MCP server for résumé screening: a synthetic CV dataset, hybrid search that combines
+> exact metadata filters with semantic ranking over ChromaDB using local `bge-small` embeddings, and
+> interactive widgets rendered inside the chat. It runs on the user's machine over stdio, needs no
+> LLM API key, and uploads nothing.
+
+## Install
+
+- [Installation runbook](install.md): step-by-step instructions for an AI agent — prerequisite check, the exact Claude Code command, the exact Claude Desktop JSON and config path per OS, verification and safety rules.
+
+Claude Code, one command:
+
+```
+claude mcp add cv-screener -- uvx --from git+https://github.com/ananasDDA/cv-screener cv mcp
+```
+
+Claude Desktop, merged into `mcpServers` in `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "cv-screener": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/ananasDDA/cv-screener", "cv", "mcp"]
+    }
+  }
+}
+```
+
+Requires [uv](https://docs.astral.sh/uv/); uv fetches Python 3.12 itself. The first start takes
+30–60 seconds and downloads a ~130 MB embedding model once.
+
+## Tools
+
+- `search_candidates`: hybrid search — `query` ranks by meaning, filters (languages, skills, seniority, role family, country, minimum years) are exact and combine with AND.
+- `find_by_name`: full or partial name lookup, tolerant to misspellings.
+- `get_candidate`: one full profile by id.
+- `list_candidates`: browse the whole collection.
+- `add_candidate`: add a résumé the user shared; stored locally in `~/.cv-screener/candidates`.
+- `remove_candidate`: remove a résumé the user added earlier.
+
+## Docs
+
+- [Landing page](index.html): what the project is, the tools, a live copy of the deck widget.
+- [Repository](https://github.com/ananasDDA/cv-screener): source code.
+- [README](https://github.com/ananasDDA/cv-screener#readme): full setup, the generate → index → chat pipeline and the CLI.
+- [NOTES.md](https://github.com/ananasDDA/cv-screener/blob/main/NOTES.md): known issues, eval results and what is unfinished.

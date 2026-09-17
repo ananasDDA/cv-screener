@@ -1,0 +1,296 @@
+[
+ {
+  "id": "p01-reiner-lorch",
+  "name": "Reiner Lorch",
+  "headline": "Senior Backend Engineer | Python, Django, FastAPI, Kubernetes, AWS",
+  "seniority": "senior",
+  "role_family": "backend",
+  "years_experience": 10,
+  "country": "Germany",
+  "languages": "German (Native), English (C1)",
+  "top_skills": [
+   "Python 3.11",
+   "Django 4.2",
+   "FastAPI",
+   "PostgreSQL 15",
+   "Apache Kafka 3.6",
+   "Docker",
+   "Kubernetes (EKS, GKE)",
+   "AWS (EC2, RDS, S3, Lambda, CloudWatch)"
+  ],
+  "accent": "#6b5b3a"
+ },
+ {
+  "id": "p02-rosalinda-barral",
+  "name": "Rosalinda Barral",
+  "headline": "Senior Machine Learning Engineer",
+  "seniority": "senior",
+  "role_family": "ml",
+  "years_experience": 8,
+  "country": "Spain",
+  "languages": "Spanish (Native), English (C1), French (B1)",
+  "top_skills": [
+   "Python",
+   "PyTorch",
+   "scikit-learn",
+   "TensorFlow",
+   "XGBoost",
+   "MLflow",
+   "Apache Airflow",
+   "Google Cloud Platform"
+  ],
+  "accent": "#2f5d50"
+ },
+ {
+  "id": "p03-angelika-drewa",
+  "name": "Angelika Drewa",
+  "headline": "Frontend Developer (junior) with 2 years of experience building React‑based products",
+  "seniority": "junior",
+  "role_family": "frontend",
+  "years_experience": 2,
+  "country": "Poland",
+  "languages": "Polish (Native), English (B2)",
+  "top_skills": [
+   "React",
+   "TypeScript",
+   "Next.js",
+   "Tailwind CSS",
+   "Jest",
+   "React Testing Library",
+   "Cypress",
+   "Git"
+  ],
+  "accent": "#7a3e48"
+ },
+ {
+  "id": "p04-yuvraj-parsa",
+  "name": "Yuvraj Parsa",
+  "headline": "Data Engineer | 5 years experience in Spark, Scala, and AWS data platforms",
+  "seniority": "middle",
+  "role_family": "data",
+  "years_experience": 5,
+  "country": "India",
+  "languages": "English (C2), Hindi (Native), Kannada (Native)",
+  "top_skills": [
+   "Apache Spark",
+   "Scala",
+   "Python",
+   "Apache Airflow",
+   "AWS (EC2, S3, Glue, Redshift, MWAA)",
+   "Snowflake",
+   "dbt",
+   "Apache Kafka"
+  ],
+  "accent": "#3d4a6b"
+ },
+ {
+  "id": "p05-julius-guit",
+  "name": "Julius Guit",
+  "headline": "Lead DevOps / SRE",
+  "seniority": "lead",
+  "role_family": "devops",
+  "years_experience": 14,
+  "country": "Netherlands",
+  "languages": "Dutch (Native), English (C2)",
+  "top_skills": [
+   "Kubernetes",
+   "Terraform",
+   "Go",
+   "AWS",
+   "GCP",
+   "Prometheus",
+   "Grafana",
+   "ArgoCD"
+  ],
+  "accent": "#8a5a1e"
+ },
+ {
+  "id": "p06-luna-magalhaes",
+  "name": "Luna Magalhães",
+  "headline": "QA Automation Engineer (mid-level)",
+  "seniority": "middle",
+  "role_family": "qa",
+  "years_experience": 4,
+  "country": "Portugal",
+  "languages": "Portuguese (Native), Spanish (B2), English (C1)",
+  "top_skills": [
+   "Java",
+   "Selenium WebDriver",
+   "Playwright",
+   "TestNG",
+   "REST Assured",
+   "Postman",
+   "Jenkins",
+   "SQL (PostgreSQL/Oracle)"
+  ],
+  "accent": "#1f4e5f"
+ },
+ {
+  "id": "p07-juan-cruz-martinez",
+  "name": "Juan Cruz Martinez",
+  "headline": "Senior iOS Engineer",
+  "seniority": "senior",
+  "role_family": "mobile",
+  "years_experience": 9,
+  "country": "Argentina",
+  "languages": "Spanish (Native), English (B2)",
+  "top_skills": [
+   "Swift",
+   "SwiftUI",
+   "UIKit",
+   "Combine",
+   "Core Data",
+   "XCTest",
+   "Fastlane",
+   "REST"
+  ],
+  "accent": "#5c4b7a"
+ },
+ {
+  "id": "p08-savannah-mcbride",
+  "name": "Savannah McBride",
+  "headline": "Data Scientist with expertise in predictive modeling, causal inference, and analytics engineering",
+  "seniority": "middle",
+  "role_family": "data-science",
+  "years_experience": 4,
+  "country": "Canada",
+  "languages": "English (Native), French (C1), Mandarin (B1)",
+  "top_skills": [
+   "Python",
+   "pandas",
+   "scikit-learn",
+   "XGBoost",
+   "SQL",
+   "R",
+   "Tableau",
+   "dbt"
+  ],
+  "accent": "#333333"
+ },
+ {
+  "id": "p09-davit-petrosyan",
+  "name": "Davit Petrosyan",
+  "headline": "Junior Python Developer | Backend Focus",
+  "seniority": "junior",
+  "role_family": "backend",
+  "years_experience": 1,
+  "country": "Armenia",
+  "languages": "Armenian (Native), Russian (C1), English (B1)",
+  "top_skills": [
+   "Python",
+   "FastAPI",
+   "SQLAlchemy",
+   "PostgreSQL",
+   "Redis",
+   "Docker",
+   "Docker‑Compose",
+   "pytest"
+  ],
+  "accent": "#16324f"
+ },
+ {
+  "id": "p10-katie-brown",
+  "name": "Katie Brown",
+  "headline": "Principal NLP Researcher",
+  "seniority": "principal",
+  "role_family": "ml",
+  "years_experience": 15,
+  "country": "United Kingdom",
+  "languages": "English (Native), German (B2)",
+  "top_skills": [
+   "Python",
+   "PyTorch",
+   "JAX",
+   "Transformers",
+   "Hugging Face",
+   "Fairseq",
+   "Deepspeed",
+   "Megatron-LM"
+  ],
+  "accent": "#6b5b3a"
+ },
+ {
+  "id": "p11-michael-saleh",
+  "name": "Michael Saleh",
+  "headline": "Senior Product Manager",
+  "seniority": "senior",
+  "role_family": "product",
+  "years_experience": 11,
+  "country": "Sweden",
+  "languages": "Swedish (Native), English (C2), Spanish (A2)",
+  "top_skills": [
+   "Product discovery",
+   "SQL",
+   "Amplitude",
+   "Jira",
+   "Figma",
+   "A/B testing",
+   "OKRs",
+   "Roadmapping"
+  ],
+  "accent": "#2f5d50"
+ },
+ {
+  "id": "p12-maria-clara-da-cunha",
+  "name": "Maria Clara da Cunha",
+  "headline": "Java Backend Engineer with 6+ years of experience building scalable microservices on Java, Spring Boot, Kotlin and Azure",
+  "seniority": "middle",
+  "role_family": "backend",
+  "years_experience": 6,
+  "country": "Brazil",
+  "languages": "Portuguese (Native), English (B2), Spanish (B1)",
+  "top_skills": [
+   "Java",
+   "Spring Boot",
+   "Kotlin",
+   "Hibernate",
+   "PostgreSQL",
+   "RabbitMQ",
+   "Docker",
+   "Azure"
+  ],
+  "accent": "#7a3e48"
+ },
+ {
+  "id": "p13-taichi-takahashi",
+  "name": "Taichi Takahashi",
+  "headline": "Senior Go Engineer",
+  "seniority": "senior",
+  "role_family": "backend",
+  "years_experience": 9,
+  "country": "Japan",
+  "languages": "Japanese (Native), English (B2)",
+  "top_skills": [
+   "Go",
+   "gRPC",
+   "Protocol Buffers",
+   "PostgreSQL",
+   "Redis",
+   "Kubernetes",
+   "AWS",
+   "Terraform"
+  ],
+  "accent": "#3d4a6b"
+ },
+ {
+  "id": "p14-marisela-herrera",
+  "name": "Marisela Herrera",
+  "headline": "Application Security Engineer",
+  "seniority": "middle",
+  "role_family": "security",
+  "years_experience": 5,
+  "country": "Mexico",
+  "languages": "Spanish (Native), English (C1)",
+  "top_skills": [
+   "Python",
+   "Bash",
+   "Burp Suite Professional",
+   "OWASP ZAP",
+   "Semgrep",
+   "Bandit",
+   "AWS IAM",
+   "AWS GuardDuty"
+  ],
+  "accent": "#8a5a1e"
+ }
+]

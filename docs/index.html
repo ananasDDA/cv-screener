@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV Screener — a local résumé search Claude can use</title>
+<meta name="description" content="A local-first MCP server for résumé screening: synthetic CV dataset, hybrid search over ChromaDB with local embeddings, and interactive widgets in the chat. No key, nothing uploaded.">
+<meta property="og:title" content="CV Screener">
+<meta property="og:description" content="A local-first MCP server for résumé screening: hybrid search over ChromaDB with local embeddings, interactive widgets in the chat.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://ananasdda.github.io/cv-screener/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="shell">
+    <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="24" height="24">CV Screener</a>
+    <nav aria-label="Main">
+      <a class="hide-narrow" href="#tools">Tools</a>
+      <a class="hide-narrow" href="#showcase">Widgets</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/ananasDDA/cv-screener">GitHub</a>
+      <button class="toggle" id="theme-toggle" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="shell">
+      <h1>Résumé search that Claude can use, running entirely on your machine.</h1>
+      <p class="lede">cv-screener is a local MCP server over a synthetic CV dataset: hybrid search that
+        combines exact fields with meaning, and interactive widgets that render the results inside the chat.</p>
+      <div class="cta">
+        <a class="btn primary" href="#install">Add to Claude</a>
+        <a class="btn" href="https://github.com/ananasDDA/cv-screener">View on GitHub</a>
+      </div>
+      <p class="meta"><span>Python 3.12</span><span>ChromaDB</span><span>bge-small via fastembed</span><span>stdio MCP</span></p>
+    </div>
+  </section>
+
+  <section id="local">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Local-first</p>
+        <h2>Runs on your machine</h2>
+        <p class="lede">Claude starts the server as a subprocess and talks to it over stdin and stdout.
+          Nothing listens on a port and nothing is uploaded.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>A stdio MCP server</h3>
+          <p><code>cv mcp</code> speaks the Model Context Protocol over stdio. Your Claude client is the agent,
+            so no LLM API key is needed for MCP.</p>
+        </article>
+        <article class="card">
+          <h3>Local embeddings</h3>
+          <p>CV text is embedded with <code>bge-small</code> through fastembed (ONNX, on the CPU). The index is
+            a local ChromaDB store, built on first run — under <code>~/.cv-screener</code> when installed as a
+            package, or in <code>data/</code> in a git checkout.</p>
+        </article>
+        <article class="card">
+          <h3>A private library</h3>
+          <p>Résumés you add through Claude are real people's data, so they are written to
+            <code>~/.cv-screener/candidates</code> — outside the repository, never committed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Tools</p>
+        <h2>What Claude can do with it</h2>
+        <p class="lede">Six tools. In hosts that support MCP Apps (Claude Desktop, claude.ai) the results render
+          as interactive widgets; elsewhere, such as Claude Code, the same tools return JSON.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="tools">
+          <thead>
+            <tr><th scope="col">Tool</th><th scope="col">What it does</th><th scope="col">Widget</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>search_candidates</code></td><td class="what">Hybrid search: ranks by meaning, filters by language, skill, seniority, country and years.</td><td class="muted">Results table</td></tr>
+            <tr><td><code>find_by_name</code></td><td class="what">Looks a candidate up by full or partial name, tolerant to misspellings.</td><td class="muted">Results table</td></tr>
+            <tr><td><code>get_candidate</code></td><td class="what">Returns one full profile: summary, skills, experience, education, languages.</td><td class="muted">Profile card with photo</td></tr>
+            <tr><td><code>list_candidates</code></td><td class="what">Browses the whole collection; the model gets a summary, not every profile.</td><td class="muted">Coverflow deck</td></tr>
+            <tr><td><code>add_candidate</code></td><td class="what">Adds a résumé you shared with Claude to your local library.</td><td class="muted">Profile card</td></tr>
+            <tr><td><code>remove_candidate</code></td><td class="what">Removes a résumé you added earlier; the bundled dataset cannot be removed.</td><td class="muted">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Widgets</p>
+        <h2>The results are interactive</h2>
+        <p class="lede">Below is the real deck widget from the server, running on the bundled dataset.
+          Drag sideways, use the arrow buttons, or focus the deck and press the left and right arrow keys.</p>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="bar">
+          <span class="count" id="count">Loading…</span>
+          <span class="faint">drag sideways · ← → · click a card</span>
+        </div>
+        <button class="nav prev" id="prev" type="button" aria-label="Previous candidate">‹</button>
+        <button class="nav next" id="next" type="button" aria-label="Next candidate">›</button>
+        <div class="deckview" id="deckview" tabindex="0" role="group"
+             aria-label="Candidate deck: press the left and right arrow keys to browse">
+          <div class="track" id="track" aria-hidden="true"><div class="pad"></div><div class="pad"></div></div>
+        </div>
+        <div class="info" id="info" aria-live="polite"></div>
+      </div>
+      <p class="caption">Synthetic candidates, AI-generated photos.</p>
+
+      <div class="mock">
+        <p class="prompt">You ask Claude: <b>“Which candidates speak Spanish?”</b></p>
+        <div class="table-wrap results">
+          <div class="toolbar"><b>6</b> candidates · languages <span class="q">Spanish</span></div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Candidate</th>
+                <th scope="col" class="hide-narrow">Level · Role</th>
+                <th scope="col" class="hide-narrow">Location</th>
+                <th scope="col">Yrs</th>
+                <th scope="col" class="hide-narrow">Languages</th>
+                <th scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">JM</span>
+                  <div><div class="name">Juan Cruz Martinez</div><div class="headline">Senior iOS Engineer</div>
+                  <div><span class="chip accent">Spanish <b>Native</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">senior</span><span class="chip">mobile</span></td>
+                <td class="hide-narrow muted">Argentina</td>
+                <td>9</td>
+                <td class="hide-narrow muted mono">Spanish (Native), English (B2)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">RB</span>
+                  <div><div class="name">Rosalinda Barral</div><div class="headline">Senior Machine Learning Engineer</div>
+                  <div><span class="chip accent">Spanish <b>Native</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">senior</span><span class="chip">ml</span></td>
+                <td class="hide-narrow muted">Spain</td>
+                <td>8</td>
+                <td class="hide-narrow muted mono">Spanish (Native), English (C1), French (B1)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">MH</span>
+                  <div><div class="name">Marisela Herrera</div><div class="headline">Application Security Engineer</div>
+                  <div><span class="chip accent">Spanish <b>Native</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">middle</span><span class="chip">security</span></td>
+                <td class="hide-narrow muted">Mexico</td>
+                <td>5</td>
+                <td class="hide-narrow muted mono">Spanish (Native), English (C1)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">LM</span>
+                  <div><div class="name">Luna Magalhães</div><div class="headline">QA Automation Engineer (mid-level)</div>
+                  <div><span class="chip accent">Spanish <b>B2</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">middle</span><span class="chip">qa</span></td>
+                <td class="hide-narrow muted">Portugal</td>
+                <td>4</td>
+                <td class="hide-narrow muted mono">Portuguese (Native), Spanish (B2), English (C1)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">MC</span>
+                  <div><div class="name">Maria Clara da Cunha</div><div class="headline">Java Backend Engineer with 6+ years of experience building scalable microservices on Java, Spring Boot, Kotlin and Azure</div>
+                  <div><span class="chip accent">Spanish <b>B1</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">middle</span><span class="chip">backend</span></td>
+                <td class="hide-narrow muted">Brazil</td>
+                <td>6</td>
+                <td class="hide-narrow muted mono">Portuguese (Native), English (B2), Spanish (B1)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+              <tr>
+                <td><div class="who"><span class="avatar" aria-hidden="true">MS</span>
+                  <div><div class="name">Michael Saleh</div><div class="headline">Senior Product Manager</div>
+                  <div><span class="chip accent">Spanish <b>A2</b></span></div></div></div></td>
+                <td class="hide-narrow"><span class="chip">senior</span><span class="chip">product</span></td>
+                <td class="hide-narrow muted">Sweden</td>
+                <td>11</td>
+                <td class="hide-narrow muted mono">Swedish (Native), English (C2), Spanish (A2)</td>
+                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">A static copy of the results widget. A language filter alone has no relevance score,
+          so the search orders the hits by proficiency first, then by years of experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Install</p>
+        <h2>Add it to Claude</h2>
+        <p class="lede">Requires <a href="https://docs.astral.sh/uv/">uv</a>; Python 3.12 is fetched by uv
+          automatically. The first start takes 30–60 seconds while dependencies install, a ~130&nbsp;MB embedding
+          model is downloaded once and the index is built.</p>
+      </div>
+
+      <div class="snippet">
+        <h3>Claude Code</h3>
+        <p class="path">One command in your terminal.</p>
+        <div class="code">
+          <pre id="code-cc">claude mcp add cv-screener -- uvx --from git+https://github.com/ananasDDA/cv-screener cv mcp</pre>
+          <button class="btn small copy" type="button" data-copy="code-cc">Copy</button>
+        </div>
+      </div>
+
+      <div class="snippet">
+        <h3>Claude Desktop</h3>
+        <p class="path">Merge into <code>claude_desktop_config.json</code> (Settings → Developer → Edit Config).
+          macOS: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> ·
+          Windows: <code>%APPDATA%\Claude\claude_desktop_config.json</code></p>
+        <div class="code">
+          <pre id="code-cd">{
+  "mcpServers": {
+    "cv-screener": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/ananasDDA/cv-screener", "cv", "mcp"]
+    }
+  }
+}</pre>
+          <button class="btn small copy" type="button" data-copy="code-cd">Copy</button>
+        </div>
+      </div>
+
+      <p class="note"><strong>Enable the tools in the chat.</strong> Claude Desktop keeps tools from a new local
+        server switched off until you turn them on in the chat's tools menu, and it asks again whenever a tool's
+        definition changes. Quit and reopen the app after editing the config.</p>
+      <p class="note">If Claude Desktop cannot find <code>uvx</code>, use its absolute path — for example
+        <code>/opt/homebrew/bin/uvx</code> on macOS. Find it with <code>which uvx</code>.</p>
+      <p class="note">Verify with <code>claude mcp list</code>: cv-screener should report
+        <strong>Connected</strong>. Then ask Claude <em>“Which candidates speak Spanish?”</em> or
+        <em>“Show me the whole collection”</em>.</p>
+
+      <p class="agents"><strong>For AI agents:</strong> a machine-readable runbook lives at
+        <a href="install.md">install.md</a>, indexed from <a href="llms.txt">llms.txt</a>.</p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>From a persona grid to three search functions</h2>
+      </div>
+      <div class="steps">
+        <article class="card">
+          <p class="num">01</p>
+          <h3>A designed persona grid</h3>
+          <p>14 hand-written persona specs fix role family, seniority, country, stack and languages, so the
+            diversity of the dataset is designed rather than hoped for. Seeded Faker supplies names and contacts
+            per country locale.</p>
+        </article>
+        <article class="card">
+          <p class="num">02</p>
+          <h3>Profiles written by an LLM, validated by Pydantic</h3>
+          <p>The model writes only the narrative, as JSON matching the <code>Candidate</code> schema; schema
+            errors are retried. One JSON file per candidate, rendered to a PDF résumé in one of three layouts.</p>
+        </article>
+        <article class="card">
+          <p class="num">03</p>
+          <h3>ChromaDB with metadata flags</h3>
+          <p>One document per candidate: the CV text embedded with <code>bge-small</code> plus scalar metadata
+            and a boolean flag per language and per skill variant, so exact filters and semantic ranking work
+            on the same store.</p>
+        </article>
+        <article class="card">
+          <p class="num">04</p>
+          <h3>One search boundary</h3>
+          <p><code>search(query, filters, k)</code>, <code>get</code> and <code>find_by_name</code> cover
+            filter-only, semantic and hybrid retrieval. The CLI agent and this MCP server both use exactly
+            those three functions — the index knows nothing about the LLM.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <span>CV Screener — a test-task project. The dataset is synthetic.</span>
+    <span class="spacer"></span>
+    <a href="https://github.com/ananasDDA/cv-screener">Repository</a>
+    <a href="https://github.com/ananasDDA/cv-screener#readme">README</a>
+    <a href="https://github.com/ananasDDA/cv-screener/blob/main/NOTES.md">NOTES.md</a>
+    <a href="install.md">install.md</a>
+  </div>
+</footer>
+
+<script src="assets/deck.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
