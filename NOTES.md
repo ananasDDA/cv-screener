@@ -16,8 +16,9 @@ and what I would do next.
 - Free OpenRouter models are flaky: 429s, empty `choices`, occasional stray citation markers in
   answers. The fallback chain hides most of it; expect eval runtimes of 1–3 minutes and the odd
   fallback to a different model (the runner prints which one answered).
-- The agent sometimes calls `get_candidate` for several results after a search "to be sure".
-  Correct, but 5–6 extra requests on a "who has Python" question.
+- The agent used to call `get_candidate` for several results after a search and then drop the ones it
+  had not fetched (see eval run 3). Search hits now include skills and the prompt forbids the fan-out;
+  watch for regressions with a different model.
 - Language flags (`lang_spanish`) do not carry the CEFR level, so "speaks Spanish" returns A2 speakers
   too; the level is in the tool result text and the agent shows it, but cannot filter on it.
 - Semantic-only queries always return k nearest neighbours; there is no distance cutoff in the index.
@@ -66,13 +67,33 @@ Run 2, same day, same command (stability check):
 Note the variance between runs: `senior-ml-fit` took 3 tool calls in run 1 (search + two profiles) and 1
 in run 2; the answer passed both times. That is the free model deciding differently, not the code.
 
+Runs 3–5, later the same day, after adding photos. Run 3 (inside `demo.ipynb`) and run 4 both failed
+`python-skill`; run 5 passed 9/9 after two fixes:
+
+```
+run 3  [FAIL] python-skill  tools=6  - missing Yuvraj Parsa, missing Savannah Mcbride   (8/9)
+run 4  [FAIL] python-skill  tools=1  - missing Savannah Mcbride                          (8/9)
+run 5  9/9 passed
+```
+
+- Run 3: the search returned 8 people, the model fetched 5 full profiles with `get_candidate` and then
+  listed only those 5. Fix: search hits now carry the skills list, and the prompt says to list everyone
+  the search returned; `get_candidate` is for one-person summaries. Run 4 confirms the fan-out is gone
+  (1 tool call).
+- Run 4: the model wrote "Savannah McBride", the dataset had "Mcbride" (a Faker artefact), and the checker
+  compared case-sensitively. Fix: case-insensitive name matching in `evals/run.py` and the name corrected
+  in the persona spec and the data.
+
+Lesson recorded on purpose: two of the three failures were in the eval harness and the data, not in the
+agent. Without repeated runs they would have stayed hidden.
+
 Per-answer details of the last run are in `evals/last_run.json`.
 
 ## What I would do next
 
 1. Drop in the generated photos and re-render.
 2. CEFR level as a numeric metadata field (`lang_spanish_level`) so the agent can filter "Spanish B2+".
-3. Cap `get_candidate` fan-out in the prompt or return richer search hits so the agent needs it less.
+3. Run the evals 5–10 times per model and report pass rates, not a single run.
 4. GitHub Actions running `make check` on every push (no key needed).
 5. Expose the three index functions as an MCP server; the boundary is already there.
 6. A stricter headline prompt and a regenerated dataset.
