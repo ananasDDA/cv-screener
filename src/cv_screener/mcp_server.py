@@ -65,9 +65,12 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
     @apps.tool(
         resource_uri=URIS["results"],
         annotations=read_only,
+        title="Search candidates",
         description=(
-            "Search the CV index. `query` ranks by meaning; filters are exact, combined with AND. "
-            "Hits include headline, seniority, years, languages with levels, skills and a score."
+            "Search the candidate résumé database (cv-screener). Use it for any question like "
+            "'who speaks X', 'who has experience with Y', 'best fit for role Z'. `query` ranks by "
+            "meaning; filters are exact, combined with AND. Hits include headline, seniority, years, "
+            "languages with levels, skills and a score."
         ),
     )
     def search_candidates(
@@ -93,7 +96,8 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
     @apps.tool(
         resource_uri=URIS["card"],
         annotations=read_only,
-        description="Full profile of one candidate by id (from a search or find_by_name result).",
+        title="Get candidate profile",
+        description="Full profile of one candidate in the résumé database, by id from a search or find_by_name result.",
     )
     def get_candidate(candidate_id: str) -> dict[str, Any]:
         c = index.get(candidate_id)
@@ -104,7 +108,8 @@ def build_server(index: CandidateIndex | None = None, photos_dir: Path = PHOTOS_
     @apps.tool(
         resource_uri=URIS["results"],
         annotations=read_only,
-        description="Find candidates by full or partial name; tolerant to misspellings.",
+        title="Find candidate by name",
+        description="Find candidates in the résumé database by full or partial name; tolerant to misspellings.",
     )
     def find_by_name(name: str) -> list[dict[str, Any]]:
         return [asdict(h) for h in index.find_by_name(name)]
