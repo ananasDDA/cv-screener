@@ -101,7 +101,8 @@ def build_server(
             "'who speaks X', 'who has experience with Y', 'best fit for role Z'. `query` ranks by "
             "meaning; filters are exact, combined with AND. Omit `query` (do not pass '*') when the "
             "question is only about exact facts; language filters then rank by proficiency. Hits include headline, seniority, years, "
-            "languages with levels, skills and a score."
+            "languages with levels, skills and a score. Keywords: candidates, résumé, CV, hiring, "
+            "кандидаты, резюме, кто из кандидатов."
         ),
     )
     def search_candidates(
@@ -151,7 +152,8 @@ def build_server(
         title="Browse the collection",
         description=(
             "List every candidate in the résumé database as a browsable deck. Use it when the user "
-            "wants to see, browse or review the whole collection rather than search it."
+            "wants to see, browse or review the whole collection rather than search it. Keywords: "
+            "show all résumés, all candidates, покажи все резюме, все кандидаты."
         ),
     )
     def list_candidates() -> dict[str, Any]:
@@ -238,6 +240,12 @@ def build_server(
     server = MCPServer(
         "cv-screener",
         title="CV Screener",
+        description=(
+            "Local database of job candidates (résumés / CVs): search by skills, languages, "
+            "seniority or meaning, browse the collection, add résumés. Use it for any question about "
+            "candidates or hiring. Keywords: candidates, résumé, CV, applicants, hiring, recruiting, "
+            "кандидаты, резюме, найм, вакансия."
+        ),
         instructions=INSTRUCTIONS,
         version="0.1.0",
         extensions=[apps],
