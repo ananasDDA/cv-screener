@@ -8,6 +8,7 @@ boundary the built-in agent uses (see agent/tools.py).
 from __future__ import annotations
 
 import sys
+from collections import Counter
 from dataclasses import asdict
 from pathlib import Path
 from typing import Any
@@ -41,6 +42,9 @@ LIBRARY: when the user shares a résumé (file or pasted text) and asks to add, 
 extract the facts and call add_candidate once per person. Never invent data: leave unknown
 optional fields empty. list_candidates shows the whole collection as a browsable deck;
 remove_candidate deletes only user-added entries (ids starting with "u").
+
+FRESHNESS: call the tools for every candidate question, even if similar results appeared earlier
+in the conversation. The collection changes, and the tool widgets are how the user sees results.
 
 GROUNDING: name only candidates returned by the tools. If a search returns nothing, say that no
 candidate in the dataset matches."""
@@ -150,7 +154,30 @@ def build_server(
             "wants to see, browse or review the whole collection rather than search it."
         ),
     )
-    def list_candidates() -> list[dict[str, Any]]:
+    def list_candidates() -> dict[str, Any]:
+        """The model gets a summary only; the deck widget pulls full data through get_deck.
+        Dumping every profile into the context would let the model answer later questions
+        from memory instead of searching, and would not scale past a few dozen résumés."""
+        hits = index.all()
+        return {
+            "total": len(hits),
+            "user_added": sum(h.source == "user" for h in hits),
+            "by_role": dict(Counter(h.role_family for h in hits).most_common()),
+            "by_seniority": dict(Counter(h.seniority for h in hits).most_common()),
+            "names": [h.name for h in hits[:40]],
+            "note": (
+                "The user is looking at the full deck in a widget. This summary has no skills, "
+                "languages or experience: call search_candidates or get_candidate to answer "
+                "any question about the candidates."
+            ),
+        }
+
+    @apps.tool(
+        resource_uri=URIS["deck"],
+        visibility=["app"],  # widget-only: keeps the whole collection out of the model's context
+        description="Full deck data for the collection widget.",
+    )
+    def get_deck() -> list[dict[str, Any]]:
         deck = []
         for h in index.all():
             c = index.get(h.id)

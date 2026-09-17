@@ -182,7 +182,11 @@ async function openProfile(p) {
   renderProfile(el, profile, { photo: async () => photos.get(people.indexOf(p)) || (await Host.callTool("get_candidate_photo", { candidate_id: p.id })).data_uri });
 }
 
-Host.onToolResult((r) => { const data = Host.unwrap(r); build(Array.isArray(data) ? data : []); });
+/* list_candidates gives the model a summary only; the deck itself comes from the app-only get_deck. */
+Host.onToolResult(() => {
+  Host.callTool("get_deck", {}).then((data) => build(Array.isArray(data) ? data : []))
+    .catch(() => { document.getElementById("count").textContent = "Could not load the collection."; });
+});
 Host.init("cv-screener-deck");
 </script>
 </body></html>

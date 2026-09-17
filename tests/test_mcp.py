@@ -27,6 +27,7 @@ async def test_lists_the_tools(server):
         "find_by_name",
         "get_candidate_photo",
         "list_candidates",
+        "get_deck",
         "add_candidate",
         "remove_candidate",
     }
@@ -128,9 +129,12 @@ async def test_add_list_search_and_remove_a_user_candidate(server, tmp_path: Pat
     assert added["id"] == "u01-dana-okoye" and added["source"] == "user"
     assert (tmp_path / "user" / "u01-dana-okoye.json").exists()
 
-    listed = _payload(await server.call_tool("list_candidates", {}))
-    assert len(listed) == 4 and all(p["accent"].startswith("#") for p in listed)
-    assert [p["source"] for p in listed if p["id"].startswith("u")] == ["user"]
+    summary = _payload(await server.call_tool("list_candidates", {}))
+    assert summary["total"] == 4 and summary["user_added"] == 1 and "Dana Okoye" in summary["names"]
+    assert "skills" not in json.dumps(summary["names"]) and "Rust" not in json.dumps(summary)
+    deck = _payload(await server.call_tool("get_deck", {}))
+    assert len(deck) == 4 and all(p["accent"].startswith("#") for p in deck)
+    assert [p["top_skills"] for p in deck if p["source"] == "user"] == [["Rust", "Embedded C"]]
 
     hits = _payload(await server.call_tool("search_candidates", {"skills": ["Rust"]}))
     assert [h["id"] for h in hits] == ["u01-dana-okoye"]
@@ -165,3 +169,4 @@ async def test_mutating_tools_are_not_marked_read_only(server):
     assert tools["add_candidate"].annotations.read_only_hint is False
     assert tools["remove_candidate"].annotations.destructive_hint is True
     assert tools["list_candidates"].meta["ui"]["resourceUri"] == "ui://cv-screener/deck.html"
+    assert tools["get_deck"].meta["ui"]["visibility"] == ["app"]
