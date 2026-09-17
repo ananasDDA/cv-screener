@@ -49,6 +49,8 @@ tool-calling support; any OpenAI-compatible model id works.
 | Build the index | `make index` | no |
 | Search from the shell | `uv run cv search "senior ML" -s senior -s principal` | no |
 | Chat with the agent | `make chat` / `uv run cv chat -q "Who speaks Spanish?"` | yes |
+| Web chat with widgets | `make web` | yes |
+| MCP server for Claude | `uv run cv mcp` | no |
 | Tests (offline) | `make test` | no |
 | Evals (real model) | `make eval` | no |
 | Lint + format + tests | `make check` | no |
@@ -123,6 +125,17 @@ collection"*, or drop a résumé PDF and say *"add this candidate"*.
 
 Résumés you add are real people's data, so they are stored outside the repository in
 `~/.cv-screener/candidates` (override with `CV_SCREENER_HOME`) and are never committed.
+
+## Web chat
+
+`make web` (or `uv run cv web`) opens a local chat at http://127.0.0.1:8000 for the project's own
+agent. It needs `OPENROUTER_API_KEY`; pick any tool-capable OpenRouter model in the composer, free
+ones are listed first. The page hosts the same widgets as the MCP server, shows every tool call as
+it happens, and takes a résumé by drag-and-drop to add it to your private library.
+
+| Answer with the results widget | Browsing the collection |
+|---|---|
+| ![Web chat](assets/web-chat.png) | ![Web chat deck](assets/web-chat-deck.png) |
 
 ## Example session
 

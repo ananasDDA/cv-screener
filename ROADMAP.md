@@ -32,7 +32,8 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 - [x] MCP Apps widgets: results table, profile card, coverflow deck of the collection.
 - [x] Add/remove résumés through MCP into a private local library (`~/.cv-screener`).
 - [x] Landing page on GitHub Pages with install instructions Claude can follow.
-- [ ] Web chat UI and a public deployment.
+- [x] Local web chat with the MCP widgets and a model picker (`cv web`).
+- [ ] Public deployment of the web chat (out of scope: the product is local-first).
 
 ## Call prep
 
