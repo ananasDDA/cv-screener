@@ -1,5 +1,7 @@
 # CV Screener
 
+[![CI](https://github.com/ananasDDA/cv-screener/actions/workflows/ci.yml/badge.svg)](https://github.com/ananasDDA/cv-screener/actions/workflows/ci.yml)
+
 Synthetic CV dataset, hybrid vector search and a tool-using CLI agent that answers recruiter
 questions about the candidates. Python 3.12, one command per stage.
 

@@ -27,7 +27,7 @@ Scope of the test task first, extras after. Each phase ends with a green `make t
 
 ## Extras (only after the core is complete)
 
-- [ ] GitHub Actions: ruff + pytest on every push (no key needed).
+- [x] GitHub Actions: ruff + pytest on every push (no key needed).
 - [ ] MCP server exposing the same three search tools.
 - [ ] Web chat UI and a public deployment.
 
