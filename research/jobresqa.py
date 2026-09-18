@@ -212,18 +212,22 @@ class ResumeIndex:
     def __init__(self, texts: dict[str, str], names: dict[str, str], rebuild: bool = False):
         self.texts, self.names = texts, names
         self.embedder = FastEmbedder()  # loading the ONNX model is slow; do it once
-        client = chromadb.PersistentClient(path=str(CHROMA_DIR))
-        existing = {c.name for c in client.list_collections()}
-        if rebuild and COLLECTION in existing:
-            client.delete_collection(COLLECTION)
-            existing.discard(COLLECTION)
-        self.collection = client.get_or_create_collection(
+        self.client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+        wanted = sorted(texts)
+        self.collection = self._collection()
+        # The store survives between runs, and the selection may have changed since it was built.
+        # Upserting on top would leave documents behind that no longer belong to any résumé, and
+        # a search could then return an id we cannot resolve. Rebuild unless the ids match exactly.
+        if rebuild or sorted(self.collection.get(include=[])["ids"]) != wanted:
+            self.client.delete_collection(COLLECTION)
+            self.collection = self._collection()
+            docs = [f"{names[i]}\n{texts[i]}" for i in wanted]
+            self.collection.add(ids=wanted, documents=docs, embeddings=self.embedder.embed(docs))
+
+    def _collection(self):
+        return self.client.get_or_create_collection(
             COLLECTION, metadata={"hnsw:space": "cosine"}, embedding_function=None
         )
-        if self.collection.count() != len(texts):
-            ids = sorted(texts)
-            docs = [f"{names[i]}\n{texts[i]}" for i in ids]
-            self.collection.upsert(ids=ids, documents=docs, embeddings=self.embedder.embed(docs))
 
     def search(self, query: str, k: int = 2) -> list[dict[str, str]]:
         k = max(1, min(int(k or 2), 5))

@@ -13,6 +13,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from cv_screener.config import Settings  # noqa: E402
+from cv_screener.index.embeddings import HashEmbedder  # noqa: E402
 from cv_screener.llm import LLM  # noqa: E402
 from research import harness, history, jobresqa, scaling, stats  # noqa: E402
 
@@ -230,6 +231,23 @@ def test_external_tools_arm_flags_a_miss():
     row = jobresqa.run_tools_arm(llm, StubResumeIndex(["r1", "r2"]), item)
 
     assert row["retrieval_hit"] is False and row["retrieved"] == ["r1", "r2"]
+
+
+def test_resume_index_rebuilds_when_the_selection_changed(tmp_path, monkeypatch):
+    """Regression: the store survives between runs. Upserting a smaller selection on top of a
+    bigger one left orphan documents, and a search then returned an id with no name behind it."""
+    monkeypatch.setattr(jobresqa, "CHROMA_DIR", tmp_path / "chroma")
+    monkeypatch.setattr(jobresqa, "FastEmbedder", lambda: HashEmbedder())
+
+    first = {f"r{i}": f"resume number {i} about databases" for i in range(5)}
+    jobresqa.ResumeIndex(first, dict.fromkeys(first, "Someone"))
+
+    second = {"r0": "resume number 0 about databases", "r1": "resume number 1 about databases"}
+    index = jobresqa.ResumeIndex(second, dict.fromkeys(second, "Someone"))
+
+    assert sorted(index.collection.get(include=[])["ids"]) == ["r0", "r1"]
+    hits = index.search("databases", k=5)
+    assert {h["resume_id"] for h in hits} <= set(second)  # never an id we cannot resolve
 
 
 def test_judge_parses_the_verdict_line():

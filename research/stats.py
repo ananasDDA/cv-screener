@@ -105,21 +105,35 @@ def leaderboard(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """One row per model, sorted by pass rate then median latency."""
     rows = []
     for (model,), recs in group_by(records, "requested_model").items():
-        ok = [r for r in recs if not r["error"]]
-        passed = sum(r["passed"] for r in recs)
+        throttled = [r for r in recs if _is_429(r)]
+        # A 429 never reached the model, so it is not evidence about the model: it is excluded
+        # from the denominator and reported in its own column.
+        answered = [r for r in recs if not _is_429(r)]
+        ok = [r for r in answered if not r["error"]]
+        passed = sum(r["passed"] for r in answered)
+        rate = passed / len(answered) if answered else None
         rows.append(
             {
                 "model": model,
                 "runs": len(recs),
-                "pass rate": passed / len(recs),  # numeric, for the chart
-                "pass %": f"{passed / len(recs):.0%}",
-                "passed": f"{passed}/{len(recs)}",
-                "errors": sum(1 for r in recs if r["error"]),
-                "rate limits": sum(1 for r in recs if r["error"] and "429" in (r["error"] or "")),
+                "answered": len(answered),
+                "pass rate": rate,  # numeric, for the chart; None when nothing got through
+                "pass %": f"{rate:.0%}" if rate is not None else "not measured",
+                "passed": f"{passed}/{len(answered)}" if answered else "0/0",
+                "rate limits": len(throttled),
+                "errors": sum(1 for r in answered if r["error"]),
                 "median tok": median([r["total_tokens"] for r in ok]),
                 "median s": median([r["seconds"] for r in ok]),
                 "median tool calls": median([r["tool_calls"] for r in ok]),
-                "ungrounded": sum(1 for r in recs if r["extra"].get("grounded") is False),
+                "ungrounded": sum(1 for r in answered if r["extra"].get("grounded") is False),
             }
         )
-    return sorted(rows, key=lambda r: (-r["pass rate"], r["median s"]))
+    # Models that never answered sort last, whatever their (absent) pass rate.
+    return sorted(
+        rows, key=lambda r: (r["pass rate"] is None, -(r["pass rate"] or 0), r["median s"])
+    )
+
+
+def _is_429(record: dict[str, Any]) -> bool:
+    error = record.get("error") or ""
+    return "429" in error or "RateLimit" in error

@@ -181,6 +181,10 @@ def main() -> int:
     ap.add_argument("part", choices=["part1", "part3", "part4", "budget"])
     ap.add_argument("--reps", type=int, default=None)
     ap.add_argument("--arm", choices=["tools", "prompt"], help="part1 only: collect one arm")
+    ap.add_argument(
+        "--models",
+        help="part4 only: comma-separated model ids, to skip one whose provider is throttling",
+    )
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
 
@@ -193,7 +197,8 @@ def main() -> int:
         arms = (args.arm,) if args.arm else ("tools", "prompt")
         collect_part1(reps=args.reps or 3, force=args.force, arms=arms)
     elif args.part == "part4":
-        collect_part4(reps=args.reps or 2, force=args.force)
+        chosen = [m.strip() for m in args.models.split(",")] if args.models else None
+        collect_part4(reps=args.reps or 2, models=chosen, force=args.force)
     else:
         collect_part3(force=args.force)
     print(f"[budget] spent {cache.spent()} / {cache.BUDGET_LIMIT}")

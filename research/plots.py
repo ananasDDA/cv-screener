@@ -204,7 +204,7 @@ def scaling(
 
 def leaderboard(rows: list[dict[str, Any]]) -> Figure:
     """Pass rate per model. One series, so no legend: the title names the measure."""
-    rows = list(reversed(rows))
+    rows = list(reversed([r for r in rows if r["pass rate"] is not None]))
     names = [r["model"].replace(":free", "") for r in rows]
     fig, ax = _canvas(9.2, 0.5 * len(rows) + 1.8)
     bars = ax.barh(

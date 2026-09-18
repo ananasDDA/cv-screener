@@ -13,8 +13,9 @@ is optional work on top, done after the core and outside the three-hour frame, a
 
 - The résumé upload → `add_candidate` round trip in the web chat is covered by offline tests but was
   not exercised against a real model: the free-tier daily quota ran out during development.
-- Research notebook: the free-model leaderboard has 2 of 5 models and the JobResQA part is pending
-  the same quota (the collectors resume from cache; see the notebook for what is measured).
+- Research notebook: the free-model leaderboard measured 3 of 5 models; Gemma 4 and Qwen 3.8 were
+  throttled by their providers on every request and are reported as "not measured". JobResQA ran at
+  reduced size (10 résumés, 12 questions, one repetition per arm).
 - No LICENSE file yet, so the landing page claims none.
 - Public deployment of the web chat is intentionally out of scope: the product is local-first.
 

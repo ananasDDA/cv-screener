@@ -751,5 +751,344 @@
    "grounded": true
   },
   "requested_model": "nvidia/nemotron-3-ultra-550b-a55b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 9.69,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code",
+  "extra": {},
+  "requested_model": "google/gemma-4-31b-it:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 9.26,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code",
+  "extra": {},
+  "requested_model": "google/gemma-4-31b-it:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 9.36,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'google/gemma-4-31b-\ngoogle/gemma-4-31b-it:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code",
+  "extra": {},
+  "requested_model": "google/gemma-4-31b-it:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 6.14,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 3362,
+  "completion_tokens": 435,
+  "total_tokens": 3797,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 13.66,
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "answer": "- Juan Cruz Martinez – native Spanish speaker  \n- Rosalinda Barral – native Spanish speaker  \n- Marisela Herrera – native Spanish speaker  \n- Luna Magalhães – B2 Spanish proficiency  \n- Maria Clara da Cunha – B1 Spanish proficiency  \n- Michael Saleh – A2 Spanish proficiency",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2767,
+  "completion_tokens": 1282,
+  "total_tokens": 4049,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 28.27,
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "answer": "- **Rosalinda Barral** – Senior Machine Learning Engineer (8 years experience), native Spanish speaker with English C1 and French B1; skilled in Python, PyTorch, TensorFlow, XGBoost, MLflow, GCP Vertex AI, Docker, Kubernetes, FastAPI, Pandas, and related ML tools.  \n\n- **Katie Brown** – Principal NLP Researcher (15 years experience), native English speaker with German B2; expert in Python, PyTorch, JAX, Transformers, Hugging Face, Deepspeed, CUDA, AWS SageMaker, GCP Vertex AI, and advanced RL/quantization techniques.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "summarize-katie",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 1,
+  "tool_calls": 0,
+  "prompt_tokens": 1161,
+  "completion_tokens": 97,
+  "total_tokens": 1258,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 8.12,
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "portuguese-language",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 7.2,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "years-filter",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 5.51,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-hebrew",
+  "rep": 1,
+  "passed": true,
+  "reasons": [],
+  "llm_calls": 2,
+  "tool_calls": 1,
+  "prompt_tokens": 2371,
+  "completion_tokens": 384,
+  "total_tokens": 2755,
+  "estimated": false,
+  "requests": 4,
+  "seconds": 69.09,
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "answer": "No candidates in the dataset speak Hebrew.",
+  "error": null,
+  "extra": {
+   "tools": [
+    "search_candidates"
+   ],
+   "grounded": true
+  },
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-cobol",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 1,
+  "tool_calls": 0,
+  "prompt_tokens": 1160,
+  "completion_tokens": 126,
+  "total_tokens": 1286,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 8.97,
+  "model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "no-match-unknown-person",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 5.89,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices\nnvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free: LLMError: empty choices",
+  "extra": {},
+  "requested_model": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "python-skill",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm"
+  ],
+  "llm_calls": 0,
+  "tool_calls": 0,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "total_tokens": 0,
+  "estimated": false,
+  "requests": 2,
+  "seconds": 9.19,
+  "model": null,
+  "answer": "",
+  "error": "LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm",
+  "extra": {},
+  "requested_model": "qwen/qwen3.8-27b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "spanish-language",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm"
+  ],
+  "llm_calls": 1,
+  "tool_calls": 0,
+  "prompt_tokens": 1090,
+  "completion_tokens": 109,
+  "total_tokens": 1199,
+  "estimated": false,
+  "requests": 3,
+  "seconds": 37.44,
+  "model": "qwen/qwen3.8-27b:free",
+  "answer": "",
+  "error": "LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm",
+  "extra": {},
+  "requested_model": "qwen/qwen3.8-27b:free"
+ },
+ {
+  "arm": "tools",
+  "case_id": "senior-ml-fit",
+  "rep": 1,
+  "passed": false,
+  "reasons": [
+   "error: LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm"
+  ],
+  "llm_calls": 1,
+  "tool_calls": 0,
+  "prompt_tokens": 1097,
+  "completion_tokens": 187,
+  "total_tokens": 1284,
+  "estimated": false,
+  "requests": 4,
+  "seconds": 38.53,
+  "model": "qwen/qwen3.8-27b:free",
+  "answer": "",
+  "error": "LLMError: all models failed:\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3.8-27b:fr\nqwen/qwen3.8-27b:free: RateLimitError: Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'm",
+  "extra": {},
+  "requested_model": "qwen/qwen3.8-27b:free"
  }
 ]
