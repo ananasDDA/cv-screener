@@ -137,6 +137,24 @@ it happens, and takes a résumé by drag-and-drop to add it to your private libr
 |---|---|
 | ![Web chat](assets/web-chat.png) | ![Web chat deck](assets/web-chat-deck.png) |
 
+## Research
+
+[`research.ipynb`](research.ipynb) measures what the design buys. Every run is cached under
+`research/results/`, so the notebook renders without spending API requests.
+
+| Question | Result |
+|---|---|
+| Tools or every CV in the prompt | same pass rate, 26/27 against 25/27, at 3.0k against 11.0k tokens per question |
+| Cost at 200 résumés | about 2.7k tokens with tools, about 153k with everything in the prompt (projected) |
+| Free models on the nine eval cases | both large Nemotron models pass every run, the nano model returns empty answers in 6 of 9 |
+| A foreign QA benchmark, JobResQA | 8/12 against 7/12 correct, retrieval hits the right résumé 12 times out of 12 |
+| 2,483 real résumés from Kaggle | 71% category accuracy with no fine-tuning, a role query finds 73% relevant résumés in the top 10 and 90% with a lexical ranking added |
+
+The Kaggle part also runs as a public notebook,
+[What the job title is worth on the Resume Dataset](https://www.kaggle.com/code/oneananas/what-the-job-title-is-worth-on-the-resume-dataset). It compares against the popular
+notebooks on that dataset, shows how much of any result there rests on the job title, and tests
+the search that the product actually does.
+
 ## Example session
 
 ```

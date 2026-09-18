@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js')</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CV Screener — a local résumé search Claude can use</title>
@@ -10,7 +11,7 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://ananasdda.github.io/cv-screener/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css?v=5">
+<link rel="stylesheet" href="assets/site.css?v=7">
   <style>
     .card.stat .big { font-size: 26px; font-weight: 600; letter-spacing: -0.4px; color: var(--color-text-primary); margin: 2px 0 6px; }
     .card.stat .big span { color: var(--color-text-tertiary); font-weight: 400; font-size: 16px; margin: 0 4px; }
@@ -22,6 +23,31 @@
     .mini .b { fill: var(--color-border-3); }
     .mini .a-line { stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; }
     .mini .b-line { stroke: var(--color-text-tertiary); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    .mini .t { font-size: 9px; fill: var(--color-text-tertiary); }
+    .mini .b-dot { fill: var(--color-text-tertiary); }
+    .mini .limit { stroke: var(--color-border-3); stroke-width: 1; stroke-dasharray: 3 3; }
+    .kaggle-link { display: flex; align-items: center; gap: 18px; padding: 22px 24px; border: 1px solid var(--color-border-3);
+      border-radius: var(--radius-l); text-decoration: none; color: inherit; background: var(--color-surface);
+      transition: border-color .2s ease, transform .2s ease, background .2s ease; }
+    .kaggle-link:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+    .kl-mark { flex: none; width: 46px; height: 46px; border-radius: 12px; background: #20beff; color: #fff; font-weight: 700;
+      font-size: 26px; display: flex; align-items: center; justify-content: center; font-family: var(--font-text); }
+    .kl-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .kl-text strong { font-size: 18px; letter-spacing: -0.2px; color: var(--color-text-primary); }
+    .kl-text em { font-style: normal; font-size: var(--font-size-m); color: var(--color-text-secondary); }
+    .kl-arrow { margin-left: auto; font-size: 22px; color: var(--color-accent); transition: transform .2s ease; }
+    .kaggle-link:hover .kl-arrow { transform: translateX(4px); }
+    /* motion: sections rise in, bars grow, lines draw. Only when JS is on and motion is welcome. */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); transition-delay: var(--rd, 0s); }
+      .js .reveal.in { opacity: 1; transform: none; }
+      .js .mini .grow { transform-box: fill-box; transform-origin: left center; transform: scaleX(0); transition: transform .9s cubic-bezier(.2,.7,.2,1) .25s; }
+      .js .in .mini .grow { transform: scaleX(1); }
+      .js .mini .draw { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.3s ease .3s; }
+      .js .in .mini .draw { stroke-dashoffset: 0; }
+      .js .mini .pop, .js .mini text.v { opacity: 0; transition: opacity .4s ease var(--d, .9s); }
+      .js .in .mini .pop, .js .in .mini text.v { opacity: 1; }
+    }
     .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   </style>
 
@@ -80,8 +106,8 @@
           <h3>Same quality</h3>
           <p class="big">26/27 <span>vs</span> 25/27</p>
           <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a"/><text x="22" y="50" class="v on">96%</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b"/><text x="22" y="116" class="v">93%</text>
+  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a grow"/><text x="22" y="50" class="v on">96%</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b grow"/><text x="22" y="116" class="v">93%</text>
 </svg>
           <p>Pass rate on nine questions, three runs each. One run of difference is noise.</p>
         </article>
@@ -89,20 +115,24 @@
           <h3>3.7× fewer tokens</h3>
           <p class="big">3.0k <span>vs</span> 11.0k</p>
           <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a"/><text x="85" y="50" class="v">3.0k</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b"/><text x="22" y="116" class="v">11.0k</text>
+  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a grow"/><text x="85" y="50" class="v">3.0k</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b grow"/><text x="22" y="116" class="v">11.0k</text>
 </svg>
           <p>Median tokens per question, every call of the agent loop counted.</p>
         </article>
         <article class="card stat">
           <h3>Flat as the collection grows</h3>
-          <p class="big">2.7k <span>vs</span> 153k</p>
+          <p class="big">2.7k <span>vs</span> 1.9M</p>
           <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="16" class="k">tokens per question, 14 → 200 résumés</text>
-  <polyline points="14,124 232,48" class="b-line"/><text x="204" y="38" class="v">153k</text>
-  <line x1="14" y1="126" x2="232" y2="126" class="a-line"/><text x="200" y="144" class="v">2.7k, flat</text>
+  <text x="16" y="14" class="k">tokens per question, log scale</text>
+  <line x1="16" y1="67.0" x2="226" y2="67.0" class="limit"/><text x="226" y="64.0" text-anchor="end" class="t">128k context</text><line x1="16" y1="40.3" x2="226" y2="40.3" class="limit"/><text x="60" y="37.3" text-anchor="start" class="t">1M context</text>
+  <polyline points="17.2,99.0 20.2,82.6 24.4,73.6 32.8,64.7 58.0,52.8 100.0,43.8 142.0,38.5 184.0,34.8 226.0,31.9" class="b-line draw" pathLength="1"/><circle cx="17.2" cy="99.0" r="2.6" class="b-dot pop" style="--d:0.90s"/><circle cx="20.2" cy="82.6" r="2.6" class="b-dot pop" style="--d:0.98s"/><circle cx="24.4" cy="73.6" r="2.6" class="b-dot pop" style="--d:1.06s"/><circle cx="32.8" cy="64.7" r="2.6" class="b-dot pop" style="--d:1.14s"/><circle cx="58.0" cy="52.8" r="2.6" class="b-dot pop" style="--d:1.22s"/><circle cx="100.0" cy="43.8" r="2.6" class="b-dot pop" style="--d:1.30s"/><circle cx="142.0" cy="38.5" r="2.6" class="b-dot pop" style="--d:1.38s"/><circle cx="184.0" cy="34.8" r="2.6" class="b-dot pop" style="--d:1.46s"/><circle cx="226.0" cy="31.9" r="2.6" class="b-dot pop" style="--d:1.54s"/>
+  <text x="25.2" y="93.0" text-anchor="start" class="v pop" style="--d:1.5s">11k</text><text x="38.8" y="76.7" text-anchor="start" class="v pop" style="--d:1.5s">153k</text><text x="100.0" y="57.8" text-anchor="middle" class="v pop" style="--d:1.5s">764k</text><text x="224.0" y="24.9" text-anchor="end" class="v pop" style="--d:1.5s">1.9M</text>
+  <line x1="16" y1="117.0" x2="226" y2="117.0" class="a-line draw" pathLength="1"/><text x="226" y="130.0" text-anchor="end" class="v pop" style="--d:1.5s">2.7k with tools</text>
+  <text x="16" y="147" class="t">14 résumés</text><text x="226" y="147" text-anchor="end" class="t">2,500</text>
 </svg>
-          <p>At 200 résumés. The tools return top-k; the prompt grows with every document (projected).</p>
+          <p>At 2,500 résumés. A search returns the top few, so its cost stays put. Every CV in the prompt stops
+            fitting a 128k window near 170 résumés. Projected from the measured 14.</p>
         </article>
       </div>
     </div>
@@ -357,6 +387,24 @@
       </div>
     </div>
   </section>
+  <section id="kaggle">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Field test</p>
+        <h2>Tried on 2,483 real résumés</h2>
+        <p class="lede">The project is built on 14 synthetic CVs, so I took its embedder to the public Kaggle Resume Dataset.
+          No fine-tuning and no LLM calls. It reaches 71% category accuracy where the popular notebooks report 53 to 68%.
+          A typed role brings back 73% right résumés in the top ten, and 90% once a plain word match joins the ranking.</p>
+      </div>
+      <a class="kaggle-link" href="https://www.kaggle.com/code/oneananas/what-the-job-title-is-worth-on-the-resume-dataset">
+        <span class="kl-mark" aria-hidden="true">k</span>
+        <span class="kl-text"><strong>What the job title is worth on the Resume Dataset</strong>
+          <em>Notebook on Kaggle. How much of any result there rests on the first line of a résumé, and search instead of classification.</em></span>
+        <span class="kl-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
 
 </main>
 
@@ -373,5 +421,19 @@
 
 <script src="assets/deck.js?v=5"></script>
 <script src="assets/site.js?v=5"></script>
+<script>
+(function () {
+  var targets = document.querySelectorAll("section .section-head, section .card, .table-wrap, .stage, .mock, .code, .note, .kaggle-link, .steps > *");
+  targets.forEach(function (el, i) { el.classList.add("reveal"); });
+  document.querySelectorAll(".grid, .steps").forEach(function (g) {
+    [].forEach.call(g.children, function (c, i) { c.style.setProperty("--rd", (i * 0.09) + "s"); });
+  });
+  if (!("IntersectionObserver" in window)) { targets.forEach(function (el) { el.classList.add("in"); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
+  targets.forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
