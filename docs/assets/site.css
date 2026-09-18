@@ -369,9 +369,20 @@ footer .spacer { margin-left: auto; }
 }
 
 /* ---------- measured section ---------- */
-.bars { display: grid; gap: 8px; margin: 12px 0 14px; }
-.bar { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; }
-.bar span { display: block; height: 10px; border-radius: 5px; background: var(--color-accent); }
-.bar:last-child span { background: var(--color-border-3); }
-.bar em { font-style: normal; font-size: var(--font-size-s); color: var(--color-text-secondary); white-space: nowrap; }
+.charts { display: grid; gap: 16px; }
+.chart-card { margin: 0; background: var(--color-background); border: 1px solid var(--color-border-2); border-radius: var(--radius-l); padding: 20px 20px 14px; }
+.chart-card figcaption { margin-top: 10px; font-size: var(--font-size-s); color: var(--color-text-secondary); }
+.chart { width: 100%; height: auto; display: block; font-family: var(--font-text); }
+.chart .ttl { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+.chart .lbl { font-size: 11px; fill: var(--color-text-secondary); }
+.chart .val { font-size: 10px; font-family: var(--font-mono); fill: var(--color-text-secondary); }
+.chart .tick { font-size: 10px; font-family: var(--font-mono); fill: var(--color-text-tertiary); }
+.chart .grid { stroke: var(--color-border-2); stroke-width: 1; }
+.chart .a { fill: var(--color-accent); }
+.chart .b { fill: var(--color-border-3); }
+.chart .a-line { stroke: var(--color-accent); stroke-width: 2.5; }
+.chart .b-line { stroke: var(--color-text-tertiary); stroke-width: 2; fill: none; }
+.chart .b-dot { fill: var(--color-text-tertiary); }
+.chart .limit { stroke: var(--color-text-tertiary); stroke-width: 1; stroke-dasharray: 4 4; }
 .note.small { margin-top: 20px; font-size: var(--font-size-s); color: var(--color-text-tertiary); max-width: 760px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
