@@ -33,9 +33,9 @@
   <div class="shell">
     <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="24" height="24">CV Screener</a>
     <nav aria-label="Main">
+      <a class="hide-narrow" href="#measured">Measured</a>
       <a class="hide-narrow" href="#tools">Tools</a>
       <a class="hide-narrow" href="#showcase">Widgets</a>
-      <a class="hide-narrow" href="#measured">Measured</a>
       <a href="#install">Install</a>
       <a href="https://github.com/ananasDDA/cv-screener">GitHub</a>
       <button class="toggle" id="theme-toggle" type="button" aria-label="Switch theme">
@@ -63,6 +63,48 @@
         <a class="btn" href="https://github.com/ananasDDA/cv-screener">View on GitHub</a>
       </div>
       <p class="meta"><span>Python 3.12</span><span>ChromaDB</span><span>bge-small via fastembed</span><span>stdio MCP</span></p>
+    </div>
+  </section>
+
+  <section id="measured">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Measured</p>
+        <h2>Same answers, a fraction of the tokens</h2>
+        <p class="lede">The same model answered the same nine questions two ways: searching through tools, or
+          with every CV pasted into the prompt. Three runs each; details in
+          <a href="https://github.com/ananasDDA/cv-screener/blob/main/research.ipynb">research.ipynb</a>.</p>
+      </div>
+      <div class="grid stats">
+        <article class="card stat">
+          <h3>Same quality</h3>
+          <p class="big">26/27 <span>vs</span> 25/27</p>
+          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
+  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a"/><text x="22" y="50" class="v on">96%</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b"/><text x="22" y="116" class="v">93%</text>
+</svg>
+          <p>Pass rate on nine questions, three runs each. One run of difference is noise.</p>
+        </article>
+        <article class="card stat">
+          <h3>3.7× fewer tokens</h3>
+          <p class="big">3.0k <span>vs</span> 11.0k</p>
+          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
+  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a"/><text x="85" y="50" class="v">3.0k</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b"/><text x="22" y="116" class="v">11.0k</text>
+</svg>
+          <p>Median tokens per question, every call of the agent loop counted.</p>
+        </article>
+        <article class="card stat">
+          <h3>Flat as the collection grows</h3>
+          <p class="big">2.7k <span>vs</span> 153k</p>
+          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
+  <text x="14" y="16" class="k">tokens per question, 14 → 200 résumés</text>
+  <polyline points="14,124 232,48" class="b-line"/><text x="204" y="38" class="v">153k</text>
+  <line x1="14" y1="126" x2="232" y2="126" class="a-line"/><text x="200" y="144" class="v">2.7k, flat</text>
+</svg>
+          <p>At 200 résumés. The tools return top-k; the prompt grows with every document (projected).</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -223,48 +265,6 @@
         </div>
         <p class="caption">A static copy of the results widget. A language filter alone has no relevance score,
           so the search orders the hits by proficiency first, then by years of experience.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="measured">
-    <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">Measured</p>
-        <h2>Same answers, a fraction of the tokens</h2>
-        <p class="lede">The same model answered the same nine questions two ways: searching through tools, or
-          with every CV pasted into the prompt. Three runs each; details in
-          <a href="https://github.com/ananasDDA/cv-screener/blob/main/research.ipynb">research.ipynb</a>.</p>
-      </div>
-      <div class="grid stats">
-        <article class="card stat">
-          <h3>Same quality</h3>
-          <p class="big">26/27 <span>vs</span> 25/27</p>
-          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a"/><text x="22" y="50" class="v on">96%</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b"/><text x="22" y="116" class="v">93%</text>
-</svg>
-          <p>Pass rate on nine questions, three runs each. One run of difference is noise.</p>
-        </article>
-        <article class="card stat">
-          <h3>3.7× fewer tokens</h3>
-          <p class="big">3.0k <span>vs</span> 11.0k</p>
-          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a"/><text x="85" y="50" class="v">3.0k</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b"/><text x="22" y="116" class="v">11.0k</text>
-</svg>
-          <p>Median tokens per question, every call of the agent loop counted.</p>
-        </article>
-        <article class="card stat">
-          <h3>Flat as the collection grows</h3>
-          <p class="big">2.7k <span>vs</span> 153k</p>
-          <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
-  <text x="14" y="16" class="k">tokens per question, 14 → 200 résumés</text>
-  <polyline points="14,124 232,48" class="b-line"/><text x="204" y="38" class="v">153k</text>
-  <line x1="14" y1="126" x2="232" y2="126" class="a-line"/><text x="200" y="144" class="v">2.7k, flat</text>
-</svg>
-          <p>At 200 résumés. The tools return top-k; the prompt grows with every document (projected).</p>
-        </article>
       </div>
     </div>
   </section>
