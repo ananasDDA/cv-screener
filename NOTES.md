@@ -9,15 +9,25 @@ The core of the task (dataset, index, agent, evals, tests, docs) was built first
 its own. Everything after that — MCP server with widgets, landing page, web chat, research notebook —
 is optional work on top, done after the core and outside the three-hour frame, as the task allows.
 
-## Not done
+## Not done / reduced
 
-- The résumé upload → `add_candidate` round trip in the web chat is covered by offline tests but was
-  not exercised against a real model: the free-tier daily quota ran out during development.
-- Research notebook: the free-model leaderboard measured 3 of 5 models; Gemma 4 and Qwen 3.8 were
-  throttled by their providers on every request and are reported as "not measured". JobResQA ran at
-  reduced size (10 résumés, 12 questions, one repetition per arm).
-- No LICENSE file yet, so the landing page claims none.
+- Research notebook, reduced by the provider's daily quota: the free-model leaderboard measured 3 of
+  5 models (Gemma 4 and Qwen 3.8 were throttled by their providers on every request and are shown as
+  "not measured"); JobResQA ran at 10 résumés and 12 questions with one repetition per arm, so its
+  one-answer difference is noise, as the notebook says.
 - Public deployment of the web chat is intentionally out of scope: the product is local-first.
+- The MCP server is stdio-only. A remote connector for claude.ai would need an HTTPS host and was
+  deliberately not built, so that nothing leaves the user's machine.
+
+## Verified by hand, beyond the tests
+
+- Install from GitHub without a clone (`uvx --from git+…`) in an empty directory: ~30 s to first
+  answer, index built in `~/.cv-screener`.
+- MCP widgets in Claude Desktop: results table, profile card with photo, coverflow deck, "Ask" and
+  "Profile" buttons calling back into the server.
+- Web chat résumé upload → `add_candidate` on the real model: a plain-text résumé was extracted with
+  all fields correct (name, seniority, years, skills, CEFR levels, dates, degree), stored in
+  `~/.cv-screener/candidates`, and found by a skills search right after.
 
 ## Known issues
 
@@ -122,13 +132,15 @@ Run 6, 2026-09-18, after the `senior-ml-fit` fix and with nano removed from the 
 9/9 passed
 ```
 
-Per-answer details of the last run are in `evals/last_run.json`.
+`evals/run.py --json <file>` writes per-answer details; the file is git-ignored, so re-run to get it.
 
 ## What I would do next
 
-1. Drop in the generated photos and re-render.
-2. A `min_language_level` filter on top of the numeric level metadata ("Spanish B2+").
-3. Run the evals 5–10 times per model and report pass rates, not a single run.
-4. GitHub Actions running `make check` on every push (no key needed).
-5. Expose the three index functions as an MCP server; the boundary is already there.
-6. A stricter headline prompt and a regenerated dataset.
+1. A `min_language_level` filter on top of the numeric level metadata ("Spanish B2 and above").
+2. A stricter headline prompt and a regenerated dataset (some headlines are a sentence long).
+3. Finish the research at full size on a fresh quota day: JobResQA at 13 résumés / 21 questions with
+   two repetitions, and the two throttled models on the leaderboard.
+4. A distance cutoff option for semantic-only search, so "nobody matches" can also come from the index.
+5. A one-click `.mcpb` installer for Claude Desktop on top of the `uvx` command.
+6. Keep the Claude Desktop tool set stable: every change to a tool's definition makes Desktop ask the
+   user to enable the tools again.
