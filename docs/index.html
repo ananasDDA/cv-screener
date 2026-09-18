@@ -26,7 +26,25 @@
     .mini .t { font-size: 9px; fill: var(--color-text-tertiary); }
     .mini .b-dot { fill: var(--color-text-tertiary); }
     .mini .limit { stroke: var(--color-border-3); stroke-width: 1; stroke-dasharray: 3 3; }
-    .mock.chat { max-width: 820px; margin-left: auto; margin-right: auto; }
+    .mock.chat { max-width: none; }
+    .msg.claude { max-width: 900px; margin-right: auto; }
+    .msg.user .bubble { margin-right: 0; }
+    .mock.chat tr.detail td { white-space: normal; padding: 0; background: var(--color-surface); }
+    .mock.chat .profile { padding: 18px 20px; }
+    .mock.chat .profile .head { display: flex; gap: 14px; align-items: flex-start; }
+    .mock.chat .profile .photo { width: 64px; height: 64px; border-radius: var(--radius-m); object-fit: cover; flex: none; }
+    .mock.chat .profile .pname { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
+    .mock.chat .profile .phead { color: var(--color-accent); font-weight: 500; }
+    .mock.chat .profile .small { font-size: var(--font-size-s); color: var(--color-text-secondary); }
+    .mock.chat .profile .summary { margin: 12px 0 4px; }
+    .mock.chat .profile h4 { margin: 14px 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--color-text-secondary); }
+    .mock.chat .profile .job { margin-bottom: 10px; }
+    .mock.chat .profile .job-head { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; }
+    .mock.chat .profile .job-head .when { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary); }
+    .mock.chat .profile ul { margin: 4px 0 0; padding-left: 18px; }
+    .mock.chat .profile li { margin-bottom: 2px; font-size: var(--font-size-s); color: var(--color-text-secondary); }
+    .mock.chat .profile .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 640px) { .mock.chat .profile .cols { grid-template-columns: 1fr; } }
     .mock.chat td { white-space: nowrap; }
     .mock.chat td:first-child { white-space: normal; }
     .msg { display: flex; flex-direction: column; margin-bottom: 18px; }
@@ -251,7 +269,7 @@
                 <td class="hide-narrow"><span class="chip">senior</span><span class="chip">mobile</span></td>
                 <td class="hide-narrow muted">Argentina</td>
                 <td>9</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+                <td class="actions"><button class="btn small" type="button" data-profile="p07-juan-cruz-martinez" aria-expanded="false">Profile</button><a class="btn small primary" href="#install">Ask</a></td>
               </tr>
               <tr>
                 <td><div class="who"><span class="avatar" aria-hidden="true">RB</span>
@@ -260,7 +278,7 @@
                 <td class="hide-narrow"><span class="chip">senior</span><span class="chip">ml</span></td>
                 <td class="hide-narrow muted">Spain</td>
                 <td>8</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+                <td class="actions"><button class="btn small" type="button" data-profile="p02-rosalinda-barral" aria-expanded="false">Profile</button><a class="btn small primary" href="#install">Ask</a></td>
               </tr>
               <tr>
                 <td><div class="who"><span class="avatar" aria-hidden="true">MH</span>
@@ -269,7 +287,7 @@
                 <td class="hide-narrow"><span class="chip">middle</span><span class="chip">security</span></td>
                 <td class="hide-narrow muted">Mexico</td>
                 <td>5</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
+                <td class="actions"><button class="btn small" type="button" data-profile="p14-marisela-herrera" aria-expanded="false">Profile</button><a class="btn small primary" href="#install">Ask</a></td>
               </tr>
               </tbody>
             </table>
@@ -415,6 +433,39 @@
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
   }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
   targets.forEach(function (el) { io.observe(el); });
+})();
+</script>
+<script src="assets/profiles.js?v=1"></script>
+<script>
+(function () {
+  var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var month = function (v) { if (!v) return "Present"; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, 1).toLocaleString("en", { month: "short", year: "numeric" }); };
+  function profileHtml(p) {
+    var exp = p.experience.map(function (e) {
+      return '<div class="job"><div class="job-head"><b>' + esc(e.title) + '</b><span class="small">' + esc(e.company) + ", " + esc(e.location) +
+        '</span><span class="when">' + month(e.start) + " – " + month(e.end) + "</span></div><ul>" +
+        e.highlights.slice(0, 3).map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") + "</ul></div>";
+    }).join("");
+    var edu = p.education.map(function (e) { return "<div><b>" + esc(e.degree) + " " + esc(e.field) + '</b> <span class="small">' + esc(e.institution) + ", " + e.start_year + "–" + e.end_year + "</span></div>"; }).join("");
+    var langs = p.languages.map(function (l) { return '<span class="chip">' + esc(l.name) + " <b>" + esc(l.level) + "</b></span>"; }).join("");
+    var certs = (p.certifications || []).map(function (c) { return "<li>" + esc(c) + "</li>"; }).join("");
+    return '<div class="profile"><div class="head"><img class="photo" alt="" src="assets/photos/' + esc(p.id) + '.jpg"><div>' +
+      '<div class="pname">' + esc(p.full_name) + '</div><div class="phead">' + esc(p.headline) + '</div><div class="small">' +
+      esc(p.seniority) + " · " + esc(p.role_family) + " · " + p.years_experience + " yrs · " + esc(p.city) + ", " + esc(p.country) + "</div></div></div>" +
+      '<p class="summary">' + esc(p.summary) + "</p><h4>Skills</h4>" + p.skills.map(function (k) { return '<span class="chip accent">' + esc(k) + "</span>"; }).join("") +
+      "<h4>Experience</h4>" + exp + '<div class="cols"><div><h4>Education</h4>' + edu + "</div><div><h4>Languages</h4>" + langs +
+      (certs ? "<h4>Certifications</h4><ul>" + certs + "</ul>" : "") + "</div></div></div>";
+  }
+  document.querySelectorAll("[data-profile]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var row = btn.closest("tr"), next = row.nextElementSibling;
+      if (next && next.classList.contains("detail")) { next.remove(); btn.textContent = "Profile"; btn.setAttribute("aria-expanded", "false"); return; }
+      var p = (window.CV_PROFILES || {})[btn.dataset.profile]; if (!p) return;
+      var tr = document.createElement("tr"); tr.className = "detail";
+      var td = document.createElement("td"); td.colSpan = row.children.length; td.innerHTML = profileHtml(p);
+      tr.appendChild(td); row.after(tr); btn.textContent = "Hide"; btn.setAttribute("aria-expanded", "true");
+    });
+  });
 })();
 </script>
 </body>
