@@ -55,11 +55,13 @@ def test_ensure_index_builds_from_json_when_empty(tmp_path: Path, sample_candida
         (cdir / f"{c.id}.json").write_text(c.model_dump_json())
     idx = CandidateIndex(path=tmp_path / "chroma", embedder=HashEmbedder())
     assert idx.count() == 0
-    ensure_index(idx, cdir)
+    ensure_index(idx, cdir, user_dir=tmp_path / "no-user-library")
     assert idx.count() == 3
     with pytest.raises(RuntimeError):
         ensure_index(
-            CandidateIndex(path=tmp_path / "empty", embedder=HashEmbedder()), tmp_path / "none"
+            CandidateIndex(path=tmp_path / "empty", embedder=HashEmbedder()),
+            tmp_path / "none",
+            user_dir=tmp_path / "no-user-library",
         )
 
 
