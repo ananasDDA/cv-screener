@@ -369,20 +369,16 @@ footer .spacer { margin-left: auto; }
 }
 
 /* ---------- measured section ---------- */
-.charts { display: grid; gap: 16px; }
-.chart-card { margin: 0; background: var(--color-background); border: 1px solid var(--color-border-2); border-radius: var(--radius-l); padding: 20px 20px 14px; }
-.chart-card figcaption { margin-top: 10px; font-size: var(--font-size-s); color: var(--color-text-secondary); }
-.chart { width: 100%; height: auto; display: block; font-family: var(--font-text); }
-.chart .ttl { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
-.chart .lbl { font-size: 11px; fill: var(--color-text-secondary); }
-.chart .val { font-size: 10px; font-family: var(--font-mono); fill: var(--color-text-secondary); }
-.chart .tick { font-size: 10px; font-family: var(--font-mono); fill: var(--color-text-tertiary); }
-.chart .grid { stroke: var(--color-border-2); stroke-width: 1; }
-.chart .a { fill: var(--color-accent); }
-.chart .b { fill: var(--color-border-3); }
-.chart .a-line { stroke: var(--color-accent); stroke-width: 2.5; }
-.chart .b-line { stroke: var(--color-text-tertiary); stroke-width: 2; fill: none; }
-.chart .b-dot { fill: var(--color-text-tertiary); }
-.chart .limit { stroke: var(--color-text-tertiary); stroke-width: 1; stroke-dasharray: 4 4; }
+.card.stat .big { font-size: 26px; font-weight: 600; letter-spacing: -0.4px; color: var(--color-text-primary); margin: 2px 0 6px; }
+.card.stat .big span { color: var(--color-text-tertiary); font-weight: 400; font-size: 16px; margin: 0 4px; }
+.mini { width: 100%; height: auto; display: block; margin: 4px 0 8px; font-family: var(--font-text); }
+.mini .k { font-size: 11px; fill: var(--color-text-secondary); }
+.mini .v { font-size: 12px; font-weight: 600; fill: var(--color-text-primary); }
+.mini .v.on { fill: var(--color-on-accent); }
+.mini .b + .v.on, .mini rect.b ~ text.v.on { fill: var(--color-text-primary); }
+.mini .a { fill: var(--color-accent); }
+.mini .b { fill: var(--color-border-3); }
+.mini .a-line { stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; }
+.mini .b-line { stroke: var(--color-text-tertiary); stroke-width: 2.5; fill: none; stroke-linecap: round; }
 .note.small { margin-top: 20px; font-size: var(--font-size-s); color: var(--color-text-tertiary); max-width: 760px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
