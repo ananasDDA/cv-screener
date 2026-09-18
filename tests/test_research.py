@@ -300,3 +300,29 @@ def test_history_marks_unrecorded_tool_counts_rather_than_zero():
     # runs 3-5 are summarised in NOTES.md: unknown tool counts are None, never a made-up 0
     unrecorded = [r for r in history.records() if r["run"] >= 3 and r["case_id"] != "python-skill"]
     assert unrecorded and all(r["tool_calls"] is None for r in unrecorded)
+
+
+def test_kaggle_text_helpers_strip_the_title_and_mask_short_labels():
+    from research.kaggle_resume import chunks, strip_leak
+
+    text = "HR ADMINISTRATOR          Summary   Runs hr operations and HR policies for 200 people"
+    cleaned = strip_leak(text, "HR")
+    assert "administrator" not in cleaned.lower() and " hr " not in f" {cleaned.lower()} "
+    assert "policies" in cleaned
+    masked = strip_leak("SALES LEAD      Summary   Salesforce admin, sales targets", "SALES")
+    assert "sales" not in masked.lower()
+    assert len(chunks("x" * 10_000)) == 3 and chunks("") == [""]
+
+
+def test_kaggle_knn_and_neighbour_precision_on_toy_vectors():
+    import numpy as np
+
+    from research.kaggle_resume import _rrf, knn_predict, neighbour_precision
+
+    x = np.array([[1, 0], [0.9, 0.1], [0, 1], [0.1, 0.9]], dtype=np.float32)
+    x /= np.linalg.norm(x, axis=1, keepdims=True)
+    y = ["a", "a", "b", "b"]
+    assert knn_predict(x, y, x[[0, 2]], k=2) == ["a", "b"]
+    assert neighbour_precision(x, y, k=1) == 1.0
+    fused = _rrf(np.array([[3.0, 2.0, 1.0]]), np.array([[1.0, 2.0, 3.0]]))
+    assert fused[0, 0] == fused[0, 2] and fused[0, 1] < fused[0, 0] * 1.01

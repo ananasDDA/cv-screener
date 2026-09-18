@@ -39,6 +39,7 @@ dev = [
     "pytest>=8",
     "pytest-asyncio>=1.4.0",
     "ruff>=0.6",
+    "scikit-learn>=1.9.1",
 ]
 
 [build-system]
@@ -68,7 +69,9 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 "src/cv_screener/agent/loop.py" = ["E501"]
 "src/cv_screener/agent/tools.py" = ["E501"]
 "src/cv_screener/mcp_server.py" = ["E501"]
-"tests/test_mcp.py" = ["E501"]  # tool descriptions are prose for the model
+"tests/test_mcp.py" = ["E501"]
+"research/plots.py" = ["E501"]
+"research/kaggle_resume.py" = ["E501"]  # tool descriptions are prose for the model
 "src/cv_screener/cli.py" = ["B008"]  # typer.Option in defaults is the Typer idiom
 
 [tool.pytest.ini_options]

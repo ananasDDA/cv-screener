@@ -1,0 +1,176 @@
+{
+  "source": "https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset",
+  "n": 2483,
+  "categories": 24,
+  "majority_baseline": 0.0483,
+  "category_sizes": {
+    "ACCOUNTANT": 118,
+    "ADVOCATE": 118,
+    "AGRICULTURE": 63,
+    "APPAREL": 97,
+    "ARTS": 103,
+    "AUTOMOBILE": 36,
+    "AVIATION": 117,
+    "BANKING": 115,
+    "BPO": 22,
+    "BUSINESS-DEVELOPMENT": 119,
+    "CHEF": 118,
+    "CONSTRUCTION": 112,
+    "CONSULTANT": 115,
+    "DESIGNER": 107,
+    "DIGITAL-MEDIA": 96,
+    "ENGINEERING": 118,
+    "FINANCE": 118,
+    "FITNESS": 117,
+    "HEALTHCARE": 115,
+    "HR": 110,
+    "INFORMATION-TECHNOLOGY": 120,
+    "PUBLIC-RELATIONS": 111,
+    "SALES": 116,
+    "TEACHER": 102
+  },
+  "competitors": [
+    {
+      "who": "Kaggle \u00b7 RF on word counts (110 votes)",
+      "accuracy": 0.53,
+      "url": "https://www.kaggle.com/code/sanchukanirupama/rf-based-multiclass-resume-classifier"
+    },
+    {
+      "who": "Kaggle \u00b7 TF-IDF(800) + k-NN",
+      "accuracy": 0.558,
+      "url": "https://www.kaggle.com/code/raselmeya/resume-categorization-with-ml-and-dl"
+    },
+    {
+      "who": "Kaggle \u00b7 TF-IDF(800) + logistic regression",
+      "accuracy": 0.634,
+      "url": "https://www.kaggle.com/code/raselmeya/resume-categorization-with-ml-and-dl"
+    },
+    {
+      "who": "Kaggle \u00b7 TF-IDF(800) + random forest",
+      "accuracy": 0.681,
+      "url": "https://www.kaggle.com/code/raselmeya/resume-categorization-with-ml-and-dl"
+    },
+    {
+      "who": "Blog \u00b7 TF-IDF + linear SVM",
+      "accuracy": 0.8715,
+      "url": "https://marcocamilo.com/portfolio/resume-classifier.html"
+    },
+    {
+      "who": "Blog \u00b7 fine-tuned BERT",
+      "accuracy": 0.9167,
+      "url": "https://marcocamilo.com/portfolio/resume-classifier.html"
+    }
+  ],
+  "variants": {
+    "full text": {
+      "classification": {
+        "knn": {
+          "accuracy": 0.5993,
+          "macro_f1": 0.552,
+          "accuracy_std": 0.024
+        },
+        "embed_lr": {
+          "accuracy": 0.7064,
+          "macro_f1": 0.6595,
+          "accuracy_std": 0.0159
+        },
+        "tfidf_lr": {
+          "accuracy": 0.6553,
+          "macro_f1": 0.6014,
+          "accuracy_std": 0.0115
+        }
+      },
+      "same_category_at_5": 0.4851,
+      "query_precision_at_10": 0.7292,
+      "query_precision_by_category": {
+        "ACCOUNTANT": 0.9,
+        "ADVOCATE": 0.7,
+        "AGRICULTURE": 0.8,
+        "APPAREL": 0.4,
+        "ARTS": 0.5,
+        "AUTOMOBILE": 0.2,
+        "AVIATION": 1.0,
+        "BANKING": 0.8,
+        "BPO": 0.3,
+        "BUSINESS-DEVELOPMENT": 0.3,
+        "CHEF": 1.0,
+        "CONSTRUCTION": 1.0,
+        "CONSULTANT": 0.3,
+        "DESIGNER": 1.0,
+        "DIGITAL-MEDIA": 0.7,
+        "ENGINEERING": 0.8,
+        "FINANCE": 0.8,
+        "FITNESS": 0.8,
+        "HEALTHCARE": 0.9,
+        "HR": 1.0,
+        "INFORMATION-TECHNOLOGY": 0.7,
+        "PUBLIC-RELATIONS": 1.0,
+        "SALES": 0.8,
+        "TEACHER": 0.8
+      },
+      "hypothesis": {
+        "fusion_accuracy": 0.7084,
+        "fusion_macro_f1": 0.6588,
+        "query_p10_prefix": 0.7375,
+        "query_p10_lexical_only": 0.8958,
+        "query_p10_rank_fusion": 0.9,
+        "query_p10_score_fusion": 0.8958
+      }
+    },
+    "title removed, category words masked": {
+      "classification": {
+        "knn": {
+          "accuracy": 0.4761,
+          "macro_f1": 0.431,
+          "accuracy_std": 0.0176
+        },
+        "embed_lr": {
+          "accuracy": 0.5377,
+          "macro_f1": 0.4977,
+          "accuracy_std": 0.0197
+        },
+        "tfidf_lr": {
+          "accuracy": 0.5964,
+          "macro_f1": 0.5452,
+          "accuracy_std": 0.0147
+        }
+      },
+      "same_category_at_5": 0.3739,
+      "query_precision_at_10": 0.4167,
+      "query_precision_by_category": {
+        "ACCOUNTANT": 0.6,
+        "ADVOCATE": 0.3,
+        "AGRICULTURE": 0.7,
+        "APPAREL": 0.2,
+        "ARTS": 0.4,
+        "AUTOMOBILE": 0.1,
+        "AVIATION": 0.9,
+        "BANKING": 0.3,
+        "BPO": 0.2,
+        "BUSINESS-DEVELOPMENT": 0.0,
+        "CHEF": 0.9,
+        "CONSTRUCTION": 0.5,
+        "CONSULTANT": 0.1,
+        "DESIGNER": 0.9,
+        "DIGITAL-MEDIA": 0.2,
+        "ENGINEERING": 0.2,
+        "FINANCE": 0.2,
+        "FITNESS": 0.8,
+        "HEALTHCARE": 0.4,
+        "HR": 0.9,
+        "INFORMATION-TECHNOLOGY": 0.4,
+        "PUBLIC-RELATIONS": 0.4,
+        "SALES": 0.0,
+        "TEACHER": 0.4
+      },
+      "hypothesis": {
+        "fusion_accuracy": 0.5811,
+        "fusion_macro_f1": 0.5381,
+        "query_p10_prefix": 0.4125,
+        "query_p10_lexical_only": 0.0,
+        "query_p10_rank_fusion": 0.025,
+        "query_p10_score_fusion": 0.125
+      }
+    }
+  }
+}

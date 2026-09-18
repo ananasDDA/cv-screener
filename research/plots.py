@@ -263,3 +263,119 @@ def external_arms(rows: list[dict[str, Any]]) -> Figure:
     axes[1].set_title("median tokens per question", color=INK, fontsize=11, loc="left")
     plt.tight_layout()
     return fig
+
+
+# ---- Kaggle Resume Dataset -------------------------------------------------------------------
+OURS, OTHERS, SOFT = "#2a78d6", "#b9bec6", "#a9c8ee"
+WITH_TITLE = "full text"
+NO_TITLE = "title removed, category words masked"
+
+
+def _hbars(
+    ax: Any, labels: list[str], values: list[float], colors: list[str], fmt="{:.0%}"
+) -> None:
+    y = range(len(labels))
+    ax.barh(list(y), values, color=colors, height=0.62)
+    ax.set_yticks(list(y), labels, fontsize=9, color=INK)
+    ax.set_xlim(0, 1.08)
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.grid(axis="x", color="#00000012", linewidth=1)
+    ax.set_axisbelow(True)
+    for i, v in enumerate(values):
+        ax.text(v + 0.012, i, fmt.format(v), va="center", fontsize=9, color=INK)
+
+
+def kaggle_vs_others(res: dict[str, Any]) -> Figure:
+    ours = res["variants"][WITH_TITLE]["classification"]
+    rows = [(c["who"], c["accuracy"], OTHERS) for c in res["competitors"]]
+    rows += [
+        ("This project · bge-small + k-NN, nothing trained", ours["knn"]["accuracy"], SOFT),
+        ("This project · bge-small + logistic regression", ours["embed_lr"]["accuracy"], OURS),
+    ]
+    rows.sort(key=lambda r: r[1])
+    fig, ax = _canvas(8.6, 4.2)
+    _hbars(ax, [r[0] for r in rows], [r[1] for r in rows], [r[2] for r in rows])
+    _finish(
+        ax,
+        "Category accuracy on the Kaggle Resume Dataset",
+        "24 classes, title kept; others as reported by their authors",
+    )
+    return fig
+
+
+def kaggle_title_effect(res: dict[str, Any]) -> Figure:
+    names = [
+        ("knn", "bge-small + k-NN"),
+        ("embed_lr", "bge-small + log. regression"),
+        ("tfidf_lr", "TF-IDF + log. regression"),
+    ]
+    fig, ax = _canvas(8.6, 3.2)
+    h = 0.36
+    for j, (variant, color, label) in enumerate(
+        [(WITH_TITLE, OURS, "with the job title"), (NO_TITLE, SOFT, "title removed")]
+    ):
+        vals = [res["variants"][variant]["classification"][k]["accuracy"] for k, _ in names]
+        ys = [i + (0.5 - j) * h for i in range(len(names))]
+        ax.barh(ys, vals, height=h, color=color, label=label)
+        for yy, v in zip(ys, vals, strict=True):
+            ax.text(v + 0.012, yy, f"{v:.0%}", va="center", fontsize=9, color=INK)
+    ax.set_yticks(range(len(names)), [n for _, n in names], fontsize=9, color=INK)
+    ax.set_xlim(0, 1.0)
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
+    ax.grid(axis="x", color="#00000012")
+    ax.set_axisbelow(True)
+    _legend_below(ax)
+    _finish(ax, "What the job title is worth", "5-fold cross-validation, chance level about 4%")
+    return fig
+
+
+def kaggle_query_by_category(res: dict[str, Any]) -> Figure:
+    per = res["variants"][WITH_TITLE]["query_precision_by_category"]
+    items = sorted(per.items(), key=lambda kv: kv[1])
+    fig, ax = _canvas(8.6, 6.0)
+    colors = [OURS if v >= 0.7 else SOFT if v >= 0.4 else OTHERS for _, v in items]
+    _hbars(ax, [k.replace("-", " ").title() for k, _ in items], [v for _, v in items], colors)
+    _finish(
+        ax,
+        "A recruiter types a role: how many of the top 10 are right",
+        "semantic search only, one query per category",
+    )
+    return fig
+
+
+def kaggle_hypothesis(res: dict[str, Any]) -> Figure:
+    v = res["variants"][WITH_TITLE]
+    h = v["hypothesis"]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(9.2, 2.9), facecolor=SURFACE)
+    for ax in (a, b):
+        ax.set_facecolor(SURFACE)
+        for side in ("top", "right"):
+            ax.spines[side].set_visible(False)
+        for side in ("left", "bottom"):
+            ax.spines[side].set_color("#00000022")
+        ax.tick_params(colors=MUTED, labelsize=9, length=0)
+    _hbars(
+        a,
+        ["meaning", "meaning + bge prefix", "words", "meaning + words"],
+        [
+            v["query_precision_at_10"],
+            h["query_p10_prefix"],
+            h["query_p10_lexical_only"],
+            h["query_p10_rank_fusion"],
+        ],
+        [SOFT, SOFT, OTHERS, OURS],
+    )
+    a.set_title("Role query, precision@10", color=INK, fontsize=11, loc="left")
+    _hbars(
+        b,
+        ["meaning", "words", "meaning + words"],
+        [
+            v["classification"]["embed_lr"]["accuracy"],
+            v["classification"]["tfidf_lr"]["accuracy"],
+            h["fusion_accuracy"],
+        ],
+        [SOFT, OTHERS, OURS],
+    )
+    b.set_title("Category accuracy", color=INK, fontsize=11, loc="left")
+    plt.tight_layout()
+    return fig
