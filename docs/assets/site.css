@@ -367,3 +367,11 @@ footer .spacer { margin-left: auto; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- measured section ---------- */
+.bars { display: grid; gap: 8px; margin: 12px 0 14px; }
+.bar { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; }
+.bar span { display: block; height: 10px; border-radius: 5px; background: var(--color-accent); }
+.bar:last-child span { background: var(--color-border-3); }
+.bar em { font-style: normal; font-size: var(--font-size-s); color: var(--color-text-secondary); white-space: nowrap; }
+.note.small { margin-top: 20px; font-size: var(--font-size-s); color: var(--color-text-tertiary); max-width: 760px; }

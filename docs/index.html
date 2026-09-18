@@ -21,6 +21,7 @@
     <nav aria-label="Main">
       <a class="hide-narrow" href="#tools">Tools</a>
       <a class="hide-narrow" href="#showcase">Widgets</a>
+      <a class="hide-narrow" href="#measured">Measured</a>
       <a href="#install">Install</a>
       <a href="https://github.com/ananasDDA/cv-screener">GitHub</a>
       <button class="toggle" id="theme-toggle" type="button" aria-label="Switch theme">
@@ -212,6 +213,46 @@
         <p class="caption">A static copy of the results widget. A language filter alone has no relevance score,
           so the search orders the hits by proficiency first, then by years of experience.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="measured">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">Measured</p>
+        <h2>Same answers, a fraction of the tokens</h2>
+        <p class="lede">The agent that searches through tools was compared with the same model given every
+          CV in the prompt: the same nine eval questions, the same checker, three repetitions each.
+          Numbers below are medians from
+          <a href="https://github.com/ananasDDA/cv-screener/blob/main/research.ipynb">research.ipynb</a>.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <p class="num">PASS RATE</p>
+          <h3>26/27 vs 25/27</h3>
+          <p>Tools versus all-CVs-in-prompt on 14 résumés. One run of difference is noise: retrieval
+            through tools does not make answers better here, it makes them cheaper.</p>
+        </article>
+        <article class="card">
+          <p class="num">TOKENS PER QUESTION</p>
+          <h3>2 985 vs 11 042</h3>
+          <div class="bars" aria-hidden="true">
+            <div class="bar"><span style="width:27%"></span><em>tools</em></div>
+            <div class="bar"><span style="width:100%"></span><em>all CVs in prompt</em></div>
+          </div>
+          <p>3.7× fewer tokens for the same answers, all LLM calls of the agent loop counted, tool
+            definitions included.</p>
+        </article>
+        <article class="card">
+          <p class="num">AT 200 RÉSUMÉS</p>
+          <h3>~2.7k vs ~153k</h3>
+          <p>The agent's cost stays flat: a search returns top-k. The prompt grows by ~760 tokens per
+            document; this line is computed from a calibrated estimator, not measured.</p>
+        </article>
+      </div>
+      <p class="note small">Latency medians were equal (7.8 s vs 7.5 s); the agent's tail is worse (p95 31 s
+        vs 20 s) because it makes two sequential calls. Free-tier models, one day of measurements, no
+        confidence intervals — read the notebook for what the numbers do and do not show.</p>
     </div>
   </section>
 
