@@ -189,3 +189,7 @@ data/         candidates/*.json, pdf/*.pdf, photos/, photo_prompts.json, chroma/
 ```
 
 See `NOTES.md` for what is unfinished, known issues and eval results, and `ROADMAP.md` for the plan.
+
+## License
+
+MIT, see [LICENSE](LICENSE). The dataset is synthetic; photos are AI-generated.

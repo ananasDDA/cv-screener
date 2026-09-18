@@ -3,6 +3,8 @@ name = "cv-screener"
 version = "0.1.0"
 description = "Synthetic CV dataset generator, hybrid vector search and a tool-using CLI agent"
 requires-python = ">=3.12,<3.13"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     "openai>=1.50",
     "pydantic>=2.8",
