@@ -26,6 +26,17 @@
     .mini .t { font-size: 9px; fill: var(--color-text-tertiary); }
     .mini .b-dot { fill: var(--color-text-tertiary); }
     .mini .limit { stroke: var(--color-border-3); stroke-width: 1; stroke-dasharray: 3 3; }
+    .mock.chat { max-width: 760px; }
+    .msg { display: flex; flex-direction: column; margin-bottom: 18px; }
+    .msg.user { align-items: flex-end; }
+    .msg.user .bubble { background: var(--color-accent); color: #fff; padding: 10px 16px; border-radius: 18px 18px 4px 18px;
+      font-size: var(--font-size-m); max-width: 80%; }
+    .msg.claude .from { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: var(--font-size-s);
+      color: var(--color-text-secondary); margin-bottom: 8px; }
+    .msg.claude .spark { color: #d97757; font-size: 16px; line-height: 1; }
+    .msg.claude .toolcall { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary);
+      border-left: 2px solid var(--color-border-3); padding-left: 10px; margin-bottom: 12px; }
+    .msg.claude .reply { margin: 14px 0 0; color: var(--color-text-primary); font-size: var(--font-size-m); max-width: 720px; }
     .kaggle-link { display: flex; align-items: center; gap: 18px; padding: 22px 24px; border: 1px solid var(--color-border-3);
       border-radius: var(--radius-l); text-decoration: none; color: inherit; background: var(--color-surface);
       transition: border-color .2s ease, transform .2s ease, background .2s ease; }
@@ -109,7 +120,7 @@
   <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a grow"/><text x="22" y="50" class="v on">96%</text>
   <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b grow"/><text x="22" y="116" class="v">93%</text>
 </svg>
-          <p>Pass rate on nine questions, three runs each. One run of difference is noise.</p>
+          <p>Nine questions, three runs each.</p>
         </article>
         <article class="card stat">
           <h3>3.7× fewer tokens</h3>
@@ -118,7 +129,7 @@
   <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a grow"/><text x="85" y="50" class="v">3.0k</text>
   <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b grow"/><text x="22" y="116" class="v">11.0k</text>
 </svg>
-          <p>Median tokens per question, every call of the agent loop counted.</p>
+          <p>Median per question, all agent calls.</p>
         </article>
         <article class="card stat">
           <h3>Flat as the collection grows</h3>
@@ -131,8 +142,7 @@
   <line x1="16" y1="117.0" x2="226" y2="117.0" class="a-line draw" pathLength="1"/><text x="226" y="130.0" text-anchor="end" class="v pop" style="--d:1.5s">2.7k with tools</text>
   <text x="16" y="147" class="t">14 résumés</text><text x="226" y="147" text-anchor="end" class="t">2,500</text>
 </svg>
-          <p>At 2,500 résumés. A search returns the top few, so its cost stays put. Every CV in the prompt stops
-            fitting a 128k window near 170 résumés. Projected from the measured 14.</p>
+          <p>Projected to 2,500 résumés.</p>
         </article>
       </div>
     </div>
@@ -214,22 +224,24 @@
       </div>
       <p class="caption">Synthetic candidates, AI-generated photos.</p>
 
-      <div class="mock">
-        <p class="prompt">You ask Claude: <b>“Which candidates speak Spanish?”</b></p>
-        <div class="table-wrap results">
-          <div class="toolbar"><b>6</b> candidates · languages <span class="q">Spanish</span></div>
-          <table>
-            <thead>
+      <div class="mock chat">
+        <div class="msg user"><div class="bubble">Which candidates speak Spanish?</div></div>
+        <div class="msg claude">
+          <div class="from"><span class="spark" aria-hidden="true">✳</span> Claude</div>
+          <div class="toolcall">cv-screener · search_candidates · languages Spanish</div>
+          <div class="table-wrap results">
+            <div class="toolbar"><b>6</b> candidates · languages <span class="q">Spanish</span> · top 3 shown</div>
+            <table>
+              <thead>
               <tr>
                 <th scope="col">Candidate</th>
                 <th scope="col" class="hide-narrow">Level · Role</th>
                 <th scope="col" class="hide-narrow">Location</th>
                 <th scope="col">Yrs</th>
-                <th scope="col" class="hide-narrow">Languages</th>
                 <th scope="col"><span class="sr-only">Actions</span></th>
               </tr>
             </thead>
-            <tbody>
+              <tbody>
               <tr>
                 <td><div class="who"><span class="avatar" aria-hidden="true">JM</span>
                   <div><div class="name">Juan Cruz Martinez</div><div class="headline">Senior iOS Engineer</div>
@@ -237,7 +249,6 @@
                 <td class="hide-narrow"><span class="chip">senior</span><span class="chip">mobile</span></td>
                 <td class="hide-narrow muted">Argentina</td>
                 <td>9</td>
-                <td class="hide-narrow muted mono">Spanish (Native), English (B2)</td>
                 <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
               </tr>
               <tr>
@@ -247,7 +258,6 @@
                 <td class="hide-narrow"><span class="chip">senior</span><span class="chip">ml</span></td>
                 <td class="hide-narrow muted">Spain</td>
                 <td>8</td>
-                <td class="hide-narrow muted mono">Spanish (Native), English (C1), French (B1)</td>
                 <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
               </tr>
               <tr>
@@ -257,44 +267,14 @@
                 <td class="hide-narrow"><span class="chip">middle</span><span class="chip">security</span></td>
                 <td class="hide-narrow muted">Mexico</td>
                 <td>5</td>
-                <td class="hide-narrow muted mono">Spanish (Native), English (C1)</td>
                 <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
               </tr>
-              <tr>
-                <td><div class="who"><span class="avatar" aria-hidden="true">LM</span>
-                  <div><div class="name">Luna Magalhães</div><div class="headline">QA Automation Engineer (mid-level)</div>
-                  <div><span class="chip accent">Spanish <b>B2</b></span></div></div></div></td>
-                <td class="hide-narrow"><span class="chip">middle</span><span class="chip">qa</span></td>
-                <td class="hide-narrow muted">Portugal</td>
-                <td>4</td>
-                <td class="hide-narrow muted mono">Portuguese (Native), Spanish (B2), English (C1)</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
-              </tr>
-              <tr>
-                <td><div class="who"><span class="avatar" aria-hidden="true">MC</span>
-                  <div><div class="name">Maria Clara da Cunha</div><div class="headline">Java Backend Engineer with 6+ years of experience building scalable microservices on Java, Spring Boot, Kotlin and Azure</div>
-                  <div><span class="chip accent">Spanish <b>B1</b></span></div></div></div></td>
-                <td class="hide-narrow"><span class="chip">middle</span><span class="chip">backend</span></td>
-                <td class="hide-narrow muted">Brazil</td>
-                <td>6</td>
-                <td class="hide-narrow muted mono">Portuguese (Native), English (B2), Spanish (B1)</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
-              </tr>
-              <tr>
-                <td><div class="who"><span class="avatar" aria-hidden="true">MS</span>
-                  <div><div class="name">Michael Saleh</div><div class="headline">Senior Product Manager</div>
-                  <div><span class="chip accent">Spanish <b>A2</b></span></div></div></div></td>
-                <td class="hide-narrow"><span class="chip">senior</span><span class="chip">product</span></td>
-                <td class="hide-narrow muted">Sweden</td>
-                <td>11</td>
-                <td class="hide-narrow muted mono">Swedish (Native), English (C2), Spanish (A2)</td>
-                <td class="actions"><span class="btn small" aria-hidden="true">Profile</span><span class="btn small primary" aria-hidden="true">Ask</span></td>
-              </tr>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+          <p class="reply">Six candidates speak Spanish. Juan Cruz Martinez, Rosalinda Barral and Marisela Herrera are native
+            speakers, Luna Magalhães is at B2, and two more know it at B1 and A2.</p>
         </div>
-        <p class="caption">A static copy of the results widget. A language filter alone has no relevance score,
-          so the search orders the hits by proficiency first, then by years of experience.</p>
       </div>
     </div>
   </section>
@@ -423,7 +403,7 @@
 <script src="assets/site.js?v=5"></script>
 <script>
 (function () {
-  var targets = document.querySelectorAll("section .section-head, section .card, .table-wrap, .stage, .mock, .code, .note, .kaggle-link, .steps > *");
+  var targets = document.querySelectorAll("section .section-head, section .card, .table-wrap, .stage, .msg, .code, .note, .kaggle-link, .steps > *");
   targets.forEach(function (el, i) { el.classList.add("reveal"); });
   document.querySelectorAll(".grid, .steps").forEach(function (g) {
     [].forEach.call(g.children, function (c, i) { c.style.setProperty("--rd", (i * 0.09) + "s"); });
