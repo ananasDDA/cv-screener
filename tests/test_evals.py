@@ -43,6 +43,13 @@ def test_no_match_case_rejects_any_name_and_requires_tools():
     assert check(case, answer("Nobody.", tools=0), NAMES) == ["no tool calls"]
 
 
+def test_must_include_any_accepts_either_candidate():
+    case = {"must_include_any": ["p01", "p02"], "must_exclude": ["p03"]}
+    assert check(case, answer("Bob Lee is the best fit."), NAMES) == []
+    assert check(case, answer("Ana Ruiz and Bob Lee both fit."), NAMES) == []
+    assert check(case, answer("Nobody fits."), NAMES) == ["missing all of: Ana Ruiz, Bob Lee"]
+
+
 def test_ungrounded_answer_fails():
     reasons = check(
         {"must_include": ["p01"]}, answer("Ana Ruiz and Zed.", ungrounded=["Zed"]), NAMES
@@ -57,4 +64,4 @@ def test_cases_file_is_well_formed():
     assert len(ids) == len(set(ids))
     for c in cases:
         assert c["question"]
-        assert c.get("expect_no_match") or c.get("must_include")
+        assert c.get("expect_no_match") or c.get("must_include") or c.get("must_include_any")

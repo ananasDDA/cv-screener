@@ -52,6 +52,9 @@ def check(case: dict, answer: Answer, names: dict[str, str]) -> list[str]:
     for cid in case.get("must_include", []):
         if not mentions(answer.text, names[cid]):
             reasons.append(f"missing {names[cid]}")
+    any_of = case.get("must_include_any", [])
+    if any_of and not any(mentions(answer.text, names[cid]) for cid in any_of):
+        reasons.append("missing all of: " + ", ".join(names[cid] for cid in any_of))
     for cid in case.get("must_exclude", []):
         if mentions(answer.text, names[cid]):
             reasons.append(f"should not mention {names[cid]}")

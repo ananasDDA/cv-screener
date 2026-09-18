@@ -28,8 +28,10 @@ is optional work on top, done after the core and outside the three-hour frame, a
 - MCP Apps widgets render in Claude Desktop and claude.ai; Claude Code gets JSON only.
 - The OpenRouter free tier has an account-wide daily request cap; a busy day of evals and research
   exhausts it and everything returns 429 until 00:00 UTC.
-- Eval case `senior-ml-fit` requires Rosalinda Barral while its own note accepts Katie Brown too; an
-  answer naming only Katie fails. The case should accept either (found by the research notebook).
+- Eval case `senior-ml-fit` used to require Rosalinda Barral while its own note accepted Katie Brown;
+  an answer naming only Katie failed. Found by the research notebook on its 27 repetitions, fixed
+  with a `must_include_any` form (either senior ML person passes). Runs 1–5 below passed under the
+  old rule too, so their numbers stand.
 
 - Free OpenRouter models are flaky: 429s, empty `choices`, occasional stray citation markers in
   answers. The fallback chain hides most of it; expect eval runtimes of 1–3 minutes and the odd
@@ -104,6 +106,21 @@ run 5  9/9 passed
 
 Lesson recorded on purpose: two of the three failures were in the eval harness and the data, not in the
 agent. Without repeated runs they would have stayed hidden.
+
+Run 6, 2026-09-18, after the `senior-ml-fit` fix and with nano removed from the fallback chain:
+
+```
+[PASS] python-skill                 tools=1  19.6s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] spanish-language             tools=1   7.5s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] senior-ml-fit                tools=1   6.3s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] summarize-katie              tools=2   9.1s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] portuguese-language          tools=1   3.6s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] years-filter                 tools=1   4.4s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] no-match-hebrew              tools=1   2.0s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] no-match-cobol               tools=1   5.2s  nvidia/nemotron-3-super-120b-a12b:free
+[PASS] no-match-unknown-person      tools=1   3.8s  nvidia/nemotron-3-super-120b-a12b:free
+9/9 passed
+```
 
 Per-answer details of the last run are in `evals/last_run.json`.
 

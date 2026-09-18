@@ -2,44 +2,90 @@
   {
     "id": "python-skill",
     "question": "Who has experience with Python?",
-    "must_include": ["p01-reiner-lorch", "p02-rosalinda-barral", "p04-yuvraj-parsa", "p05-julius-guit",
-                     "p08-savannah-mcbride", "p09-davit-petrosyan", "p10-katie-brown", "p14-marisela-herrera"],
-    "must_exclude": ["p03-angelika-drewa", "p07-juan-cruz-martinez", "p13-taichi-takahashi"],
+    "must_include": [
+      "p01-reiner-lorch",
+      "p02-rosalinda-barral",
+      "p04-yuvraj-parsa",
+      "p05-julius-guit",
+      "p08-savannah-mcbride",
+      "p09-davit-petrosyan",
+      "p10-katie-brown",
+      "p14-marisela-herrera"
+    ],
+    "must_exclude": [
+      "p03-angelika-drewa",
+      "p07-juan-cruz-martinez",
+      "p13-taichi-takahashi"
+    ],
     "note": "field filter; Reiner lists 'Python 3.11', must still be found"
   },
   {
     "id": "spanish-language",
     "question": "Which candidates speak Spanish?",
-    "must_include": ["p02-rosalinda-barral", "p07-juan-cruz-martinez", "p14-marisela-herrera", "p06-luna-magalhaes"],
-    "must_exclude": ["p10-katie-brown", "p01-reiner-lorch", "p13-taichi-takahashi"],
+    "must_include": [
+      "p02-rosalinda-barral",
+      "p07-juan-cruz-martinez",
+      "p14-marisela-herrera",
+      "p06-luna-magalhaes"
+    ],
+    "must_exclude": [
+      "p10-katie-brown",
+      "p01-reiner-lorch",
+      "p13-taichi-takahashi"
+    ],
     "note": "natives and B2 must appear; A2/B1 speakers are allowed either way"
   },
   {
     "id": "senior-ml-fit",
     "question": "Who would be the best fit for a senior ML role?",
-    "must_include": ["p02-rosalinda-barral"],
-    "must_exclude": ["p09-davit-petrosyan", "p06-luna-magalhaes", "p03-angelika-drewa"],
-    "note": "semantic + seniority; Katie Brown (principal) is acceptable too"
+    "must_exclude": [
+      "p09-davit-petrosyan",
+      "p06-luna-magalhaes",
+      "p03-angelika-drewa"
+    ],
+    "note": "semantic + seniority; 'best fit' is singular, so naming either senior ML person is correct",
+    "must_include_any": [
+      "p02-rosalinda-barral",
+      "p10-katie-brown"
+    ]
   },
   {
     "id": "summarize-katie",
     "question": "Summarize the profile of Katie Brown",
-    "must_include": ["p10-katie-brown"],
-    "must_exclude": ["p02-rosalinda-barral", "p01-reiner-lorch"],
+    "must_include": [
+      "p10-katie-brown"
+    ],
+    "must_exclude": [
+      "p02-rosalinda-barral",
+      "p01-reiner-lorch"
+    ],
     "note": "find_by_name then get_candidate; nobody else should be mentioned"
   },
   {
     "id": "portuguese-language",
     "question": "Who speaks Portuguese?",
-    "must_include": ["p06-luna-magalhaes", "p12-maria-clara-da-cunha"],
-    "must_exclude": ["p02-rosalinda-barral", "p07-juan-cruz-martinez"],
+    "must_include": [
+      "p06-luna-magalhaes",
+      "p12-maria-clara-da-cunha"
+    ],
+    "must_exclude": [
+      "p02-rosalinda-barral",
+      "p07-juan-cruz-martinez"
+    ],
     "note": "language filter must not confuse Portuguese with Spanish speakers"
   },
   {
     "id": "years-filter",
     "question": "Which candidates have at least 12 years of experience?",
-    "must_include": ["p10-katie-brown", "p05-julius-guit"],
-    "must_exclude": ["p01-reiner-lorch", "p09-davit-petrosyan", "p03-angelika-drewa"],
+    "must_include": [
+      "p10-katie-brown",
+      "p05-julius-guit"
+    ],
+    "must_exclude": [
+      "p01-reiner-lorch",
+      "p09-davit-petrosyan",
+      "p03-angelika-drewa"
+    ],
     "note": "numeric filter; Reiner has exactly 10 and must be excluded"
   },
   {
