@@ -10,7 +10,21 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://ananasdda.github.io/cv-screener/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/site.css?v=5">
+  <style>
+    .card.stat .big { font-size: 26px; font-weight: 600; letter-spacing: -0.4px; color: var(--color-text-primary); margin: 2px 0 6px; }
+    .card.stat .big span { color: var(--color-text-tertiary); font-weight: 400; font-size: 16px; margin: 0 4px; }
+    .mini { width: 100%; height: auto; display: block; margin: 4px 0 8px; font-family: var(--font-text); }
+    .mini .k { font-size: 11px; fill: var(--color-text-secondary); }
+    .mini .v { font-size: 12px; font-weight: 600; fill: var(--color-text-primary); }
+    .mini .v.on { fill: #fff; }
+    .mini .a { fill: var(--color-accent); }
+    .mini .b { fill: var(--color-border-3); }
+    .mini .a-line { stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; }
+    .mini .b-line { stroke: var(--color-text-tertiary); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  </style>
+
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -228,7 +242,7 @@
           <p class="big">26/27 <span>vs</span> 25/27</p>
           <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
   <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="223" height="22" rx="6" class="a"/><text x="22" y="50" class="v on">96%</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b"/><text x="22" y="116" class="v on">93%</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="216" height="22" rx="6" class="b"/><text x="22" y="116" class="v">93%</text>
 </svg>
           <p>Pass rate on nine questions, three runs each. One run of difference is noise.</p>
         </article>
@@ -237,7 +251,7 @@
           <p class="big">3.0k <span>vs</span> 11.0k</p>
           <svg class="mini" viewBox="0 0 260 150" aria-hidden="true">
   <text x="14" y="26" class="k">with tools</text><rect x="14" y="34" width="63" height="22" rx="6" class="a"/><text x="85" y="50" class="v">3.0k</text>
-  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b"/><text x="22" y="116" class="v on">11.0k</text>
+  <text x="14" y="92" class="k">every CV in the prompt</text><rect x="14" y="100" width="232" height="22" rx="6" class="b"/><text x="22" y="116" class="v">11.0k</text>
 </svg>
           <p>Median tokens per question, every call of the agent loop counted.</p>
         </article>
@@ -252,9 +266,6 @@
           <p>At 200 résumés. The tools return top-k; the prompt grows with every document (projected).</p>
         </article>
       </div>
-      <p class="note small">Latency is the same at the median; the agent's slowest answers are slower because it makes
-        two calls instead of one. One day of measurements on free-tier models — the notebook says what the numbers do
-        and do not show.</p>
     </div>
   </section>
 
@@ -360,7 +371,7 @@
   </div>
 </footer>
 
-<script src="assets/deck.js"></script>
-<script src="assets/site.js"></script>
+<script src="assets/deck.js?v=5"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

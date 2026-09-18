@@ -374,8 +374,7 @@ footer .spacer { margin-left: auto; }
 .mini { width: 100%; height: auto; display: block; margin: 4px 0 8px; font-family: var(--font-text); }
 .mini .k { font-size: 11px; fill: var(--color-text-secondary); }
 .mini .v { font-size: 12px; font-weight: 600; fill: var(--color-text-primary); }
-.mini .v.on { fill: var(--color-on-accent); }
-.mini .b + .v.on, .mini rect.b ~ text.v.on { fill: var(--color-text-primary); }
+.mini .v.on { fill: #fff; }
 .mini .a { fill: var(--color-accent); }
 .mini .b { fill: var(--color-border-3); }
 .mini .a-line { stroke: var(--color-accent); stroke-width: 3; stroke-linecap: round; }
